@@ -935,6 +935,34 @@ reforma: {
   `
 },
 {
+  ref:"Exemplo: fluxo", title:"Exemplo: fluxo de evento tributário e DeRE",
+  narration:"Vamos transformar tudo que você estudou em um fluxo de ponta a ponta. A jornada começa com a chegada de um evento tributário ou transacional ao banco. Primeiro o sistema identifica a entidade, o produto, a receita e a natureza da operação. Depois consulta o catálogo de receitas e o classificador fiscal para decidir o regime aplicável. Em seguida o motor de regras calcula IBS, CBS e Imposto Seletivo quando aplicável, usando parâmetros versionados por vigência e fonte normativa. O resultado alimenta o subledger tributário, a reconciliação com COSIF e razão, a geração da DeRE e, quando necessário, a emissão de documentos fiscais. O lote é validado contra o XSD vigente, assinado, transmitido por API ou Web Service, recebe protocolo e retorna para reconciliação. Se houver pendência, o fluxo vai para uma fila de exceção; se tudo estiver correto, o evento é fechado e auditável. Na entrevista, você deve conseguir narrar esse fluxo inteiro e explicar quais decisões são automáticas, quais exigem aprovação de Tax e Jurídico, e quais dependem de validação humana ou reconciliação.",
+  body:`
+    <div class="block">
+      <h3>Fluxo: evento tributário → DeRE → reconciliação</h3>
+      <div class="pipeline">
+        <div class="step">Evento contábil / transacional</div><span class="arrow">→</span>
+        <div class="step">Catálogo de receitas</div><span class="arrow">→</span>
+        <div class="step">Classificador fiscal</div><span class="arrow">→</span>
+        <div class="step">Motor de regras versionado</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Subledger tributário</div><span class="arrow">→</span>
+        <div class="step">Reconciliação COSIF / razão</div><span class="arrow">→</span>
+        <div class="step">Gerador DeRE</div><span class="arrow">→</span>
+        <div class="step">XML validado contra XSD</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Assinatura e transmissão</div><span class="arrow">→</span>
+        <div class="step">Protocolo / retorno</div><span class="arrow">→</span>
+        <div class="step">Fechamento e auditoria</div>
+      </div>
+      <div class="callout gold"><span class="tag">RESPOSTA MODELO PARA ENTREVISTA</span><p>Eu começaria pelo evento e pela rastreabilidade: cada resultado precisaria carregar produto, entidade, natureza da operação, regra, versão, parâmetro, fonte normativa, documento, contabilidade e retorno do Fisco. O PO deve desenhar o fluxo completo, mas também os caminhos de exceção: lote inválido, certificado vencido, API indisponível, divergência de reconciliação e reabertura de competência.</p></div>
+      <div class="callout teal"><span class="tag">PERGUNTA QUE O PO DEVE FAZER</span><p>Quais decisões são determinísticas, quais exigem aprovação de Tax/Jurídico e quais precisam de intervenção humana? Onde o sistema deve parar, pedir confirmação ou enviar para reconciliação?</p></div>
+    </div>
+  `
+},
+{
   ref:"Seções 15–17", title:"Sua experiência, o que evitar e resumo final",
   narration:"Para fechar, três coisas essenciais. Primeiro, como conectar sua experiência anterior sem exagerar. A frase certa é: minha experiência direta com Reforma Tributária na TOTVS foi na camada de portal, documentação e atendimento. Não vou apresentá-la como se eu tivesse sido o especialista responsável pelo cálculo tributário bancário. O que eu agrego ao projeto é a experiência de produto em integrações, documentos, regras de validação, sistemas legados, dados, stakeholders e entrega rastreável. Segundo, o que evitar na entrevista: nunca diga que toda receita bancária segue o mesmo regime; não confunda IBS, CBS e Imposto Seletivo; não trate a DeRE como se fosse apenas uma nota fiscal; não afirme que uma autorização técnica sem rejeição elimina a obrigação material; não coloque alíquotas fixas sem fonte e vigência; não diga que o COSIF é a classificação fiscal final; e não esconda que sua experiência mais forte em Reforma Tributária foi em portal e documentação — honestidade gera confiança. E terceiro, o resumo para memorizar antes de entrar na sala: IBS, CBS e Imposto Seletivo são componentes diferentes; serviços financeiros têm regime específico, mas tarifas podem seguir regras gerais; o produto deve classificar receita por operação, entidade e natureza; DeRE é obrigação acessória e integração, não uma tela; documentos fiscais e DeRE coexistem conforme regime; split payment conecta documento, pagamento, liquidação e recolhimento; COSIF precisa ser reconciliado mas não substitui a classificação fiscal; alíquotas, leiautes e datas precisam ser parâmetros versionados; o PO garante rastreabilidade, testes, reconciliação e governança; e sua experiência é transferível, mas deve ser apresentada com honestidade. Boa sorte na entrevista.",
   body:`
@@ -1476,6 +1504,32 @@ pagamentos: {
         <li><b>Sinceridade com método:</b> reconhecer a lacuna em adquirência e Open Finance, mas apresentar um plano claro para aprender o domínio e entregar com especialistas.</li>
       </ol>
       <div class="callout gold"><span class="tag">RESUMO DE FONTES</span><p>ABECS é o material pago mais alinhado à adquirência. O Banco Central é a base oficial e gratuita. Visa University complementa cartões, operações e riscos. FBM Educação cobre instituições de pagamento, regulação e LGPD. Para Open Finance, comece pelo Banco Central e complemente com o portal da Associação Open Finance Brasil.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Exemplo: fluxo", title:"Exemplo: fluxo de cobrança Pix",
+  narration:"Vamos acompanhar um fluxo concreto de cobrança via Pix. O cliente inicia a operação no app ou QR Code do receptor. O PSP pagador autentica, valida o QR ou chave Pix e verifica saldo ou limite. O sistema consulta o DICT para mapear a chave à conta, o SPI para obter o saldo disponível e o MED quando aplicável. Em seguida o PSP envia a autorização ao receptor, que confirma o recebimento e o valor. O fluxo de reconciliação compara o protocolo enviado, o retorno do PSP pagador, a confirmação do receptor e os lançamentos contábeis. O PO deve garantir idempotência: se o cliente tenta pagar duas vezes, o sistema não gera duas cobranças, apenas um aguarda o retorno. Para exceções, o cliente pode cancelar via MED (Pix Automático) ou o receptor pode estornar (Pix Devolver). Na entrevista, mostre que entende: iniciação, validação, liquidação, reconciliação, idempotência, cancelamento e estorno.",
+  body:`
+    <div class="block">
+      <h3>Fluxo de cobrança Pix</h3>
+      <div class="pipeline">
+        <div class="step">Cliente inicia no app ou QR Code</div><span class="arrow">→</span>
+        <div class="step">PSP pagador valida e autoriza</div><span class="arrow">→</span>
+        <div class="step">DICT mapeia chave à conta</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">SPI liquida em tempo real</div><span class="arrow">→</span>
+        <div class="step">MED (quando aplicável)</div><span class="arrow">→</span>
+        <div class="step">Receptor confirma recebimento</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Protocolo / retorno</div><span class="arrow">→</span>
+        <div class="step">Reconciliação</div><span class="arrow">→</span>
+        <div class="step">Lançamento contábil</div>
+      </div>
+      <div class="callout rust"><span class="tag">IDEMPOTÊNCIA É REQUISITO DE PRODUTO</span><p>Se o cliente tentar pagar duas vezes (app travou, clicou duas vezes), o sistema deve retornar o mesmo protocolo, não gerar nova cobrança. O correlation ID e idempotency key são fundamentais.</p></div>
+      <div class="callout gold"><span class="tag">RESPOSTAS PARA ENTREVISTA</span><p>"Como evitaria duplicidade?" → Idempotency por correlation ID e validação de status. "E se o pagamento falhar?" → Consulta de status, retry com backoff, notificação ao cliente e planejamento de reversão. "Como o cliente cancela?" → Pix Devolver (até 24h) ou estorno do receptor conforme regra do arranjo.</p></div>
     </div>
   `
 }
@@ -2066,6 +2120,33 @@ ia: {
         <li>Fazer perguntas sobre stack, casos de uso, equipe, dados e critérios de sucesso.</li>
       </ul>
       <div class="central-phrase">"Um Product Manager técnico de IA não é avaliado apenas por saber nomes de ferramentas. Ele é avaliado por conseguir conectar problema, usuário, dados, arquitetura, qualidade, custo, segurança e operação em uma decisão coerente de produto."</div>
+    </div>
+  `
+},
+{
+  ref:"Exemplo: fluxo", title:"Exemplo: fluxo de agente com RAG e aprovação humana",
+  narration:"Vamos montar um fluxo realista para um assistente de suporte que combina RAG com ferramentas e aprovação humana. O usuário faz uma pergunta como 'Meu plano foi cancelado e quero reembolso'. O sistema classifica a intenção, identifica o cliente e seu plano, busca na base de políticas o trecho aplicável e verifica se a resposta pode ser dada automaticamente. Se a resposta for automática e segura, o LLM redige a resposta com fonte e data. Se houver exceção — como um valor acima do limite ou situação não coberta — o fluxo vai para um humano, mostrando o contexto, a política relevante e as evidências. Depois de aprovada, a ação é executada e registrada com custo, latência, resultado e feedback. O PO precisa definir: quais eventos acionam o humano, quem pode aprovar, o que o revisor vê, prazo de resposta, comportamento em timeout e o caminho de rejeição.",
+  body:`
+    <div class="block">
+      <h3>Fluxo: pergunta → RAG → ferramenta → aprovação → ação</h3>
+      <div class="pipeline">
+        <div class="step">Usuário faz pergunta</div><span class="arrow">→</span>
+        <div class="step">Classifica intenção</div><span class="arrow">→</span>
+        <div class="step">Busca política via RAG</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Verifica se é automático</div><span class="arrow">→</span>
+        <div class="step">LLM redige resposta com fonte</div><span class="arrow">→</span>
+        <div class="step">Aprovado? Sim → responder</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Não aprovado → Humano</div><span class="arrow">→</span>
+        <div class="step">Aprova / rejeita</div><span class="arrow">→</span>
+        <div class="step">Executa ação e registra</div>
+      </div>
+      <div class="callout rust"><span class="tag">HUMAN-IN-THE-LOOP NÃO É OPCIONAL</span><p>Cancelar plano e efetuar reembolso são ações que exigem aprovação humana. O LLM pode redigir a resposta, mas não deve decidir sozinho que um reembolso será executado.</p></div>
+      <div class="callout teal"><span class="tag">PERGUNTAS QUE O PO DEVE FAZER</span><p>Quais eventos acionam a intervenção humana? Quem pode aprovar? O que o revisor vê? Qual o prazo? O que acontece em timeout? Como é registrada a decisão?</p></div>
+      <div class="callout gold"><span class="tag">FALHBACK E OBSERVABILIDADE</span><p>O fluxo deve ter fallback quando a busca RAG não retorna evidência suficiente, e registrar custo, latência, resultado e feedback para cada etapa.</p></div>
     </div>
   `
 }
