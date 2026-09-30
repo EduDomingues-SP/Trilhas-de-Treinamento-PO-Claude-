@@ -431,7 +431,7 @@ reforma: {
 },
 {
   ref:"Seção 6", title:"DeRE — Declaração de Regimes Específicos",
-  narration:"A DeRE é uma das partes mais importantes para essa vaga, e você precisa tratá-la como uma plataforma de dados, regras, integração e governança — não como uma tela de relatório. Prestadores de serviços financeiros sujeitos ao regime específico são obrigados à DeRE, entregue de forma consolidada pelo CNPJ-raiz de oito dígitos, abrangendo matriz e filiais. A transmissão acontece por A P I ou Web Service no Ambiente Nacional. Existe uma sequência de eventos que você deve conhecer, sempre conferindo nomes e versões no manual vigente: D-1001 é a identificação do contribuinte; D-1011 é o Plano Geral de Contas Comentado; D-1101 é o balancete mensal; e assim por diante até o D-1199, que é o fechamento mensal. O fechamento é uma operação de alto controle: ele declara a completude da competência, pode bloquear alterações e funciona como gatilho de apuração assistida. O produto precisa contemplar validação de pendências antes do fechamento, segregação de funções, armazenamento de protocolo, reabertura conforme regra vigente, retificação com justificativa e trilha de auditoria completa.",
+  narration:"A DeRE é uma das partes mais importantes para essa vaga, e você precisa tratá-la como uma plataforma de dados, regras, integração e governança — não como uma tela de relatório. Prestadores de serviços financeiros sujeitos ao regime específico são obrigados à DeRE, entregue de forma consolidada pelo CNPJ-raiz de oito dígitos, abrangendo matriz e filiais. A transmissão acontece por A P I ou Web Service no Ambiente Nacional. Existe uma sequência de eventos que você deve conhecer, sempre conferindo nomes e versões no manual vigente: D-1001 é a identificação do contribuinte; D-1011 é o Plano Geral de Contas Comentado; D-1101 é o balancete mensal; e assim por diante até o D-1199, que é o fechamento mensal. O fechamento é uma operação de alto controle: ele declara a completude da competência, pode bloquear alterações e funciona como gatilho de apuração assistida. O produto precisa contemplar validação de pendências antes do fechamento, segregação de funções, armazenamento de protocolo, reabertura conforme regra vigente, retificação com justificativa e trilha de auditoria completa. Depois das regras, veja na tela um exemplo prático com datas reais: o Banco Exemplo fechando a competência de outubro, encontrando divergências no meio do caminho, aprovando o fechamento, e vinte dias depois precisando reabrir por causa de um erro achado em auditoria — esse é o tipo de cenário que mais aparece em perguntas de teste de entrevista.",
   body:`
     <div class="block">
       <p>A Receita Federal e o CGIBS informam que os prestadores de serviços financeiros sujeitos ao regime específico estão obrigados à DeRE, entregue consolidada pelo CNPJ-raiz de oito dígitos (matriz e filiais), transmitida por API ou Web Service no Ambiente Nacional.</p>
@@ -482,6 +482,65 @@ reforma: {
         <li>Reconciliação após reabertura.</li>
       </ul>
       <div class="callout gold"><span class="tag">ATUALIZAÇÃO RELEVANTE</span><p>A versão 1.2.0 da documentação técnica da DeRE adicionou controle de deduções, reabertura de períodos encerrados e eventos para identificação individualizada de adquirentes, tomadores, credenciados e beneficiários.</p></div>
+    </div>
+    <div class="block">
+      <h3>Exemplo prático: o ciclo mensal de um banco fictício</h3>
+      <p>Imagine o "Banco Exemplo" fechando a competência de outubro. Veja o passo a passo real, do balancete até a descoberta de um erro depois do fechamento:</p>
+      <svg viewBox="0 0 900 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Exemplo do Banco Exemplo: dia 1, a equipe fiscal gera o balancete de outubro. Dia 3, o sistema valida pendências e encontra duas divergências. Dia 5, a contabilidade corrige as divergências e reprocessa. Dia 8, o balancete é revalidado sem pendências. Dia 10, o responsável aprova e o sistema fecha o evento D-1199 de outubro, recebendo o protocolo. Dia 20, uma auditoria interna encontra um erro em uma dedução já fechada. Como o período está fechado, o time abre uma reabertura formal, justificando o motivo, corrige o dado, e retransmite com uma nova trilha de auditoria vinculada ao protocolo original." style="width:100%;height:auto;margin:10px 0 18px">
+        <defs>
+          <marker id="arrDR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path>
+          </marker>
+        </defs>
+        <g font-family="IBM Plex Sans, sans-serif" font-size="11">
+          <rect x="6" y="15" width="130" height="55" rx="9" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="71" y="38" text-anchor="middle" fill="var(--ink)" font-weight="600" font-size="11.3">Dia 1</text>
+          <text x="71" y="54" text-anchor="middle" fill="var(--muted)" font-size="10">gera balancete out.</text>
+
+          <line x1="136" y1="42" x2="170" y2="42" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrDR)"></line>
+
+          <rect x="174" y="15" width="130" height="55" rx="9" fill="var(--rust-soft)" stroke="var(--rust)"></rect>
+          <text x="239" y="38" text-anchor="middle" fill="var(--ink)" font-weight="600" font-size="11.3">Dia 3</text>
+          <text x="239" y="54" text-anchor="middle" fill="var(--muted)" font-size="10">2 divergências</text>
+
+          <line x1="304" y1="42" x2="338" y2="42" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrDR)"></line>
+
+          <rect x="342" y="15" width="130" height="55" rx="9" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="407" y="38" text-anchor="middle" fill="var(--ink)" font-weight="600" font-size="11.3">Dia 5</text>
+          <text x="407" y="54" text-anchor="middle" fill="var(--muted)" font-size="10">corrige e reprocessa</text>
+
+          <line x1="472" y1="42" x2="506" y2="42" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrDR)"></line>
+
+          <rect x="510" y="15" width="130" height="55" rx="9" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="575" y="38" text-anchor="middle" fill="var(--ink)" font-weight="600" font-size="11.3">Dia 8</text>
+          <text x="575" y="54" text-anchor="middle" fill="var(--muted)" font-size="10">revalida sem pendências</text>
+
+          <line x1="640" y1="42" x2="674" y2="42" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrDR)"></line>
+
+          <rect x="678" y="15" width="210" height="55" rx="9" fill="var(--teal-soft)" stroke="var(--teal)"></rect>
+          <text x="783" y="38" text-anchor="middle" fill="var(--ink)" font-weight="600" font-size="11.3">Dia 10</text>
+          <text x="783" y="54" text-anchor="middle" fill="var(--muted)" font-size="10">aprova e fecha D-1199 + protocolo</text>
+
+          <line x1="783" y1="70" x2="783" y2="100" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrDR)"></line>
+
+          <rect x="678" y="105" width="210" height="55" rx="9" fill="var(--rust-soft)" stroke="var(--rust)"></rect>
+          <text x="783" y="128" text-anchor="middle" fill="var(--ink)" font-weight="600" font-size="11.3">Dia 20</text>
+          <text x="783" y="144" text-anchor="middle" fill="var(--muted)" font-size="10">auditoria acha erro em dedução</text>
+
+          <line x1="678" y1="132" x2="480" y2="132" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrDR)"></line>
+
+          <rect x="270" y="105" width="210" height="55" rx="9" fill="var(--gold-soft)" stroke="var(--gold)"></rect>
+          <text x="375" y="128" text-anchor="middle" fill="var(--ink)" font-weight="600" font-size="11.3">Reabertura formal</text>
+          <text x="375" y="144" text-anchor="middle" fill="var(--muted)" font-size="10">justificativa + nova trilha</text>
+
+          <line x1="270" y1="132" x2="176" y2="132" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrDR)"></line>
+
+          <rect x="6" y="105" width="164" height="55" rx="9" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="88" y="128" text-anchor="middle" fill="var(--ink)" font-weight="600" font-size="11.3">Corrige e retransmite</text>
+          <text x="88" y="144" text-anchor="middle" fill="var(--muted)" font-size="10">vinculado ao protocolo original</text>
+        </g>
+      </svg>
+      <div class="callout teal"><span class="tag">O QUE ESSE EXEMPLO ENSINA</span><p>Fechar não é o fim: mesmo depois do D-1199 fechado, um erro descoberto por auditoria exige <b>reabertura formal e justificada</b> — nunca uma correção silenciosa. Toda nova versão fica vinculada ao protocolo original, preservando a trilha completa.</p></div>
     </div>
     <div class="block">
       <h3>6.4 · Integração técnica (o que o PO precisa saber especificar)</h3>
@@ -935,34 +994,6 @@ reforma: {
   `
 },
 {
-  ref:"Exemplo: fluxo", title:"Exemplo: fluxo de evento tributário e DeRE",
-  narration:"Vamos transformar tudo que você estudou em um fluxo de ponta a ponta. A jornada começa com a chegada de um evento tributário ou transacional ao banco. Primeiro o sistema identifica a entidade, o produto, a receita e a natureza da operação. Depois consulta o catálogo de receitas e o classificador fiscal para decidir o regime aplicável. Em seguida o motor de regras calcula IBS, CBS e Imposto Seletivo quando aplicável, usando parâmetros versionados por vigência e fonte normativa. O resultado alimenta o subledger tributário, a reconciliação com COSIF e razão, a geração da DeRE e, quando necessário, a emissão de documentos fiscais. O lote é validado contra o XSD vigente, assinado, transmitido por API ou Web Service, recebe protocolo e retorna para reconciliação. Se houver pendência, o fluxo vai para uma fila de exceção; se tudo estiver correto, o evento é fechado e auditável. Na entrevista, você deve conseguir narrar esse fluxo inteiro e explicar quais decisões são automáticas, quais exigem aprovação de Tax e Jurídico, e quais dependem de validação humana ou reconciliação.",
-  body:`
-    <div class="block">
-      <h3>Fluxo: evento tributário → DeRE → reconciliação</h3>
-      <div class="pipeline">
-        <div class="step">Evento contábil / transacional</div><span class="arrow">→</span>
-        <div class="step">Catálogo de receitas</div><span class="arrow">→</span>
-        <div class="step">Classificador fiscal</div><span class="arrow">→</span>
-        <div class="step">Motor de regras versionado</div>
-      </div>
-      <div class="pipeline">
-        <div class="step">Subledger tributário</div><span class="arrow">→</span>
-        <div class="step">Reconciliação COSIF / razão</div><span class="arrow">→</span>
-        <div class="step">Gerador DeRE</div><span class="arrow">→</span>
-        <div class="step">XML validado contra XSD</div>
-      </div>
-      <div class="pipeline">
-        <div class="step">Assinatura e transmissão</div><span class="arrow">→</span>
-        <div class="step">Protocolo / retorno</div><span class="arrow">→</span>
-        <div class="step">Fechamento e auditoria</div>
-      </div>
-      <div class="callout gold"><span class="tag">RESPOSTA MODELO PARA ENTREVISTA</span><p>Eu começaria pelo evento e pela rastreabilidade: cada resultado precisaria carregar produto, entidade, natureza da operação, regra, versão, parâmetro, fonte normativa, documento, contabilidade e retorno do Fisco. O PO deve desenhar o fluxo completo, mas também os caminhos de exceção: lote inválido, certificado vencido, API indisponível, divergência de reconciliação e reabertura de competência.</p></div>
-      <div class="callout teal"><span class="tag">PERGUNTA QUE O PO DEVE FAZER</span><p>Quais decisões são determinísticas, quais exigem aprovação de Tax/Jurídico e quais precisam de intervenção humana? Onde o sistema deve parar, pedir confirmação ou enviar para reconciliação?</p></div>
-    </div>
-  `
-},
-{
   ref:"Seções 15–17", title:"Sua experiência, o que evitar e resumo final",
   narration:"Para fechar, três coisas essenciais. Primeiro, como conectar sua experiência anterior sem exagerar. A frase certa é: minha experiência direta com Reforma Tributária na TOTVS foi na camada de portal, documentação e atendimento. Não vou apresentá-la como se eu tivesse sido o especialista responsável pelo cálculo tributário bancário. O que eu agrego ao projeto é a experiência de produto em integrações, documentos, regras de validação, sistemas legados, dados, stakeholders e entrega rastreável. Segundo, o que evitar na entrevista: nunca diga que toda receita bancária segue o mesmo regime; não confunda IBS, CBS e Imposto Seletivo; não trate a DeRE como se fosse apenas uma nota fiscal; não afirme que uma autorização técnica sem rejeição elimina a obrigação material; não coloque alíquotas fixas sem fonte e vigência; não diga que o COSIF é a classificação fiscal final; e não esconda que sua experiência mais forte em Reforma Tributária foi em portal e documentação — honestidade gera confiança. E terceiro, o resumo para memorizar antes de entrar na sala: IBS, CBS e Imposto Seletivo são componentes diferentes; serviços financeiros têm regime específico, mas tarifas podem seguir regras gerais; o produto deve classificar receita por operação, entidade e natureza; DeRE é obrigação acessória e integração, não uma tela; documentos fiscais e DeRE coexistem conforme regime; split payment conecta documento, pagamento, liquidação e recolhimento; COSIF precisa ser reconciliado mas não substitui a classificação fiscal; alíquotas, leiautes e datas precisam ser parâmetros versionados; o PO garante rastreabilidade, testes, reconciliação e governança; e sua experiência é transferível, mas deve ser apresentada com honestidade. Boa sorte na entrevista.",
   body:`
@@ -1015,84 +1046,83 @@ reforma: {
       </ol>
     </div>
   `
+},
+{
+  ref:"Exemplo: simuladores", title:"Exemplo: simuladores de impacto no backlog",
+  narration:"Vamos detalhar como um simulador de impacto tributário pode ser integrado ao backlog da squad. O simulador recebe como entrada um conjunto de transações — vendas, serviços, tarifas, juros — e aplica o motor de regras parametrizado para calcular IBS, CBS e Imposto Seletivo sob diferentes cenários: vigência atual, transição 2026, vigência plena 2033, mudança de alíquota por Nota Técnica, alteração de regime específico para regra geral. O resultado mostra, por operação, o valor do tributo, a base de cálculo, as deduções aplicadas, o regime aplicado e a diferença em relação ao cenário anterior. Isso permite que o PO, junto com Tax e Jurídico, valide o impacto financeiro antes de aprovar uma mudança de regra no motor. Na entrevista, você deve demonstrar que entende: o simulador não substitui o cálculo oficial, mas é uma ferramenta de apoio à decisão; ele deve usar os mesmos parâmetros versionados do motor de produção; e todo resultado precisa ser rastreável até a fonte normativa e a regra aplicada.",
+  body:`
+    <div class="block">
+      <h3>Simulador de impacto: como integrar ao backlog</h3>
+      <div class="pipeline">
+        <div class="step">Cenário de entrada (transações, vigência, regime)</div><span class="arrow">→</span>
+        <div class="step">Motor de regras parametrizado (mesmo da produção)</div><span class="arrow">→</span>
+        <div class="step">Cálculo IBS / CBS / IS por operação</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Resultado: tributo, base, deduções, regime, delta</div><span class="arrow">→</span>
+        <div class="step">Validação com Tax / Jurídico</div><span class="arrow">→</span>
+        <div class="step">Aprovação para promoção ao motor</div>
+      </div>
+      <div class="callout gold"><span class="tag">FERRAMENTA DE APOIO, NÃO SUBSTITUTO</span><p>O simulador apoia a decisão de mudar uma regra — não substitui o cálculo oficial. Deve usar os <b>mesmos parâmetros versionados</b> do motor de produção e ser rastreável até a norma.</p></div>
+      <div class="callout teal"><span class="tag">CENÁRIOS PARA SIMULAR</span>
+        <ul class="points" style="margin-top:8px">
+          <li>Transição 2026: CBS 0,9% + IBS estadual 0,1%;</li>
+          <li>Vigência plena 2033: IBS+CBS 12,50% (serviços financeiros);</li>
+          <li>Mudança de regime: operação sai do específico para geral;</li>
+          <li>Nova Nota Técnica: alteração de XSD, código ou base de cálculo;</li>
+          <li>Nova deduções autorizadas ou revogadas.</li>
+        </ul>
+      </div>
+    </div>
+  `
+},
+{
+  ref:"Exemplo: BDD", title:"Exemplo: critérios de aceite BDD para transições fiscais",
+  narration:"Agora vamos ver como escrever critérios de aceite em formato BDD — Behavior Driven Development — para regras de transição fiscal e notas fiscais eletrônicas. O formato BDD usa a estrutura: Dado que <contexto>, Quando <ação>, Então <resultado esperado>. Isso força clareza sobre pré-condições, gatilhos e resultados observáveis. Vamos a exemplos práticos. Para a emissão de NF-e com IBS e CBS individualizados: Dado que a operação está no regime geral, e a Nota Técnica vigente exige IBS e CBS no documento, Quando o sistema emite a NF-e para uma venda interestadual de serviço, Então o XML deve conter os grupos de IBS e CBS com alíquotas, bases e valores calculados conforme o motor de regras da vigência da operação. Para a DeRE: Dado que o evento D-1101 (balancete) foi transmitido com sucesso, e não há pendências críticas na competência, Quando o usuário solicita o fechamento D-1199, Então o sistema deve validar a completude, gerar o XML, assinar, transmitir, receber protocolo e marcar a competência como fechada — sem permitir alteração posterior sem reabertura formal. Para split payment: Dado que o banco atua como PSP em um arranjo sujeito a split, Quando uma transação é liquidada, Então o sistema deve segregar IBS e CBS conforme o procedimento do Decreto 12.955, enviar à Plataforma Pública, receber o retorno com valor líquido e segregado, e reconciliar com o lançamento contábil. Esse formato treina o mapeamento preciso de regras complexas em critérios testáveis.",
+  body:`
+    <div class="block">
+      <h3>BDD: estrutura para regras fiscais complexas</h3>
+      <p>Formato: <b>Dado que</b> contexto, <b>Quando</b> ação, <b>Então</b> resultado esperado.</p>
+      <div class="callout gold"><span class="tag">POR QUE BDD</span><p>Força clareza sobre pré-condições, gatilhos e resultados observáveis. Ideal para regras com vigência, regime, base de cálculo e deduções variáveis.</p></div>
+    </div>
+    <div class="block">
+      <h3>Cenário 1 — NF-e com IBS e CBS individualizados</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Given / When / Then</th><th>Descrição</th></tr>
+        <tr><td class="mono">Dado que</td><td>A operação está no regime geral e a Nota Técnica vigente exige IBS/CBS no documento</td></tr>
+        <tr><td class="mono">Quando</td><td>O sistema emite NF-e para venda interestadual de serviço</td></tr>
+        <tr><td class="mono">Então</td><td>XML contém grupos IBS e CBS com alíquotas, bases e valores calculados pelo motor da vigência da operação</td></tr>
+      </table></div>
+    </div>
+    <div class="block">
+      <h3>Cenário 2 — Fechamento DeRE D-1199</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Given / When / Then</th><th>Descrição</th></tr>
+        <tr><td class="mono">Dado que</td><td>Evento D-1101 (balancete) transmitido com sucesso; sem pendências críticas na competência</td></tr>
+        <tr><td class="mono">Quando</td><td>Usuário solicita fechamento D-1199</td></tr>
+        <tr><td class="mono">Então</td><td>Sistema valida completude, gera XML, assina, transmite, recebe protocolo, marca competência fechada; sem alteração sem reabertura formal</td></tr>
+      </table></div>
+    </div>
+    <div class="block">
+      <h3>Cenário 3 — Split payment na liquidação</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Given / When / Then</th><th>Descrição</th></tr>
+        <tr><td class="mono">Dado que</td><td>Banco atua como PSP em arranjo sujeito a split (Decreto 12.955)</td></tr>
+        <tr><td class="mono">Quando</td><td>Transação é liquidada</td></tr>
+        <tr><td class="mono">Então</td><td>Sistema segrega IBS/CBS, envia à Plataforma Pública, recebe retorno com valor líquido e segregado, reconcilia com lançamento contábil</td></tr>
+      </table></div>
+    </div>
+    <div class="block">
+      <h3>Cenário 4 — Mudança de regime entre competências</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Given / When / Then</th><th>Descrição</th></tr>
+        <tr><td class="mono">Dado que</td><td>Operação era regime específico na competência N; Nota Técnica muda para regime geral na N+1</td></tr>
+        <tr><td class="mono">Quando</td><td>Motor processa competência N+1</td></tr>
+        <tr><td class="mono">Então</td><td>Regra da competência N permanece inalterada; nova regra aplica-se apenas a N+1; ambos versionados e auditáveis</td></tr>
+      </table></div>
+    </div>
+  `
 }
-  },
-  {
-    ref:"Exemplo: simuladores", title:"Exemplo: simuladores de impacto no backlog",
-    narration:"Vamos detalhar como um simulador de impacto tributário pode ser integrado ao backlog da squad. O simulador recebe como entrada um conjunto de transações — vendas, serviços, tarifas, juros — e aplica o motor de regras parametrizado para calcular IBS, CBS e Imposto Seletivo sob diferentes cenários: vigência atual, transição 2026, vigência plena 2033, mudança de alíquota por Nota Técnica, alteração de regime específico para regra geral. O resultado mostra, por operação, o valor do tributo, a base de cálculo, as deduções aplicadas, o regime aplicado e a diferença em relação ao cenário anterior. Isso permite que o PO, junto com Tax e Jurídico, valide o impacto financeiro antes de aprovar uma mudança de regra no motor. Na entrevista, você deve demonstrar que entende: o simulador não substitui o cálculo oficial, mas é uma ferramenta de apoio à decisão; ele deve usar os mesmos parâmetros versionados do motor de produção; e todo resultado precisa ser rastreável até a fonte normativa e a regra aplicada.",
-    body:`
-      <div class="block">
-        <h3>Simulador de impacto: como integrar ao backlog</h3>
-        <div class="pipeline">
-          <div class="step">Cenário de entrada (transações, vigência, regime)</div><span class="arrow">→</span>
-          <div class="step">Motor de regras parametrizado (mesmo da produção)</div><span class="arrow">→</span>
-          <div class="step">Cálculo IBS / CBS / IS por operação</div>
-        </div>
-        <div class="pipeline">
-          <div class="step">Resultado: tributo, base, deduções, regime, delta</div><span class="arrow">→</span>
-          <div class="step">Validação com Tax / Jurídico</div><span class="arrow">→</span>
-          <div class="step">Aprovação para promoção ao motor</div>
-        </div>
-        <div class="callout gold"><span class="tag">FERRAMENTA DE APOIO, NÃO SUBSTITUTO</span><p>O simulador apoia a decisão de mudar uma regra — não substitui o cálculo oficial. Deve usar os <b>mesmos parâmetros versionados</b> do motor de produção e ser rastreável até a norma.</p></div>
-        <div class="callout teal"><span class="tag">CENÁRIOS PARA SIMULAR</span>
-          <ul class="points" style="margin-top:8px">
-            <li>Transição 2026: CBS 0,9% + IBS estadual 0,1%;</li>
-            <li>Vigência plena 2033: IBS+CBS 12,50% (serviços financeiros);</li>
-            <li>Mudança de regime: operação sai do específico para geral;</li>
-            <li>Nova Nota Técnica: alteração de XSD, código ou base de cálculo;</li>
-            <li>Nova deduções autorizadas ou revogadas.</li>
-          </ul>
-        </div>
-      </div>
-    `
-  },
-  {
-    ref:"Exemplo: BDD", title:"Exemplo: critérios de aceite BDD para transições fiscais",
-    narration:"Agora vamos ver como escrever critérios de aceite em formato BDD — Behavior Driven Development — para regras de transição fiscal e notas fiscais eletrônicas. O formato BDD usa a estrutura: Dado que <contexto>, Quando <ação>, Então <resultado esperado>. Isso força clareza sobre pré-condições, gatilhos e resultados observáveis. Vamos a exemplos práticos. Para a emissão de NF-e com IBS e CBS individualizados: Dado que a operação está no regime geral, e a Nota Técnica vigente exige IBS e CBS no documento, Quando o sistema emite a NF-e para uma venda interestadual de serviço, Então o XML deve conter os grupos de IBS e CBS com alíquotas, bases e valores calculados conforme o motor de regras da vigência da operação. Para a DeRE: Dado que o evento D-1101 (balancete) foi transmitido com sucesso, e não há pendências críticas na competência, Quando o usuário solicita o fechamento D-1199, Então o sistema deve validar a completude, gerar o XML, assinar, transmitir, receber protocolo e marcar a competência como fechada — sem permitir alteração posterior sem reabertura formal. Para split payment: Dado que o banco atua como PSP em um arranjo sujeito a split, Quando uma transação é liquidada, Então o sistema deve segregar IBS e CBS conforme o procedimento do Decreto 12.955, enviar à Plataforma Pública, receber o retorno com valor líquido e segregado, e reconciliar com o lançamento contábil. Esse formato treina o mapeamento preciso de regras complexas em critérios testáveis.",
-    body:`
-      <div class="block">
-        <h3>BDD: estrutura para regras fiscais complexas</h3>
-        <p>Formato: <b>Dado que</b> <contexto>, <b>Quando</b> <ação>, <b>Então</b> <resultado esperado>.</p>
-        <div class="callout gold"><span class="tag">POR QUE BDD</span><p>Força clareza sobre pré-condições, gatilhos e resultados observáveis. Ideal para regras com vigência, regime, base de cálculo e deduções variáveis.</p></div>
-      </div>
-      <div class="block">
-        <h3>Cenário 1 — NF-e com IBS e CBS individualizados</h3>
-        <div class="tbl-wrap"><table class="tbl">
-          <tr><th>Given / When / Then</th><th>Descrição</th></tr>
-          <tr><td class="mono">Dado que</td><td>A operação está no regime geral e a Nota Técnica vigente exige IBS/CBS no documento</td></tr>
-          <tr><td class="mono">Quando</td><td>O sistema emite NF-e para venda interestadual de serviço</td></tr>
-          <tr><td class="mono">Então</td><td>XML contém grupos IBS e CBS com alíquotas, bases e valores calculados pelo motor da vigência da operação</td></tr>
-        </table></div>
-      </div>
-      <div class="block">
-        <h3>Cenário 2 — Fechamento DeRE D-1199</h3>
-        <div class="tbl-wrap"><table class="tbl">
-          <tr><th>Given / When / Then</th><th>Descrição</th></tr>
-          <tr><td class="mono">Dado que</td><td>Evento D-1101 (balancete) transmitido com sucesso; sem pendências críticas na competência</td></tr>
-          <tr><td class="mono">Quando</td><td>Usuário solicita fechamento D-1199</td></tr>
-          <tr><td class="mono">Então</td><td>Sistema valida completude, gera XML, assina, transmite, recebe protocolo, marca competência fechada; sem alteração sem reabertura formal</td></tr>
-        </table></div>
-      </div>
-      <div class="block">
-        <h3>Cenário 3 — Split payment na liquidação</h3>
-        <div class="tbl-wrap"><table class="tbl">
-          <tr><th>Given / When / Then</th><th>Descrição</th></tr>
-          <tr><td class="mono">Dado que</td><td>Banco atua como PSP em arranjo sujeito a split (Decreto 12.955)</td></tr>
-          <tr><td class="mono">Quando</td><td>Transação é liquidada</td></tr>
-          <tr><td class="mono">Então</td><td>Sistema segrega IBS/CBS, envia à Plataforma Pública, recebe retorno com valor líquido e segregado, reconcilia com lançamento contábil</td></tr>
-        </table></div>
-      </div>
-      <div class="block">
-        <h3>Cenário 4 — Mudança de regime entre competências</h3>
-        <div class="tbl-wrap"><table class="tbl">
-          <tr><th>Given / When / Then</th><th>Descrição</th></tr>
-          <tr><td class="mono">Dado que</td><td>Operação era regime específico na competência N; Nota Técnica muda para regime geral na N+1</td></tr>
-          <tr><td class="mono">Quando</td><td>Motor processa competência N+1</td></tr>
-          <tr><td class="mono">Então</td><td>Regra da competência N permanece inalterada; nova regra aplica-se apenas a N+1; ambos versionados e auditáveis</td></tr>
-        </table></div>
-      </div>
-    `
-  }
   ]
 },
 pagamentos: {
@@ -1586,7 +1616,7 @@ pagamentos: {
 },
 {
   ref:"Exemplo: fluxo", title:"Exemplo: fluxo de cobrança Pix",
-  narration:"Vamos acompanhar um fluxo concreto de cobrança via Pix. O cliente inicia a operação no app ou QR Code do receptor. O PSP pagador autentica, valida o QR ou chave Pix e verifica saldo ou limite. O sistema consulta o DICT para mapear a chave à conta, o SPI para obter o saldo disponível e o MED quando aplicável. Em seguida o PSP envia a autorização ao receptor, que confirma o recebimento e o valor. O fluxo de reconciliação compara o protocolo enviado, o retorno do PSP pagador, a confirmação do receptor e os lançamentos contábeis. O PO deve garantir idempotência: se o cliente tenta pagar duas vezes, o sistema não gera duas cobranças, apenas um aguarda o retorno. Para exceções, o cliente pode cancelar via MED (Pix Automático) ou o receptor pode estornar (Pix Devolver). Na entrevista, mostre que entende: iniciação, validação, liquidação, reconciliação, idempotência, cancelamento e estorno.",
+  narration:"Vamos acompanhar um fluxo concreto de cobrança via Pix. O cliente inicia a operação no app ou QR Code do receptor. O PSP pagador autentica, valida o QR ou chave Pix e verifica saldo ou limite. O sistema consulta o DICT para mapear a chave à conta, o SPI para obter o saldo disponível e o MED quando aplicável. Em seguida o PSP envia a autorização ao receptor, que confirma o recebimento e o valor. O fluxo de reconciliação compara o protocolo enviado, o retorno do PSP pagador, a confirmação do receptor e os lançamentos contábeis. O PO deve garantir idempotência: se o cliente tenta pagar duas vezes, o sistema não gera duas cobranças, apenas aguarda o retorno. Para exceções, o cliente pode cancelar via MED ou o receptor pode estornar. Na entrevista, mostre que entende: iniciação, validação, liquidação, reconciliação, idempotência, cancelamento e estorno.",
   body:`
     <div class="block">
       <h3>Fluxo de cobrança Pix</h3>
@@ -1612,67 +1642,60 @@ pagamentos: {
 },
 {
   ref:"Exemplo: estados-exceções", title:"Exemplo: mapeamento de estados e exceções em pagamentos",
-  narration:"Vamos detalhar um mapeamento completo de estados de transação e fluxos de exceção em squads de pagamentos. O ciclo básico de uma transação de cartão ou Pix tem cinco estados principais: Iniciada (o cliente abre o app ou escaneia QR), Autorizada (o emissor responde positivo ou negativo com base em regras de limite, saldo, risco), Capturada (o estabelecimento confirma a transação após o período de pré-autorização), Liquidada (a transação é incluída na compensação e os valores são transferidos), e Estornada (o valor é revertido, seja por cancelamento, chargeback, ou estorno automático). Mas a realidade inclui estados intermediários: PENDING (aguardando confirmação de fundos), RETRY (tentativa automática de recuperação), ESCALATED (encaminhado para análise manual), REVERSED (estornado após análise), REFUNDED (reembolso ao portador), DISPUTED (chargeback aberto), e TIMEOUT (sem resposta dentro do prazo). Para cada estado, o PO precisa definir: trigger (o que causa a mudança), timeout (quanto tempo deve esperar), ação automática (o que o sistema faz), ação humana (quando envia para revisão), critérios de aprovação, critérios de rejeição, e efeitos (notificação, lançamento contábil, atualização de risco). O objetivo é ter um diagrama de estados que conecta o PO com engenharia, compliance e operações para tratar cada transição com clareza.",
+  narration:"Vamos detalhar um mapeamento completo de estados de transação e fluxos de exceção em squads de pagamentos. O ciclo básico de uma transação de cartão ou Pix tem cinco estados principais: Iniciada, Autorizada, Capturada, Liquidada, e Estornada. Mas a realidade inclui estados intermediários: pendente aguardando confirmação, retentativa automática, escalado para análise manual, revertido após análise, reembolsado, com disputa aberta, e sem resposta dentro do prazo. Para cada estado, o PO precisa definir: o que causa a mudança, quanto tempo deve esperar, o que o sistema faz automaticamente, quando envia para revisão humana, critérios de aprovação e rejeição, e os efeitos de cada transição. O objetivo é ter um diagrama de estados que conecta o PO com engenharia, compliance e operações para tratar cada transição com clareza.",
   body:`
     <div class="block">
       <h3>Estados principais de uma transação de pagamento</h3>
       <div class="tbl-wrap"><table class="tbl">
-        <tr><th>Estado</th><th>Trigger</th><th>Timeout</th><th>Ação automática</th><th>Ação humana</th></tr>
-        <tr><td class="mono">Iniciada</td><td>Cliente abre app/escaneia QR</td><td>-</td><td>Gerar correlation ID, validar chave Pix/DICT</td><td>-</td></tr>
-        <tr><td class="mono">Autorizada</td><td>Emissor responde positivo/negativo</td><td>5s-30s</td><td>Aplicar MDR/custo, registrar status</td><td>- se negativa, risco alto, limite</td></tr>
-        <tr><td class="mono">Capturada</td><td>Lojista confirma após pré-autorização</td><td>7 dias (débito)/até data (crédito)</td><td>Bloquear valor, iniciar contagem de prazo</td><td>Solicitar captura fora do prazo</td></tr>
-        <tr><td class="mono">Liquidada</td><td>Compensação realizada via PSCL/SPI</td><td>- após compensação</td><td>Liberar para repasse, atualizar agenda</td><td>Ajustar divergências de liquidação</td></tr>
-        <tr><td class="mono">Estornada</td><td>Cancelamento ou chargeback</td><td>Até 180 dias (chargeback)</td><td>Rever valores, atualizar risco, gerar report</td><td>Análise de dispute, evidar fraud</td></tr>
+        <tr><th>Estado</th><th>Gatilho</th><th>Ação automática</th><th>Ação humana</th></tr>
+        <tr><td class="mono">Iniciada</td><td>Cliente abre app/escaneia QR</td><td>Gerar correlation ID, validar chave</td><td>-</td></tr>
+        <tr><td class="mono">Autorizada</td><td>Emissor responde positivo/negativo</td><td>Aplicar MDR/custo, registrar status</td><td>Risco alto, limite excedido</td></tr>
+        <tr><td class="mono">Capturada</td><td>Lojista confirma após pré-autorização</td><td>Bloquear valor, iniciar contagem de prazo</td><td>Captura fora do prazo</td></tr>
+        <tr><td class="mono">Liquidada</td><td>Compensação realizada</td><td>Liberar para repasse, atualizar agenda</td><td>Ajustar divergências</td></tr>
+        <tr><td class="mono">Estornada</td><td>Cancelamento ou chargeback</td><td>Rever valores, atualizar risco</td><td>Análise de disputa, evidência de fraude</td></tr>
       </table></div>
-      <div class="callout gold"><span class="tag">FRAMEWORK DE ESTADO</span><p>Defina para cada estado: trigger de transição, timeout máximo, ação automática, ação humana, critérios de aprovação e efeitos secundários.</p></div>
+      <div class="callout gold"><span class="tag">FRAMEWORK DE ESTADO</span><p>Defina para cada estado: gatilho de transição, tempo máximo de espera, ação automática, ação humana, critérios de aprovação e efeitos secundários.</p></div>
     </div>
     <div class="block">
       <h3>Fluxo de conciliação de adquirentes</h3>
       <div class="pipeline">
-        <div class="step">Arquivo de autorização (15:30 do dia anterior)</div><span class="arrow">→</span>
+        <div class="step">Arquivo de autorização do dia anterior</div><span class="arrow">→</span>
         <div class="step">Reconciliação com gateway</div><span class="arrow">→</span>
-        <div class="step">Identificar divergências (timeout, n_autorizado, rateado)</div><span class="arrow">→</span>
-        <div class="step">Escalonar para análise de inconsistência</div><span class="arrow">→</span>
-        <div class="step">Ajustar lançamentos contábeis</div><span class="arrow">→</span>
-        <div class="step">Gerar report de discrepâncias vs. extrato</div>
+        <div class="step">Identificar divergências</div><span class="arrow">→</span>
+        <div class="step">Escalonar inconsistências</div><span class="arrow">→</span>
+        <div class="step">Ajustar lançamentos</div><span class="arrow">→</span>
+        <div class="step">Report de discrepâncias</div>
       </div>
-      <div class="callout teal"><span class="tag">PERGUNTA CHAVE PARA ENTREVISTA</span><p>"Como sua squad lidaria com uma divergência entre autorização, captura e liquidação?" → Mapeamento de estados claro, cronograma de conciliação, SLA de resolução, e escalonamento com compliance.</p></div>
+      <div class="callout teal"><span class="tag">PERGUNTA-CHAVE PARA ENTREVISTA</span><p>"Como sua squad lidaria com uma divergência entre autorização, captura e liquidação?" → Mapeamento de estados claro, cronograma de conciliação, SLA de resolução, e escalonamento com compliance.</p></div>
     </div>
   `
 },
 {
   ref:"Exemplo: entrevista-pagamentos", title:"Exemplo: perguntas de entrevista técnica para squads de pagamentos",
-  narration:"Agora vamos detalhar perguntas técnicas específicas para squads de pagamentos, com respostas modelo que demonstram mindset de Product Owner. Foco em três áreas: (1) Resiliência de APIs — como o sistema se comporta em caso de instabilidade, timeout, ou versão quebrada; (2) Volumetria — como o sistema lida com picos de 10x o volume normal, limites de rate, backpressure; (3) Tratamento de falhas — fallback, circuit breaker, reconexão, replay, política de retries. Perguntas reais que aparecem em processos seletivos de squads como Glovo, Nubank, PicPay, Mercado Pago, Stone e PagSeguro. Todas as respostas devem apontar para observabilidade, testes de carga, limites de tempo, e processos de recuperação documentados.",
+  narration:"Agora vamos detalhar perguntas técnicas específicas para squads de pagamentos, com respostas modelo que demonstram mindset de Product Owner. Foco em três áreas: resiliência de APIs — como o sistema se comporta em caso de instabilidade, timeout ou versão quebrada; volumetria — como o sistema lida com picos de dez vezes o volume normal; e tratamento de falhas — fallback, circuit breaker, reconexão, replay e política de retries. Todas as respostas devem apontar para observabilidade, testes de carga, limites de tempo, e processos de recuperação documentados.",
   body:`
     <div class="block">
-      <h3>Pergunta 1 — Como lidaria com instabilidade na API de autorização?</h3>
+      <h3>Pergunta 1 — Instabilidade na API de autorização</h3>
       <div class="qa">
-        <div class="q">"O emissor retornou 503 em 20% das chamadas. O que você faz?"</div>
-        <div class="a">Implementaria circuit breaker com threshold de falhas, fallback para fila de retry com backoff exponencial, alerta operacional quando taxa > 10%, e solicitação de log de erros por canal oficial. Em paralelo, o PO definiria tempo máximo de espera por autorização (ex: 8s) e acionaria suporte técnico após 3 tentativas falhadas. Testes de carga simulariam 503s com 5-10% de probabilidade para validar o comportamento.</div>
+        <div class="q">"O emissor retornou erro em 20% das chamadas. O que você faz?"</div>
+        <div class="a">Implementaria circuit breaker com threshold de falhas, fallback para fila de retry com backoff exponencial, alerta operacional quando a taxa de erro passa de 10%, e solicitação de log de erros por canal oficial. O PO definiria um tempo máximo de espera por autorização e acionaria o suporte técnico após três tentativas falhadas. Testes de carga simulariam essa taxa de erro para validar o comportamento.</div>
       </div>
     </div>
     <div class="block">
-      <h3>Pergunta 2 — Como dimensiona para picos de 10x o volume?</h3>
+      <h3>Pergunta 2 — Picos de dez vezes o volume normal</h3>
       <div class="qa">
-        <div class="q">"No Black Friday, o volume de transações dobrou. Como garantimos SLA?"</div>
-        <div class="a">Definimos rate limiting por cliente/instalação com priorização de grupos críticos, buffer de mensagens com leitura idempotente, escala horizontal de workers de captura/liquidação, e monitoramento em tempo real com alerta de slippage > 5%. O PO propõe testes de estresse com 15x volume, SLA de latência p95 < 200ms, e plano de contingência com throttling não fatal.</div>
+        <div class="q">"No Black Friday, o volume de transações dobrou. Como garantimos o SLA?"</div>
+        <div class="a">Definiria rate limiting por cliente com priorização de grupos críticos, fila de mensagens com leitura idempotente, escala horizontal dos serviços de captura e liquidação, e monitoramento em tempo real com alerta de degradação. Proporia testes de estresse acima do pico esperado, SLA de latência definido, e um plano de contingência com throttling não fatal.</div>
       </div>
     </div>
     <div class="block">
-      <h3>Pergunta 3 — Como trata retry após falha parcial?</h3>
+      <h3>Pergunta 3 — Retry após falha parcial</h3>
       <div class="qa">
-        <div class="q">"O split payment falhou após emissão de DeRE. Como recupera?"</div>
-        <div class="a">Implemento idempotency key para garantir reprocessamento seguro, retry com backoffice visível ao operador, e auditoria de transição com hash do lote. O PO controla que a operação não gera cobrança dupla e que o fato gerador é marcado como 'processado com alerta'. Documento trata rollback via ocorrência no sistema público.</div>
+        <div class="q">"O split payment falhou depois da emissão do documento fiscal. Como recupera?"</div>
+        <div class="a">Usaria uma chave de idempotência para garantir reprocessamento seguro, retry com backoff visível ao operador, e auditoria da transição com hash do lote. O PO garante que a operação não gera cobrança dupla e que o evento é marcado como processado com alerta, com um caminho de correção documentado.</div>
       </div>
     </div>
-    <div class="block">
-      <h3>Pergunta 4 — Qual o limite de timeout para autorização?</h3>
-      <div class="qa">
-        <div class="q">"Até quando esperamos resposta do emissor?"</div>
-        <div class="a">Definimos timeout dinâmico: 5s para débito (alta probabilidade), 15s para crédito consignado. Após timeout, transição para estado PENDING com retry automático. O PO controla que não ha preclusão de transação e que o cliente seja notificado se espera > 60s.</div>
-      </div>
-    </div>
-    <div class="callout gold"><span class="tag">FRAMEWORK DE RESPOSTA</span><p>1) Identificar componente afetado; 2) Definir política de retry/backoff; 3) Estabelecer timeout; 4) Propor monitoramento; 5) Alinhar testes de carga/contínuo.</p></div>
+    <div class="callout gold"><span class="tag">FRAMEWORK DE RESPOSTA</span><p>1) Identificar o componente afetado; 2) definir política de retry/backoff; 3) estabelecer timeout; 4) propor monitoramento; 5) alinhar testes de carga contínuos.</p></div>
   `
 }
   ]
@@ -2288,13 +2311,13 @@ ia: {
       </div>
       <div class="callout rust"><span class="tag">HUMAN-IN-THE-LOOP NÃO É OPCIONAL</span><p>Cancelar plano e efetuar reembolso são ações que exigem aprovação humana. O LLM pode redigir a resposta, mas não deve decidir sozinho que um reembolso será executado.</p></div>
       <div class="callout teal"><span class="tag">PERGUNTAS QUE O PO DEVE FAZER</span><p>Quais eventos acionam a intervenção humana? Quem pode aprovar? O que o revisor vê? Qual o prazo? O que acontece em timeout? Como é registrada a decisão?</p></div>
-      <div class="callout gold"><span class="tag">FALHBACK E OBSERVABILIDADE</span><p>O fluxo deve ter fallback quando a busca RAG não retorna evidência suficiente, e registrar custo, latência, resultado e feedback para cada etapa.</p></div>
+      <div class="callout gold"><span class="tag">FALLBACK E OBSERVABILIDADE</span><p>O fluxo deve ter fallback quando a busca RAG não retorna evidência suficiente, e registrar custo, latência, resultado e feedback para cada etapa.</p></div>
     </div>
   `
 },
 {
   ref:"Exemplo: RAG-aplicado", title:"Exemplo: arquitetura de RAG aplicada a produtos",
-  narration:"Vamos detalhar como estruturar uma arquitetura de RAG — Retrieval-Augmented Generation — para um produto real, indo além do conceito teórico. A arquitetura tem cinco pilares operacionais: (1) Ingestão controlada — documentos são versionados, metadados de acesso e vigência são obrigatórios, chunking é parametrizado por tipo de documento, e embeddings são gerados com modelo versionado; (2) Índice vetorial com isolamento — cada tenant ou domínio tem seu namespace, filtros de acesso aplicados antes da busca, e re-ranking é opcional e configurável; (3) Retrieval com grounding — o retriever retorna trechos com score, fonte, data, versão e nível de confiança; trechos abaixo do threshold são descartados; (4) Geração com citações — o prompt do modelo exige citação inline para cada afirmação factual; respostas sem citação são marcadas como 'não fundamentadas'; (5) Fallback e observabilidade — se o retriever não retorna evidência suficiente, o fluxo encaminha para humano ou resposta padrão; traces registram documentos recuperados, scores, modelo, prompt, latência e custo. Na entrevista, mostre que entende: RAG não é mágica — exige governança de dados, versionamento de embeddings, testes de regressão semântica, e métricas de groundedness e relevância de recuperação.",
+  narration:"Vamos detalhar como estruturar uma arquitetura de RAG — Retrieval-Augmented Generation — para um produto real, indo além do conceito teórico. A arquitetura tem cinco pilares operacionais: ingestão controlada, onde documentos são versionados, metadados de acesso e vigência são obrigatórios, e o chunking é parametrizado por tipo de documento; índice vetorial com isolamento, onde cada tenant tem seu namespace e filtros de acesso são aplicados antes da busca; retrieval com grounding, onde o retriever retorna trechos com score, fonte, data e nível de confiança, descartando trechos abaixo do limite; geração com citações, onde o prompt exige citação inline para cada afirmação factual; e fallback com observabilidade, onde a ausência de evidência suficiente encaminha para humano ou resposta padrão, com traces registrando documentos recuperados, scores, modelo, latência e custo. Na entrevista, mostre que entende: RAG não é mágica — exige governança de dados, versionamento de embeddings, testes de regressão semântica, e métricas de groundedness e relevância de recuperação.",
   body:`
     <div class="block">
       <h3>Arquitetura de RAG em produção: cinco pilares</h3>
@@ -2316,7 +2339,7 @@ ia: {
       <div class="pipeline">
         <div class="step">4. Geração com citações</div><span class="arrow">→</span>
         <div class="step">Prompt exige citação inline</div><span class="arrow">→</span>
-        <div class="step">Sem citação = 'não fundamentado'</div>
+        <div class="step">Sem citação = "não fundamentado"</div>
       </div>
       <div class="pipeline">
         <div class="step">5. Fallback + Observabilidade</div><span class="arrow">→</span>
@@ -2328,9 +2351,9 @@ ia: {
     <div class="block">
       <h3>Mitigação de alucinações: checklist do PO</h3>
       <div class="chip-row">
-        <span class="chunk">Chunking por tipo de doc</span><span class="chunk">Metadados de vigência</span><span class="chunk">Threshold de score</span>
-        <span class="chunk">Citação obrigatória</span><span class="chunk">Fallback humano</span><span class="chunk">Testes de regressão</span>
-        <span class="chunk">Métrica groundedness</span><span class="chunk">Rastreabilidade total</span>
+        <span class="chip">Chunking por tipo de doc</span><span class="chip">Metadados de vigência</span><span class="chip">Threshold de score</span>
+        <span class="chip">Citação obrigatória</span><span class="chip">Fallback humano</span><span class="chip">Testes de regressão</span>
+        <span class="chip">Métrica groundedness</span><span class="chip">Rastreabilidade total</span>
       </div>
       <div class="callout teal"><span class="tag">PERGUNTA PARA ENTREVISTA</span><p>"Como evita que o modelo alucine?" → Chunking controlado, metadados de vigência, threshold de score, citação inline obrigatória, fallback para humano, métricas de groundedness, e testes de regressão semântica.</p></div>
     </div>
@@ -2338,36 +2361,30 @@ ia: {
 },
 {
   ref:"Exemplo: LLMOps", title:"Exemplo: métricas de IA (LLMOps) para Product Managers",
-  narration:"Agora vamos detalhar como um Product Manager deve medir o sucesso de modelos de IA em produção — o que chamamos de LLMOps. As métricas se dividem em quatro categorias que o PO deve dominar: (1) Qualidade da resposta — groundedness (a resposta está baseada nos documentos recuperados?), citation validity (as citações apontam para trechos reais?), task success rate (a tarefa foi completada corretamente?), hallucination rate (quantas respostas têm afirmações não suportadas?), e abstention quality (o modelo sabe dizer 'não sei' quando não tem evidência?); (2) Performance e latência — p50 e p95 de latência end-to-end, time-to-first-token, tokens por segundo, timeout rate, e taxa de erro por tipo (modelo, ferramenta, rede); (3) Custo e eficiência — custo por conversa resolvida, custo por token (input/output/embedding), custo por tarefa bem-sucedida, margem por cliente, e comparação entre modelos (modelo A mais caro mas 15% mais preciso vs modelo B mais barato mas 2x mais retries); (4) Operação e segurança — taxa de fallback, taxa de escalação humana, incidentes de PII, tentativas de prompt injection bloqueadas, e disponibilidade do serviço. Um painel operacional mínimo combina latência p95 < 3s, groundedness > 90%, custo por tarefa dentro do orçamento, fallback < 5%, e zero vazamento de PII. Na entrevista, a resposta forte combina métricas técnicas com resultado de negócio.",
+  narration:"Agora vamos detalhar como um Product Manager deve medir o sucesso de modelos de IA em produção — o que chamamos de LLMOps. As métricas se dividem em quatro categorias. Qualidade da resposta: groundedness, validade das citações, taxa de sucesso da tarefa, taxa de alucinação, e qualidade de abstenção quando o modelo não tem evidência. Performance e latência: p50 e p95 de latência ponta a ponta, tempo até o primeiro token, tokens por segundo, e taxa de timeout. Custo e eficiência: custo por conversa resolvida, custo por token de entrada, saída e embedding, custo por tarefa bem-sucedida, e margem por cliente. E operação e segurança: taxa de fallback, taxa de escalação humana, incidentes de dados pessoais, tentativas de prompt injection bloqueadas, e disponibilidade do serviço. Um painel operacional mínimo combina latência p95 abaixo de três segundos, groundedness acima de noventa por cento, custo por tarefa dentro do orçamento, fallback abaixo de cinco por cento, e zero vazamento de dados pessoais. Na entrevista, a resposta forte combina métricas técnicas com resultado de negócio.",
   body:`
     <div class="block">
       <h3>Quatro categorias de métricas LLMOps</h3>
       <div class="tbl-wrap"><table class="tbl">
         <tr><th>Categoria</th><th>Métricas-chave</th><th>Objetivo do PO</th></tr>
         <tr><td class="mono">Qualidade</td><td>Groundedness, citation validity, task success rate, hallucination rate, abstention quality</td><td>Resposta confiável e fundamentada</td></tr>
-        <tr><td class="mono">Performance</td><td>Latência p50/p95, time-to-first-token, tokens/s, timeout rate, erro por tipo</td><td>Experiência fluida e SLA cumprido</td></tr>
-        <tr><td class="mono">Custo</td><td>Custo por conversa/tarefa resolvida, custo por token, margem por cliente, trade-off modelos</td><td>Eficiência financeira sustentável</td></tr>
-        <tr><td class="mono">Operação/Segurança</td><td>Fallback rate, human escalation, PII incidents, prompt injection blocked, disponibilidade</td><td>Confiabilidade e conformidade</td></tr>
+        <tr><td class="mono">Performance</td><td>Latência p50/p95, time-to-first-token, tokens/s, timeout rate</td><td>Experiência fluida e SLA cumprido</td></tr>
+        <tr><td class="mono">Custo</td><td>Custo por conversa/tarefa resolvida, custo por token, margem por cliente</td><td>Eficiência financeira sustentável</td></tr>
+        <tr><td class="mono">Operação/Segurança</td><td>Fallback rate, human escalation, incidentes de dados, prompt injection bloqueado</td><td>Confiabilidade e conformidade</td></tr>
       </table></div>
-      <div class="callout gold"><span class="tag">PAINEL MÍNIMO OPERACIONAL</span><p>Latência p95 < 3s · Groundedness > 90% · Custo por tarefa no orçamento · Fallback < 5% · Zero vazamento PII. Sempre segmentado por modelo, prompt, versão, fluxo, cliente.</p></div>
+      <div class="callout gold"><span class="tag">PAINEL MÍNIMO OPERACIONAL</span><p>Latência p95 &lt; 3s · Groundedness &gt; 90% · Custo por tarefa no orçamento · Fallback &lt; 5% · Zero vazamento de dados pessoais. Sempre segmentado por modelo, prompt, versão, fluxo, cliente.</p></div>
     </div>
     <div class="block">
       <h3>Trade-off de modelos: exemplo prático</h3>
       <div class="tbl-wrap"><table class="tbl">
-        <tr><th>Modelo</th><th>Custo/1k tokens</th><th>Groundedness</th><th>Latência p95</th><th>Custo/tarefa resolvida</th></tr>
-        <tr><td>A (caro, preciso)</td><td>$0,015 in / $0,06 out</td><td>94%</td><td>2.8s</td><td>$0,18</td></tr>
-        <tr><td>B (barato, menos preciso)</td><td>$0,003 in / $0,012 out</td><td>82%</td><td>1.5s</td><td>$0,25 (mais retries, fallback, escalação)</td></tr>
+        <tr><th>Modelo</th><th>Groundedness</th><th>Latência p95</th><th>Custo por tarefa resolvida</th></tr>
+        <tr><td>A (caro, preciso)</td><td>94%</td><td>2,8s</td><td>Menor no total</td></tr>
+        <tr><td>B (barato, menos preciso)</td><td>82%</td><td>1,5s</td><td>Maior no total (mais retries, fallback, escalação)</td></tr>
       </table></div>
-      <div class="callout rust"><span class="tag">DECISÃO DO PO</span><p>O modelo mais barato pode gerar <b>custo total por tarefa resolvida maior</b> devido a retries, fallback, escalação humana e reclamações. A métrica correta é custo por <b>resultado bem-sucedido</b>, não custo por chamada.</p></div>
+      <div class="callout rust"><span class="tag">DECISÃO DO PO</span><p>O modelo mais barato pode gerar <b>custo total por tarefa resolvida maior</b> devido a retries, fallback e escalação humana. A métrica correta é custo por <b>resultado bem-sucedido</b>, não custo por chamada.</p></div>
     </div>
     <div class="block">
-      <h3>Métricas de qualidade em detalhe</h3>
-      <div class="chip-row">
-        <span class="chip">Groundedness</span><span class="chip">Retrieval relevance</span><span class="chip">Citation validity</span>
-        <span class="chip">Task success rate</span><span class="chip">Hallucination rate</span><span class="chip">Abstention quality</span>
-        <span class="chip">Tool-call accuracy</span><span class="chip">Human escalation rate</span><span class="chip">Regression rate</span>
-      </div>
-      <div class="qa"><div class="q">Como você mediria o sucesso de um produto com LLM?</div><div class="a">Eu organizaria em quatro pilares: qualidade (groundedness > 90%, citações válidas, task success), performance (p95 < 3s, TTFT < 500ms), custo (por tarefa resolvida, não por token), e operação (fallback < 5%, zero PII, disponibilidade > 99.9%). OKRs combinam resultado de negócio com limites de qualidade e custo.</div></div>
+      <div class="qa"><div class="q">Como você mediria o sucesso de um produto com LLM?</div><div class="a">Eu organizaria em quatro pilares: qualidade (groundedness acima de 90%, citações válidas, task success), performance (p95 abaixo de 3s, tempo até o primeiro token baixo), custo (por tarefa resolvida, não por token), e operação (fallback abaixo de 5%, zero incidente de dados, alta disponibilidade). OKRs combinariam resultado de negócio com limites de qualidade e custo.</div></div>
     </div>
   `
 }
