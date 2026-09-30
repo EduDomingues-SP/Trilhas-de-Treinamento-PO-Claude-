@@ -3,37 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EDEAE0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Treinamento de Negócios para Product Owner: Reforma Tributária do Consumo, Adquirência, Pagamentos, Open Finance e IA para Product Managers com narração em áudio, simuladores interativos e flashcards.">
 <title>Treinamento de Negócios para Product Owner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#EDEAE0; --panel:#FFFFFF; --panel-2:#F5F2E9;
+  --bg:#EDEAE0; --panel:#FFFFFF; --panel-2:#F5F2E9; --panel-3:#EBE7DC;
   --ink:#1B2430; --muted:#5B6572; --line:rgba(27,36,48,0.14);
-  --gold:#8E6E28; --teal:#2E6E64; --rust:#9C4530;
-  --gold-soft:#8E6E2820; --teal-soft:#2E6E6420; --rust-soft:#9C453020;
+  --gold:#8E6E28; --teal:#2E6E64; --rust:#9C4530; --blue:#2563EB; --purple:#7C3AED;
+  --gold-soft:#8E6E2818; --teal-soft:#2E6E6418; --rust-soft:#9C453018; --blue-soft:#2563EB18; --purple-soft:#7C3AED18;
   --shadow: 0 1px 2px rgba(27,36,48,0.06), 0 8px 24px rgba(27,36,48,0.06);
+  --shadow-lg: 0 12px 36px rgba(27,36,48,0.12), 0 4px 12px rgba(27,36,48,0.08);
+  --radius-sm: 6px; --radius: 10px; --radius-lg: 16px;
+  --glass-bg: rgba(255,255,255,0.88); --glass-border: rgba(27,36,48,0.12);
   box-sizing:border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#10151B; --panel:#171F27; --panel-2:#1E2830;
-    --ink:#ECE7DA; --muted:#93A0AB; --line:rgba(236,231,218,0.10);
-    --gold:#D9B25C; --teal:#63B0A4; --rust:#D9805F;
-    --gold-soft:#D9B25C22; --teal-soft:#63B0A422; --rust-soft:#D9805F22;
+    --bg:#0F141C; --panel:#161D26; --panel-2:#1E2732; --panel-3:#242F3D;
+    --ink:#ECE7DA; --muted:#95A3B3; --line:rgba(236,231,218,0.12);
+    --gold:#D9B25C; --teal:#63B0A4; --rust:#D9805F; --blue:#60A5FA; --purple:#A78BFA;
+    --gold-soft:#D9B25C22; --teal-soft:#63B0A422; --rust-soft:#D9805F22; --blue-soft:#60A5FA22; --purple-soft:#A78BFA22;
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.35);
+    --shadow-lg: 0 16px 48px rgba(0,0,0,0.5), 0 6px 16px rgba(0,0,0,0.3);
+    --glass-bg: rgba(22,29,38,0.90); --glass-border: rgba(236,231,218,0.12);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#10151B; --panel:#171F27; --panel-2:#1E2830;
-  --ink:#ECE7DA; --muted:#93A0AB; --line:rgba(236,231,218,0.10);
-  --gold:#D9B25C; --teal:#63B0A4; --rust:#D9805F;
-  --gold-soft:#D9B25C22; --teal-soft:#63B0A422; --rust-soft:#D9805F22;
+  --bg:#0F141C; --panel:#161D26; --panel-2:#1E2732; --panel-3:#242F3D;
+  --ink:#ECE7DA; --muted:#95A3B3; --line:rgba(236,231,218,0.12);
+  --gold:#D9B25C; --teal:#63B0A4; --rust:#D9805F; --blue:#60A5FA; --purple:#A78BFA;
+  --gold-soft:#D9B25C22; --teal-soft:#63B0A422; --rust-soft:#D9805F22; --blue-soft:#60A5FA22; --purple-soft:#A78BFA22;
   --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.35);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.5), 0 6px 16px rgba(0,0,0,0.3);
+  --glass-bg: rgba(22,29,38,0.90); --glass-border: rgba(236,231,218,0.12);
 }
+:root[data-theme="light"]{
+  --bg:#EDEAE0; --panel:#FFFFFF; --panel-2:#F5F2E9; --panel-3:#EBE7DC;
+  --ink:#1B2430; --muted:#5B6572; --line:rgba(27,36,48,0.14);
+  --gold:#8E6E28; --teal:#2E6E64; --rust:#9C4530; --blue:#2563EB; --purple:#7C3AED;
+  --gold-soft:#8E6E2818; --teal-soft:#2E6E6418; --rust-soft:#9C453018; --blue-soft:#2563EB18; --purple-soft:#7C3AED18;
+  --shadow: 0 1px 2px rgba(27,36,48,0.06), 0 8px 24px rgba(27,36,48,0.06);
+  --shadow-lg: 0 12px 36px rgba(27,36,48,0.12), 0 4px 12px rgba(27,36,48,0.08);
+  --glass-bg: rgba(255,255,255,0.88); --glass-border: rgba(27,36,48,0.12);
+}
+
 html{ scroll-padding-top: env(safe-area-inset-top, 0px); }
 *{ box-sizing:border-box; }
 body{
@@ -41,158 +61,221 @@ body{
   font-family:'IBM Plex Sans', system-ui, -apple-system, Segoe UI, sans-serif;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
+  transition: background-color .2s ease, color .2s ease;
 }
-h1,h2,h3{ font-family:'Source Serif 4', Georgia, 'Times New Roman', serif; margin:0; letter-spacing:-0.01em; }
+h1,h2,h3,h4{ font-family:'Source Serif 4', Georgia, 'Times New Roman', serif; margin:0; letter-spacing:-0.01em; }
 code, .mono{ font-family:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
-a{ color: var(--teal); }
-button{ font-family:inherit; }
+a{ color: var(--teal); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+button{ font-family:inherit; cursor:pointer; }
 
-/* ---------- App shell ---------- */
-.app{ display:grid; grid-template-columns: 300px 1fr; min-height:100vh; }
-@media (max-width: 880px){ .app{ grid-template-columns: 1fr; } }
+/* ---------- App Layout ---------- */
+.app{ display:grid; grid-template-columns: 310px 1fr; min-height:100vh; transition: grid-template-columns .3s ease; }
+@media (max-width: 960px){ .app{ grid-template-columns: 1fr; } }
+body.focus-mode .app{ grid-template-columns: 1fr; }
+body.focus-mode .sidebar{ display:none; }
 
 /* ---------- Sidebar ---------- */
 .sidebar{
   background:var(--panel); border-right:1px solid var(--line);
-  padding:28px 20px 20px; position:sticky; top:0; height:100vh; overflow-y:auto;
+  padding:24px 18px 20px; position:sticky; top:0; height:100vh; overflow-y:auto;
+  display:flex; flex-direction:column; gap:12px;
+  z-index:10;
 }
-@media (max-width: 880px){
-  .sidebar{ position:relative; height:auto; border-right:none; border-bottom:1px solid var(--line); padding:18px 16px; }
+@media (max-width: 960px){
+  .sidebar{ position:fixed; top:0; left:-320px; width:300px; height:100vh; border-right:1px solid var(--line); z-index:100; transition:left .3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow:var(--shadow-lg); }
+  .sidebar.open{ left:0; }
 }
-.brand{ display:flex; align-items:center; gap:10px; margin-bottom:4px; }
-.seal{
-  width:34px; height:34px; border-radius:50%; border:1.5px solid var(--gold); color:var(--gold);
-  display:flex; align-items:center; justify-content:center; font-family:'Source Serif 4',serif; font-weight:700; font-size:13px; flex:none;
-}
-.brand-text .kicker{ font-size:11px; color:var(--muted); letter-spacing:.02em; }
-.brand-text h1{ font-size:17px; line-height:1.25; }
-.brand-sub{ font-size:12.5px; color:var(--muted); margin:10px 0 16px; line-height:1.5; border-left:2px solid var(--line); padding-left:10px; }
+.sidebar-overlay{ display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:90; backdrop-filter:blur(3px); }
+.sidebar-overlay.active{ display:block; }
 
-.course-switch{ margin-bottom:18px; }
-.course-switch .cs-label{ font-size:10.5px; color:var(--muted); margin-bottom:7px; display:block; }
-.cs-option{
-  display:flex; align-items:center; gap:10px; width:100%; text-align:left;
-  background:var(--panel-2); border:1px solid var(--line); border-radius:9px;
-  padding:9px 10px; margin-bottom:6px; cursor:pointer; color:var(--ink);
+.sidebar-header{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px; }
+.brand{ display:flex; align-items:center; gap:10px; }
+.seal{
+  width:36px; height:36px; border-radius:50%; border:1.5px solid var(--gold); color:var(--gold);
+  display:flex; align-items:center; justify-content:center; font-family:'Source Serif 4',serif; font-weight:700; font-size:13px; flex:none;
+  background:var(--gold-soft);
 }
-.cs-option:last-child{ margin-bottom:0; }
-.cs-option:hover{ border-color:var(--gold); }
-.cs-option:focus-visible{ outline:2px solid var(--teal); outline-offset:1px; }
-.cs-option.active{ background:var(--gold-soft); border-color:var(--gold); }
+.brand-text .kicker{ font-size:10.5px; color:var(--muted); letter-spacing:.04em; font-weight:600; }
+.brand-text h1{ font-size:16px; line-height:1.2; font-weight:700; }
+.brand-sub{ font-size:12px; color:var(--muted); margin:6px 0 10px; line-height:1.45; border-left:2px solid var(--gold); padding-left:8px; }
+
+/* Quick Action Bar */
+.quick-actions{
+  display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-bottom:8px;
+}
+.quick-btn{
+  background:var(--panel-2); border:1px solid var(--line); border-radius:8px;
+  padding:7px 8px; font-size:11.5px; color:var(--ink); font-weight:500;
+  display:flex; align-items:center; justify-content:center; gap:5px;
+  transition: all .15s ease;
+}
+.quick-btn:hover{ border-color:var(--gold); background:var(--gold-soft); color:var(--gold); transform:translateY(-1px); }
+.quick-btn:focus-visible{ outline:2px solid var(--teal); }
+
+.course-switch{ margin-bottom:8px; }
+.course-switch .cs-label{ font-size:10px; color:var(--muted); margin-bottom:6px; display:block; font-weight:600; letter-spacing:.03em; }
+.cs-option{
+  display:flex; align-items:center; gap:9px; width:100%; text-align:left;
+  background:var(--panel-2); border:1px solid var(--line); border-radius:8px;
+  padding:8px 9px; margin-bottom:5px; cursor:pointer; color:var(--ink);
+  transition: all .15s ease;
+}
+.cs-option:hover{ border-color:var(--gold); background:var(--panel-3); }
+.cs-option.active{ background:var(--gold-soft); border-color:var(--gold); box-shadow:0 0 0 1px var(--gold); }
 .cs-option .cs-dot{ width:8px; height:8px; border-radius:50%; border:1.5px solid var(--muted); flex:none; }
 .cs-option.active .cs-dot{ background:var(--gold); border-color:var(--gold); }
-.cs-option .cs-text{ line-height:1.3; }
-.cs-option .cs-name{ font-size:13px; font-weight:500; }
-.cs-option .cs-count{ font-size:10.8px; color:var(--muted); display:block; margin-top:1px; }
-
-.theme-toggle{
-  border:1px solid var(--line); background:var(--panel-2); color:var(--ink);
-  border-radius:8px; padding:6px 10px; font-size:12px; cursor:pointer; display:flex; gap:6px; align-items:center;
-  position:absolute; top:24px; right:20px;
-}
-@media (max-width:880px){ .theme-toggle{ top:18px; right:16px; } }
-.theme-toggle:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
-
-nav.modlist{ display:flex; flex-direction:column; gap:2px; }
-@media (max-width:880px){ nav.modlist{ flex-direction:row; overflow-x:auto; gap:8px; padding-bottom:6px; -webkit-overflow-scrolling:touch; } }
-
-.modbtn{
-  display:flex; align-items:center; gap:10px; text-align:left; width:100%;
-  background:transparent; border:1px solid transparent; border-radius:8px;
-  padding:9px 10px; cursor:pointer; color:var(--ink); font-size:13.3px;
-}
-@media (max-width:880px){ .modbtn{ width:auto; white-space:nowrap; border:1px solid var(--line); } }
-.modbtn:hover{ background:var(--panel-2); }
-.modbtn:focus-visible{ outline:2px solid var(--teal); outline-offset:1px; }
-.modbtn.active{ background:var(--gold-soft); border-color:var(--gold); }
-.modbtn .num{
-  font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--muted);
-  width:20px; height:20px; border-radius:50%; border:1px solid var(--line);
-  display:flex; align-items:center; justify-content:center; flex:none;
-}
-.modbtn.done .num{ background:var(--teal); border-color:var(--teal); color:#fff; }
-.modbtn.active .num{ border-color:var(--gold); color:var(--gold); }
-.modbtn .label{ flex:1; line-height:1.3; }
-.modbtn .label small{ display:block; color:var(--muted); font-size:10.8px; margin-top:1px; }
+.cs-option .cs-text{ line-height:1.25; flex:1; }
+.cs-option .cs-name{ font-size:12.5px; font-weight:600; display:block; }
+.cs-option .cs-count{ font-size:10.5px; color:var(--muted); display:block; margin-top:1px; }
 
 .glossary-btn{
   width:100%; display:flex; align-items:center; justify-content:center; gap:6px;
   background:var(--teal-soft); border:1px solid var(--teal); color:var(--teal);
-  border-radius:8px; padding:9px 10px; font-size:12.5px; font-weight:500; cursor:pointer;
-  margin-bottom:14px;
+  border-radius:8px; padding:8px 10px; font-size:12px; font-weight:600; cursor:pointer;
+  margin-bottom:6px; transition: all .15s ease;
 }
 .glossary-btn:hover{ background:var(--teal); color:#fff; }
-.glossary-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
 
-.progress-tally{ margin-top:18px; padding-top:14px; border-top:1px solid var(--line); font-size:11.5px; color:var(--muted); }
-.progress-track{ height:4px; background:var(--line); border-radius:3px; margin-top:6px; overflow:hidden; }
+nav.modlist{ display:flex; flex-direction:column; gap:2px; flex:1; overflow-y:auto; padding-right:2px; }
+
+.modbtn{
+  display:flex; align-items:center; gap:9px; text-align:left; width:100%;
+  background:transparent; border:1px solid transparent; border-radius:8px;
+  padding:8px 9px; cursor:pointer; color:var(--ink); font-size:12.8px;
+  transition: all .15s ease;
+}
+.modbtn:hover{ background:var(--panel-2); }
+.modbtn.active{ background:var(--gold-soft); border-color:var(--gold); font-weight:600; }
+.modbtn .num{
+  font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--muted);
+  width:20px; height:20px; border-radius:50%; border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center; flex:none;
+}
+.modbtn.done .num{ background:var(--teal); border-color:var(--teal); color:#fff; font-weight:bold; }
+.modbtn.active .num{ border-color:var(--gold); color:var(--gold); }
+.modbtn .label{ flex:1; line-height:1.25; }
+.modbtn .label small{ display:block; color:var(--muted); font-size:10.5px; margin-top:1px; font-weight:normal; }
+
+.sidebar-footer{ margin-top:auto; padding-top:12px; border-top:1px solid var(--line); }
+.progress-tally{ font-size:11.5px; color:var(--muted); }
+.progress-tally-row{ display:flex; justify-content:space-between; align-items:center; }
+.progress-track{ height:5px; background:var(--line); border-radius:3px; margin-top:6px; overflow:hidden; }
 .progress-fill{ height:100%; background:var(--teal); width:0%; transition:width .3s ease; }
+.shortcuts-hint{ font-size:10.5px; color:var(--muted); text-align:center; margin-top:8px; }
+.shortcuts-hint kbd{ font-family:'IBM Plex Mono',monospace; background:var(--panel-2); border:1px solid var(--line); padding:1px 4px; border-radius:4px; }
 
-/* ---------- Main ---------- */
+/* ---------- Main Content ---------- */
 main{ min-width:0; padding: 0 0 60px; }
+
+/* Top Narrator & Tools Bar */
 .narrator-bar{
-  position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--line);
-  padding: 12px 28px; padding-top: calc(12px + env(safe-area-inset-top,0px));
-  display:flex; align-items:center; gap:14px; backdrop-filter: blur(6px);
+  position:sticky; top:0; z-index:20; background:var(--glass-bg); border-bottom:1px solid var(--line);
+  padding: 10px 24px; padding-top: calc(10px + env(safe-area-inset-top,0px));
+  display:flex; align-items:center; gap:10px; backdrop-filter: blur(10px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
 }
-@media (max-width:880px){ .narrator-bar{ padding:12px 16px; flex-wrap:wrap; } }
+@media (max-width:960px){ .narrator-bar{ padding:10px 14px; flex-wrap:wrap; } }
+
+.mobile-menu-btn{
+  display:none; width:36px; height:36px; border-radius:8px; border:1px solid var(--line);
+  background:var(--panel-2); color:var(--ink); align-items:center; justify-content:center;
+}
+@media (max-width:960px){ .mobile-menu-btn{ display:flex; } }
+
+.player-controls{ display:flex; align-items:center; gap:6px; }
 .play-btn{
-  width:40px; height:40px; border-radius:50%; border:1.5px solid var(--gold); background:var(--gold-soft);
+  width:38px; height:38px; border-radius:50%; border:1.5px solid var(--gold); background:var(--gold-soft);
   color:var(--gold); display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none;
+  transition: transform .15s ease, background .15s ease;
 }
-.play-btn:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+.play-btn:hover{ transform:scale(1.05); background:var(--gold); color:#fff; }
+.play-btn.speaking{ animation: pulseGlow 2s infinite; }
+@keyframes pulseGlow{ 0%,100%{ box-shadow: 0 0 0 0 rgba(217,178,92,0.4); } 50%{ box-shadow: 0 0 0 8px rgba(217,178,92,0); } }
 .play-btn svg{ width:16px; height:16px; }
-.narrator-mid{ flex:1; min-width:120px; }
-.narrator-label{ font-size:11px; color:var(--muted); display:flex; justify-content:space-between; margin-bottom:5px; }
-.narrator-track{ height:4px; background:var(--line); border-radius:3px; overflow:hidden; }
-.narrator-fill{ height:100%; width:0%; background:var(--teal); }
-.rate-select{
-  background:var(--panel-2); color:var(--ink); border:1px solid var(--line); border-radius:7px;
-  font-size:12px; padding:6px 8px; cursor:pointer;
+
+.skip-btn{
+  width:32px; height:32px; border-radius:8px; border:1px solid var(--line); background:var(--panel-2);
+  color:var(--ink); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600;
+  transition: all .15s ease;
 }
-.narrator-note{ font-size:11px; color:var(--muted); }
+.skip-btn:hover{ border-color:var(--gold); color:var(--gold); }
 
-.content{ max-width:760px; margin:0 auto; padding: 34px 28px 10px; }
-@media (max-width:880px){ .content{ padding:24px 16px 10px; } }
+.narrator-mid{ flex:1; min-width:140px; }
+.narrator-label{ font-size:11px; color:var(--muted); display:flex; justify-content:space-between; margin-bottom:4px; gap:8px; }
+.narrator-label b{ color:var(--ink); font-weight:600; text-overflow:ellipsis; overflow:hidden; white-space:nowrap; max-width:240px; }
+.narrator-track{ height:4px; background:var(--line); border-radius:3px; overflow:hidden; }
+.narrator-fill{ height:100%; width:0%; background:var(--teal); transition: width .15s ease; }
 
-.mod-kicker{ font-size:12px; color:var(--muted); letter-spacing:.02em; margin-bottom:8px; }
+.narrator-actions{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.rate-select, .voice-select{
+  background:var(--panel-2); color:var(--ink); border:1px solid var(--line); border-radius:7px;
+  font-size:11.5px; padding:5px 8px; cursor:pointer; height:32px;
+}
+.voice-select{ max-width:140px; }
+@media (max-width:600px){ .voice-select{ display:none; } }
+
+.tool-icon-btn{
+  height:32px; padding:0 10px; border-radius:7px; border:1px solid var(--line);
+  background:var(--panel-2); color:var(--ink); font-size:11.5px; font-weight:500;
+  display:inline-flex; align-items:center; gap:5px; transition: all .15s ease;
+}
+.tool-icon-btn:hover{ border-color:var(--gold); color:var(--gold); background:var(--gold-soft); }
+.tool-icon-btn.primary{ background:var(--teal-soft); border-color:var(--teal); color:var(--teal); font-weight:600; }
+.tool-icon-btn.primary:hover{ background:var(--teal); color:#fff; }
+
+.theme-toggle-btn{
+  width:32px; height:32px; border-radius:7px; border:1px solid var(--line);
+  background:var(--panel-2); color:var(--ink); display:inline-flex; align-items:center; justify-content:center;
+  font-size:13px;
+}
+.theme-toggle-btn:hover{ border-color:var(--gold); }
+
+/* Content formatting */
+.content{ max-width:780px; margin:0 auto; padding: 32px 28px 10px; }
+@media (max-width:880px){ .content{ padding:20px 16px 10px; } }
+
+.mod-kicker{ font-size:12px; color:var(--muted); letter-spacing:.02em; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
 .mod-kicker b{ color:var(--gold); font-weight:600; }
-h2.mod-title{ font-size:clamp(24px,4vw,32px); line-height:1.15; margin-bottom:18px; }
+.mod-kicker span.track-badge{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; background:var(--panel-2); padding:2px 6px; border-radius:4px; border:1px solid var(--line); }
+h2.mod-title{ font-size:clamp(24px,4vw,32px); line-height:1.18; margin-bottom:18px; font-weight:700; }
 
 .narration-box{
-  background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--gold);
+  background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--gold);
   border-radius:10px; padding:16px 18px; margin-bottom:26px; box-shadow:var(--shadow);
 }
-.narration-box p{ margin:0 0 10px; line-height:1.7; font-size:15px; }
+.narration-box-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-size:11px; color:var(--muted); font-weight:600; letter-spacing:.03em; }
+.narration-box p{ margin:0 0 10px; line-height:1.7; font-size:15px; padding:4px 8px; border-radius:6px; border-left:3px solid transparent; transition: all .2s ease; }
 .narration-box p:last-child{ margin-bottom:0; }
-.narration-box .word-live{ background:var(--gold-soft); border-radius:3px; }
+.narration-box p.active-para{
+  background:var(--gold-soft); border-left-color:var(--gold); color:var(--ink); font-weight:500;
+}
 
 .block{ margin-bottom:26px; }
 .block p{ line-height:1.75; font-size:15px; margin:0 0 12px; }
-.block h3{ font-size:16.5px; margin-bottom:10px; }
-ul.points, ol.points{ margin:0 0 12px; padding-left:20px; }
+.block h3{ font-size:17px; margin:16px 0 10px; color:var(--ink); font-weight:600; }
+ul.points, ol.points{ margin:0 0 14px; padding-left:22px; }
 ul.points li, ol.points li{ line-height:1.65; font-size:14.6px; margin-bottom:6px; }
 
-.callout{ border-radius:10px; padding:15px 17px; margin:16px 0; border:1px solid var(--line); }
+.callout{ border-radius:10px; padding:15px 17px; margin:18px 0; border:1px solid var(--line); }
 .callout.gold{ background:var(--gold-soft); border-color:var(--gold); }
 .callout.teal{ background:var(--teal-soft); border-color:var(--teal); }
 .callout.rust{ background:var(--rust-soft); border-color:var(--rust); }
-.callout .tag{ font-size:10.5px; text-transform:none; letter-spacing:.02em; font-weight:600; margin-bottom:6px; display:block; }
+.callout .tag{ font-size:10.5px; text-transform:none; letter-spacing:.03em; font-weight:700; margin-bottom:6px; display:block; }
 .callout.gold .tag{ color:var(--gold); } .callout.teal .tag{ color:var(--teal); } .callout.rust .tag{ color:var(--rust); }
 .callout p{ margin:0; font-size:14.5px; line-height:1.65; }
-.callout p em{ font-style:italic; }
 
 .qa{ border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:12px; background:var(--panel); }
-.qa .q{ font-weight:600; font-size:14.5px; margin-bottom:6px; }
+.qa .q{ font-weight:600; font-size:14.5px; margin-bottom:6px; color:var(--ink); }
 .qa .a{ font-size:14.3px; line-height:1.65; color:var(--ink); }
-.qa .a::before{ content:"“"; color:var(--gold); }
-.qa .a::after{ content:"”"; color:var(--gold); }
+.qa .a::before{ content:"“"; color:var(--gold); font-size:16px; font-weight:bold; }
+.qa .a::after{ content:"”"; color:var(--gold); font-size:16px; font-weight:bold; }
 
 table.tbl{ width:100%; border-collapse:collapse; margin:14px 0 18px; font-size:13.3px; }
 table.tbl th, table.tbl td{ text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5; }
-table.tbl th{ font-size:11.5px; color:var(--muted); font-weight:600; text-transform:none; border-bottom:1.5px solid var(--gold); }
+table.tbl th{ font-size:11.5px; color:var(--muted); font-weight:600; border-bottom:1.5px solid var(--gold); }
 table.tbl tr:last-child td{ border-bottom:none; }
-.tbl-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:8px; }
+.tbl-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:8px; border:1px solid var(--line); margin:14px 0; background:var(--panel); }
 
 .pipeline{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:14px 0 20px; }
 .pipeline .step{
@@ -205,82 +288,582 @@ table.tbl tr:last-child td{ border-bottom:none; }
 .chip{ font-family:'IBM Plex Mono',monospace; font-size:11.3px; background:var(--panel-2); border:1px solid var(--line); border-radius:6px; padding:4px 8px; }
 
 .central-phrase{
-  font-family:'Source Serif 4', serif; font-size:19px; line-height:1.5; font-style:italic;
-  border-left:3px solid var(--gold); padding-left:16px; margin:18px 0 22px; color:var(--ink);
+  font-family:'Source Serif 4', serif; font-size:18.5px; line-height:1.5; font-style:italic;
+  border-left:3.5px solid var(--gold); padding-left:16px; margin:20px 0 24px; color:var(--ink);
+  background:var(--gold-soft); padding-top:10px; padding-bottom:10px; border-radius:0 8px 8px 0;
 }
 
-.nav-footer{ display:flex; justify-content:space-between; gap:12px; margin-top:36px; padding-top:20px; border-top:1px solid var(--line); }
+.nav-footer{ display:flex; justify-content:space-between; gap:12px; margin-top:40px; padding-top:20px; border-top:1px solid var(--line); }
 .nav-btn{
   border:1px solid var(--line); background:var(--panel); color:var(--ink); border-radius:9px;
-  padding:11px 16px; font-size:13.5px; cursor:pointer; display:flex; align-items:center; gap:8px;
+  padding:10px 16px; font-size:13.3px; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:8px;
+  transition: all .15s ease;
 }
-.nav-btn:hover{ border-color:var(--gold); }
-.nav-btn:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
-.nav-btn.mark-done{ margin-left:auto; background:var(--teal-soft); border-color:var(--teal); color:var(--teal); font-weight:500; }
+.nav-btn:hover{ border-color:var(--gold); background:var(--panel-2); }
+.nav-btn.mark-done{ margin-left:auto; background:var(--teal-soft); border-color:var(--teal); color:var(--teal); font-weight:600; }
+.nav-btn.mark-done.done{ background:var(--teal); color:#fff; }
 .nav-btn[disabled]{ opacity:.35; cursor:not-allowed; }
 
-.disclaimer{ max-width:760px; margin:0 auto 30px; padding:0 28px; font-size:11.8px; color:var(--muted); line-height:1.6; }
+.disclaimer{ max-width:780px; margin:0 auto 30px; padding:0 28px; font-size:11.8px; color:var(--muted); line-height:1.6; }
 @media (max-width:880px){ .disclaimer{ padding:0 16px; } }
 
-.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+/* ---------- Modals ---------- */
+.modal{
+  position:fixed; inset:0; z-index:200; background:rgba(0,0,0,0.6);
+  display:none; align-items:center; justify-content:center; padding:16px;
+  backdrop-filter:blur(6px); animation: fadeIn .2s ease;
+}
+.modal.active{ display:flex; }
+.modal-content{
+  background:var(--panel); border:1px solid var(--line); border-radius:14px;
+  width:100%; max-width:840px; max-height:90vh; display:flex; flex-direction:column;
+  box-shadow:var(--shadow-lg); overflow:hidden;
+}
+.modal-header{
+  padding:16px 20px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between;
+  background:var(--panel-2);
+}
+.modal-header h3{ font-size:18px; margin:0; }
+.modal-close{
+  background:transparent; border:none; color:var(--muted); font-size:22px; cursor:pointer;
+  padding:0; width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:6px;
+}
+.modal-close:hover{ background:var(--line); color:var(--ink); }
+.modal-body{ padding:20px; overflow-y:auto; flex:1; }
+
+/* Tabs inside Modal */
+.modal-tabs{ display:flex; gap:6px; border-bottom:1px solid var(--line); padding:0 20px; background:var(--panel-2); overflow-x:auto; }
+.modal-tab-btn{
+  background:transparent; border:none; border-bottom:2px solid transparent; padding:10px 14px;
+  font-size:12.8px; font-weight:600; color:var(--muted); cursor:pointer; white-space:nowrap;
+}
+.modal-tab-btn.active{ color:var(--gold); border-bottom-color:var(--gold); }
+
+/* Search Modal */
+.search-box{ position:relative; margin-bottom:16px; }
+.search-input{
+  width:100%; padding:12px 14px 12px 38px; font-size:14px; border-radius:9px;
+  border:1.5px solid var(--line); background:var(--panel-2); color:var(--ink); font-family:inherit;
+}
+.search-input:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 2px var(--gold-soft); }
+.search-icon{ position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); }
+.search-results{ display:flex; flex-direction:column; gap:8px; max-height:55vh; overflow-y:auto; }
+.search-card{
+  padding:12px 14px; border-radius:8px; border:1px solid var(--line); background:var(--panel-2);
+  cursor:pointer; transition: all .15s ease;
+}
+.search-card:hover{ border-color:var(--gold); background:var(--gold-soft); transform:translateY(-1px); }
+.search-card-meta{ font-size:10.5px; color:var(--muted); margin-bottom:4px; font-family:'IBM Plex Mono',monospace; }
+.search-card-title{ font-size:14px; font-weight:600; color:var(--ink); margin-bottom:4px; }
+.search-card-snippet{ font-size:12.5px; color:var(--muted); line-height:1.4; }
+.search-card-snippet mark{ background:var(--gold); color:#fff; border-radius:2px; padding:0 2px; }
+
+/* Interactive Hub / Simulators */
+.sim-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+@media (max-width:700px){ .sim-grid{ grid-template-columns: 1fr; } }
+.sim-card{
+  background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:16px;
+}
+.sim-field{ margin-bottom:14px; }
+.sim-field label{ display:flex; justify-content:space-between; font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px; }
+.sim-field select, .sim-field input[type="number"], .sim-field input[type="range"]{
+  width:100%; padding:8px 10px; border-radius:7px; border:1px solid var(--line);
+  background:var(--panel); color:var(--ink); font-size:13px; font-family:inherit;
+}
+.sim-field input[type="range"]{ cursor:pointer; }
+.sim-results{
+  background:var(--panel); border:1px solid var(--gold); border-radius:10px; padding:16px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.sim-res-row{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:6px; }
+.sim-res-row:last-child{ border-bottom:none; padding-bottom:0; }
+.sim-res-label{ font-size:12.5px; color:var(--muted); }
+.sim-res-val{ font-size:14px; font-weight:700; font-family:'IBM Plex Mono',monospace; color:var(--ink); }
+.sim-res-val.highlight{ color:var(--gold); font-size:16px; }
+.sim-res-val.teal{ color:var(--teal); }
+.sim-res-val.rust{ color:var(--rust); }
+
+/* Flashcards Quiz */
+.quiz-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px; }
+.quiz-filters{ display:flex; gap:6px; flex-wrap:wrap; }
+.quiz-filter-btn{
+  background:var(--panel-2); border:1px solid var(--line); border-radius:6px; padding:4px 9px;
+  font-size:11.5px; cursor:pointer; color:var(--ink); font-weight:500;
+}
+.quiz-filter-btn.active{ background:var(--gold-soft); border-color:var(--gold); color:var(--gold); font-weight:700; }
+.quiz-stats{ font-size:12px; font-weight:600; color:var(--teal); font-family:'IBM Plex Mono',monospace; }
+
+.flashcard{
+  perspective: 1000px; min-height: 240px; cursor: pointer; margin-bottom:16px;
+}
+.flashcard-inner{
+  position: relative; width: 100%; height: 100%; min-height: 240px; text-align: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d;
+}
+.flashcard.flipped .flashcard-inner{ transform: rotateY(180deg); }
+.flashcard-front, .flashcard-back{
+  position: absolute; inset: 0; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  border-radius: 12px; border: 1.5px solid var(--line); padding: 20px;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.flashcard-front{
+  background: var(--panel-2); border-color: var(--line);
+}
+.flashcard-back{
+  background: var(--panel); border-color: var(--gold); transform: rotateY(180deg);
+}
+.flashcard-badge{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--gold); font-weight:700; }
+.flashcard-q{ font-size:16px; font-weight:700; line-height:1.4; margin:12px 0; color:var(--ink); }
+.flashcard-a{ font-size:13.8px; line-height:1.6; color:var(--ink); margin:8px 0; overflow-y:auto; flex:1; }
+.flashcard-tip{ font-size:12px; color:var(--teal); border-left:2px solid var(--teal); padding-left:8px; margin-top:8px; }
+.flashcard-hint{ font-size:11px; color:var(--muted); text-align:right; font-style:italic; }
+.flashcard-actions{ display:flex; justify-content:space-between; gap:10px; margin-top:10px; }
+.card-nav-btn{
+  padding:8px 14px; border-radius:8px; border:1px solid var(--line); background:var(--panel-2);
+  color:var(--ink); font-size:12.5px; font-weight:600; cursor:pointer;
+}
+.card-nav-btn:hover{ border-color:var(--gold); }
+.card-score-btn{
+  padding:8px 14px; border-radius:8px; border:1px solid transparent; font-size:12.5px; font-weight:600; cursor:pointer;
+}
+.card-score-btn.pass{ background:var(--teal-soft); border-color:var(--teal); color:var(--teal); }
+.card-score-btn.fail{ background:var(--rust-soft); border-color:var(--rust); color:var(--rust); }
+
+/* Shortcuts Grid */
+.shortcuts-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+.shortcut-item{
+  display:flex; justify-content:space-between; align-items:center; padding:8px 12px;
+  background:var(--panel-2); border:1px solid var(--line); border-radius:8px; font-size:12.5px;
+}
+.shortcut-item kbd{
+  font-family:'IBM Plex Mono',monospace; background:var(--panel); border:1px solid var(--line);
+  padding:2px 6px; border-radius:4px; font-size:11px; font-weight:600;
+}
+
+/* Toast Container */
+.toast-container{
+  position:fixed; bottom:20px; right:20px; z-index:300; display:flex; flex-direction:column; gap:8px; pointer-events:none;
+}
+.toast{
+  background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--gold);
+  border-radius:8px; padding:10px 16px; box-shadow:var(--shadow-lg); color:var(--ink);
+  font-size:12.5px; font-weight:500; pointer-events:auto; animation: slideUp .2s ease;
+  display:flex; align-items:center; gap:8px;
+}
+.toast.teal{ border-left-color:var(--teal); }
+.toast.rust{ border-left-color:var(--rust); }
+@keyframes slideUp{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
+@keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+
+/* Print styling */
+@media print{
+  .sidebar, .narrator-bar, .nav-footer, .sidebar-overlay, .modal, .toast-container, .mobile-menu-btn{ display:none !important; }
+  .app{ display:block !important; }
+  body{ background:#fff !important; color:#000 !important; font-size:12pt !important; }
+  .content{ max-width:100% !important; padding:0 !important; }
+  .narration-box{ border:1px solid #999 !important; box-shadow:none !important; background:#f9f9f9 !important; break-inside:avoid; }
+  .callout{ break-inside:avoid; border:1px solid #aaa !important; background:#fbfbfb !important; }
+  .qa{ break-inside:avoid; border:1px solid #ccc !important; }
+  table.tbl{ font-size:10pt !important; }
+  svg{ max-width:100% !important; height:auto !important; }
+  h2.mod-title{ font-size:18pt !important; margin-bottom:12pt !important; }
+}
+
 @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
 </style>
 </head>
 <body>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <div class="app">
 
-  <aside class="sidebar">
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro">
-      <span id="themeIcon">☾</span><span id="themeLabel">Escuro</span>
-    </button>
-    <div class="brand">
-      <div class="seal" id="brandSeal">RT</div>
-      <div class="brand-text">
-        <div class="kicker" id="brandKicker">DOSSIÊ DE PREPARAÇÃO</div>
-        <h1 id="brandTitle">Reforma Tributária<br>do Consumo</h1>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="seal" id="brandSeal">RT</div>
+        <div class="brand-text">
+          <div class="kicker" id="brandKicker">DOSSIÊ DE PREPARAÇÃO</div>
+          <h1 id="brandTitle">Reforma Tributária<br>do Consumo</h1>
+        </div>
       </div>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Alternar tema claro/escuro">
+        <span id="themeIcon">☾</span>
+      </button>
     </div>
     <p class="brand-sub" id="brandSub">Treinamento narrado para a entrevista de Product Owner.</p>
 
+    <!-- Quick Tools -->
+    <div class="quick-actions">
+      <button class="quick-btn" id="sidebarSearchBtn"><span>🔍</span> Buscar <kbd style="font-size:9px;opacity:.7">Ctrl+K</kbd></button>
+      <button class="quick-btn" id="sidebarHubBtn"><span>⚡</span> Ferramentas</button>
+      <button class="quick-btn" id="sidebarQuizBtn"><span>🗂️</span> Flashcards</button>
+      <button class="quick-btn" id="sidebarFocusBtn"><span>👁️</span> Modo Foco</button>
+    </div>
+
+    <!-- Course Switcher -->
     <div class="course-switch">
-      <span class="cs-label">TREINAMENTOS DISPONÍVEIS</span>
+      <span class="cs-label">TRILHAS DE TREINAMENTO</span>
       <div id="courseSwitchList"></div>
     </div>
 
     <button class="glossary-btn" id="glossaryBtn" style="display:none">📖 Ver glossário desta trilha</button>
 
+    <!-- Module List -->
     <nav class="modlist" id="modList" aria-label="Módulos do treinamento"></nav>
 
-    <div class="progress-tally">
-      <span id="progressText">0 de 14 módulos concluídos</span>
-      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="sidebar-footer">
+      <div class="progress-tally">
+        <div class="progress-tally-row">
+          <span id="progressText">0 de 16 módulos concluídos</span>
+          <span id="progressPct" style="font-weight:700;font-family:'IBM Plex Mono',monospace">0%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div class="shortcuts-hint">Atalhos: <kbd>Espaço</kbd> Áudio · <kbd>←</kbd> <kbd>→</kbd> Módulos · <kbd>?</kbd> Ajuda</div>
     </div>
   </aside>
 
+  <!-- Main Content Area -->
   <main>
+    <!-- Top Narrator Bar -->
     <div class="narrator-bar">
-      <button class="play-btn" id="playBtn" aria-label="Reproduzir narração">
-        <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-      </button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu lateral">☰</button>
+
+      <div class="player-controls">
+        <button class="skip-btn" id="skipBackBtn" title="Voltar 10 segundos">-10s</button>
+        <button class="play-btn" id="playBtn" aria-label="Reproduzir narração" title="Play/Pause (Espaço)">
+          <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        </button>
+        <button class="skip-btn" id="skipForwardBtn" title="Avançar 10 segundos">+10s</button>
+      </div>
+
       <div class="narrator-mid">
-        <div class="narrator-label"><span id="narratorState">Locutor pronto</span><span id="narratorModTitle"></span></div>
+        <div class="narrator-label">
+          <span id="narratorState">Locutor pronto</span>
+          <b id="narratorModTitle"></b>
+          <span id="audioEta" style="font-family:'IBM Plex Mono',monospace;font-size:10px;"></span>
+        </div>
         <div class="narrator-track"><div class="narrator-fill" id="narratorFill"></div></div>
       </div>
-      <select class="rate-select" id="voiceSelect" aria-label="Voz do locutor" style="max-width:150px"></select>
-      <select class="rate-select" id="rateSelect" aria-label="Velocidade da narração">
-        <option value="0.9">0.9×</option>
-        <option value="1" selected>1.0×</option>
-        <option value="1.15">1.15×</option>
-        <option value="1.3">1.3×</option>
-      </select>
-      <span class="narrator-note" id="narratorNote"></span>
+
+      <div class="narrator-actions">
+        <select class="voice-select" id="voiceSelect" aria-label="Voz do locutor"></select>
+        <select class="rate-select" id="rateSelect" aria-label="Velocidade da narração">
+          <option value="0.8">0.8×</option>
+          <option value="0.9">0.9×</option>
+          <option value="1" selected>1.0×</option>
+          <option value="1.15">1.15×</option>
+          <option value="1.3">1.3×</option>
+          <option value="1.5">1.5×</option>
+        </select>
+
+        <button class="tool-icon-btn primary" id="hubOpenBtn" title="Abrir Simuladores e Ferramentas">⚡ Ferramentas</button>
+        <button class="tool-icon-btn" id="searchOpenBtn" title="Buscar no conteúdo (Ctrl+K)">🔍</button>
+        <button class="tool-icon-btn" id="quizOpenBtn" title="Flashcards de Entrevista">🗂️</button>
+        <button class="tool-icon-btn" id="focusModeBtn" title="Modo Foco / Zen Reader (F)">👁️</button>
+        <button class="tool-icon-btn" id="printBtn" title="Imprimir ou Salvar em PDF">🖨️</button>
+        <button class="tool-icon-btn" id="shortcutsBtn" title="Atalhos de teclado (?)">?</button>
+      </div>
     </div>
 
     <div class="content" id="content"></div>
-    <p class="disclaimer" id="finalDisclaimer" style="display:none">Este material é educacional e não substitui análise tributária, contábil ou jurídica. A Reforma Tributária está sendo detalhada por leis, decretos, atos e notas técnicas que podem ser alterados — em um produto regulatório, cada regra deve ser implementada somente após validação da fonte vigente. A narração é gerada pela síntese de voz do seu navegador; a qualidade e a disponibilidade de vozes em português variam por dispositivo.</p>
+    <p class="disclaimer" id="finalDisclaimer" style="display:none"></p>
   </main>
 </div>
+
+<!-- ============================= MODAL DE BUSCA GLOBAL ============================= -->
+<div class="modal" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="searchModalTitle">🔍 Busca Global no Treinamento</h3>
+      <button class="modal-close" id="searchCloseBtn" aria-label="Fechar">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="globalSearchInput" placeholder="Digite termos como DeRE, Split Payment, MDR, RAG, LangGraph, etc..." autofocus>
+      </div>
+      <div class="search-results" id="searchResultsContainer">
+        <div style="text-align:center;color:var(--muted);padding:30px 0;">Digite uma palavra-chave para pesquisar em todos os módulos das 3 trilhas.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MODAL DO HUB INTERATIVO ============================= -->
+<div class="modal" id="hubModal" role="dialog" aria-modal="true" aria-labelledby="hubModalTitle">
+  <div class="modal-content" style="max-width:880px;">
+    <div class="modal-header">
+      <h3 id="hubModalTitle">⚡ Hub de Ferramentas &amp; Simuladores Interativos</h3>
+      <button class="modal-close" id="hubCloseBtn" aria-label="Fechar">✕</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab-btn active" data-tab="sim-fiscal">📊 Simulador Fiscal &amp; Split Payment</button>
+      <button class="modal-tab-btn" data-tab="sim-pagamentos">💳 Adquirência &amp; Antecipação</button>
+      <button class="modal-tab-btn" data-tab="sim-ia">🤖 FinOps &amp; Custos de IA</button>
+      <button class="modal-tab-btn" data-tab="quiz-flashcards">🗂️ Flashcards de Entrevista</button>
+    </div>
+    <div class="modal-body" id="hubModalBody">
+
+      <!-- TAB 1: SIMULADOR FISCAL -->
+      <div class="hub-tab-pane active" id="tab-sim-fiscal">
+        <div class="sim-grid">
+          <div class="sim-card">
+            <h4 style="margin-bottom:12px;font-size:15px;color:var(--gold)">Parâmetros da Operação</h4>
+            <div class="sim-field">
+              <label>Valor da Operação (R$) <span id="f_val_display">R$ 100.000,00</span></label>
+              <input type="range" id="f_valor" min="1000" max="1000000" step="5000" value="100000">
+            </div>
+            <div class="sim-field">
+              <label>Tipo de Receita / Produto</label>
+              <select id="f_tipo">
+                <option value="especifico_credito">Intermediação Financeira / Crédito / Câmbio (Regime Específico)</option>
+                <option value="geral_tarifa">Tarifas e Comissões Bancárias (Regra Geral - Exceção LC 214)</option>
+                <option value="especifico_seguro">Seguros, Previdência &amp; Capitalização (Regime Específico)</option>
+                <option value="geral_servicos">Serviços de Terceiros / Software (Regra Geral)</option>
+              </select>
+            </div>
+            <div class="sim-field">
+              <label>Ano de Vigência da Operação</label>
+              <select id="f_ano">
+                <option value="2026">2026 (Teste e adaptação: CBS 0,9% + IBS 0,1%)</option>
+                <option value="2027">2027 (Cobrança efetiva CBS + IBS transição)</option>
+                <option value="2029">2029 (Redução gradual ICMS/ISS: 90%)</option>
+                <option value="2031">2031 (Redução ICMS/ISS: 70%)</option>
+                <option value="2033" selected>2033 (Vigência plena IBS+CBS: 12,50% financeiro)</option>
+              </select>
+            </div>
+            <div class="sim-field">
+              <label>Deduções Legais Autorizadas (R$) <span id="f_ded_display">R$ 20.000,00</span></label>
+              <input type="range" id="f_deducoes" min="0" max="500000" step="5000" value="20000">
+            </div>
+          </div>
+
+          <div class="sim-results">
+            <h4 style="font-size:15px;color:var(--teal)">Resultado Tributário &amp; Split Payment</h4>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Regime Aplicável:</span>
+              <span class="sim-res-val" id="res_f_regime">Regime Específico</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Base de Cálculo Tributável:</span>
+              <span class="sim-res-val" id="res_f_base">R$ 80.000,00</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Alíquota Conjunta (IBS + CBS):</span>
+              <span class="sim-res-val highlight" id="res_f_aliq">12,50%</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">IBS + CBS Total Devido:</span>
+              <span class="sim-res-val rust" id="res_f_total_trib">R$ 10.000,00</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Segregação Split Payment (Fisco):</span>
+              <span class="sim-res-val rust" id="res_f_split_fisco">R$ 10.000,00</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Valor Líquido ao Prestador:</span>
+              <span class="sim-res-val teal" id="res_f_split_liq">R$ 90.000,00</span>
+            </div>
+            <div style="font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px;margin-top:4px;">
+              <b>Obrigação Acessória:</b> <span id="res_f_obrig">DeRE (Eventos D-1011, D-1101, D-1121, D-1199)</span><br>
+              <b>Fundamentação:</b> <span id="res_f_lei">LC 214/2025 art. 27 / LC 227/2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: SIMULADOR ADQUIRÊNCIA -->
+      <div class="hub-tab-pane" id="tab-sim-pagamentos" style="display:none">
+        <div class="sim-grid">
+          <div class="sim-card">
+            <h4 style="margin-bottom:12px;font-size:15px;color:var(--gold)">Dados da Transação</h4>
+            <div class="sim-field">
+              <label>Valor Bruto da Venda <span id="ad_val_display">R$ 1.200,00</span></label>
+              <input type="range" id="ad_valor" min="50" max="20000" step="50" value="1200">
+            </div>
+            <div class="sim-field">
+              <label>Modalidade de Pagamento</label>
+              <select id="ad_modalidade">
+                <option value="debito">Débito (Liquidação ordinária D+1)</option>
+                <option value="credito_vista">Crédito à Vista (Liquidação ordinária D+30)</option>
+                <option value="credito_3x">Crédito Parcelado 3× (D+30, D+60, D+90)</option>
+                <option value="credito_6x" selected>Crédito Parcelado 6× (D+30 a D+180)</option>
+                <option value="credito_12x">Crédito Parcelado 12× (D+30 a D+360)</option>
+              </select>
+            </div>
+            <div class="sim-field">
+              <label>Taxa MDR (%) <span id="ad_mdr_display">2.5%</span></label>
+              <input type="range" id="ad_mdr" min="0.5" max="6.0" step="0.1" value="2.5">
+            </div>
+            <div class="sim-field">
+              <label>Taxa Mensal de Antecipação (%) <span id="ad_antec_display">1.8% / mês</span></label>
+              <input type="range" id="ad_antec" min="0.5" max="4.0" step="0.1" value="1.8">
+            </div>
+          </div>
+
+          <div class="sim-results">
+            <h4 style="font-size:15px;color:var(--teal)">Liquidação &amp; Agenda de Recebíveis</h4>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Desconto de MDR:</span>
+              <span class="sim-res-val rust" id="res_ad_mdr_val">- R$ 30,00</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Líquido Ordinário Total:</span>
+              <span class="sim-res-val" id="res_ad_liq_ord">R$ 1.170,00</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Parcelamento:</span>
+              <span class="sim-res-val" id="res_ad_parcelas">6 parcelas de R$ 195,00</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Custo da Antecipação Total:</span>
+              <span class="sim-res-val rust" id="res_ad_custo_antec">- R$ 73,71</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Líquido Imediato com Antecipação (D+1):</span>
+              <span class="sim-res-val highlight teal" id="res_ad_liq_antec">R$ 1.096,29</span>
+            </div>
+            <div style="font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px;margin-top:4px;">
+              <b>Visão do PO:</b> A antecipação não é empréstimo tradicional, é antecipação de ativos. Reconciliação requer confrontar arquivo de autorização, agenda de recebíveis e liquidação PSCL.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: SIMULADOR FINOPS IA -->
+      <div class="hub-tab-pane" id="tab-sim-ia" style="display:none">
+        <div class="sim-grid">
+          <div class="sim-card">
+            <h4 style="margin-bottom:12px;font-size:15px;color:var(--gold)">Volumetria &amp; Parâmetros do Agente</h4>
+            <div class="sim-field">
+              <label>Conversas / Mês <span id="ia_vol_display">50.000</span></label>
+              <input type="range" id="ia_vol" min="1000" max="200000" step="1000" value="50000">
+            </div>
+            <div class="sim-field">
+              <label>Média Tokens / Conversa</label>
+              <select id="ia_tokens">
+                <option value="curto">Diálogo Curto (800 in / 200 out)</option>
+                <option value="medio" selected>Diálogo Médio com RAG (2.500 in / 500 out)</option>
+                <option value="longo">Agente Complexo + Tools (6.000 in / 1.000 out)</option>
+              </select>
+            </div>
+            <div class="sim-field">
+              <label>Tier do Modelo LLM</label>
+              <select id="ia_model">
+                <option value="tier1">Modelo Tier 1 (Inteligente/Preciso: $3/M in, $15/M out — Erro 4%)</option>
+                <option value="tier2">Modelo Tier 2 (Econômico/Rápido: $0.3/M in, $1.2/M out — Erro 16%)</option>
+              </select>
+            </div>
+            <div class="sim-field">
+              <label>Custo por Escalação Humana (R$) <span id="ia_hum_cost_display">R$ 15,00</span></label>
+              <input type="range" id="ia_hum_cost" min="5" max="40" step="1" value="15">
+            </div>
+          </div>
+
+          <div class="sim-results">
+            <h4 style="font-size:15px;color:var(--teal)">Custo Total &amp; Análise FinOps</h4>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Custo Mensal de Tokens LLM:</span>
+              <span class="sim-res-val" id="res_ia_token_cost">R$ 2.475,00</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Taxa de Escalação Humana:</span>
+              <span class="sim-res-val rust" id="res_ia_escal_rate">4,0%</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Custo com Escalação Humana:</span>
+              <span class="sim-res-val rust" id="res_ia_escal_cost">R$ 30.000,00</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Custo Total da Operação:</span>
+              <span class="sim-res-val highlight" id="res_ia_total_cost">R$ 32.475,00</span>
+            </div>
+            <div class="sim-res-row">
+              <span class="sim-res-label">Custo Médio por Conversa Resolvida:</span>
+              <span class="sim-res-val teal" id="res_ia_unit_cost">R$ 0,65 / resolvida</span>
+            </div>
+            <div style="font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px;margin-top:4px;">
+              <b style="color:var(--rust)">O Paradoxo do Modelo Barato:</b> <span id="res_ia_insight">Um modelo mais barato com maior taxa de erro gera mais recontato e custo humano, elevando o custo final por atendimento.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: FLASHCARDS QUIZ -->
+      <div class="hub-tab-pane" id="tab-quiz-flashcards" style="display:none">
+        <div class="quiz-header">
+          <div class="quiz-filters" id="quizFilters">
+            <button class="quiz-filter-btn active" data-qfilter="all">Todas as Trilhas</button>
+            <button class="quiz-filter-btn" data-qfilter="reforma">Reforma Tributária</button>
+            <button class="quiz-filter-btn" data-qfilter="pagamentos">Pagamentos &amp; Open Finance</button>
+            <button class="quiz-filter-btn" data-qfilter="ia">IA para PM</button>
+          </div>
+          <div class="quiz-stats" id="quizStats">0 de 15 dominados (0%)</div>
+        </div>
+
+        <div class="flashcard" id="activeFlashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <div>
+                <span class="flashcard-badge" id="fcTrackBadge">REFORMA TRIBUTÁRIA</span>
+                <div class="flashcard-q" id="fcQuestion">Pergunta carregando...</div>
+              </div>
+              <div class="flashcard-hint">Toque ou clique no cartão para ver a resposta recomendada ↺</div>
+            </div>
+            <div class="flashcard-back">
+              <div>
+                <span class="flashcard-badge">RESPOSTA RECOMENDADA DE PO</span>
+                <div class="flashcard-a" id="fcAnswer">Resposta carregando...</div>
+                <div class="flashcard-tip" id="fcTip">Dica de ouro</div>
+              </div>
+              <div class="flashcard-actions">
+                <button class="card-score-btn fail" id="fcNeedReviewBtn">↺ Preciso revisar</button>
+                <button class="card-score-btn pass" id="fcMasteredBtn">✓ Dominei</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <button class="card-nav-btn" id="fcPrevBtn">← Card Anterior</button>
+          <span id="fcCounter" style="font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--muted)">1 / 15</span>
+          <button class="card-nav-btn" id="fcNextBtn">Próximo Card →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MODAL DE ATALHOS ============================= -->
+<div class="modal" id="shortcutsModal" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle">
+  <div class="modal-content" style="max-width:540px;">
+    <div class="modal-header">
+      <h3 id="shortcutsTitle">⌨️ Atalhos de Teclado</h3>
+      <button class="modal-close" id="shortcutsCloseBtn" aria-label="Fechar">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="shortcuts-grid">
+        <div class="shortcut-item"><span>Play / Pause Narração</span> <kbd>Espaço</kbd></div>
+        <div class="shortcut-item"><span>Próximo Módulo</span> <kbd>→</kbd></div>
+        <div class="shortcut-item"><span>Módulo Anterior</span> <kbd>←</kbd></div>
+        <div class="shortcut-item"><span>Marcar Concluído</span> <kbd>D</kbd></div>
+        <div class="shortcut-item"><span>Alternar Tema Claro/Escuro</span> <kbd>T</kbd></div>
+        <div class="shortcut-item"><span>Alternar Modo Foco</span> <kbd>F</kbd></div>
+        <div class="shortcut-item"><span>Busca Global</span> <kbd>Ctrl + K</kbd></div>
+        <div class="shortcut-item"><span>Simuladores / Hub</span> <kbd>S</kbd></div>
+        <div class="shortcut-item"><span>Flashcards Quiz</span> <kbd>Q</kbd></div>
+        <div class="shortcut-item"><span>Fechar Janela</span> <kbd>Esc</kbd></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
 
 <script>
 /* ============================= DADOS DOS MÓDULOS ============================= */
@@ -2392,9 +2975,114 @@ ia: {
 }
 };
 
-/* ============================= ESTADO E RENDER ============================= */
+/* ============================= FLASHCARDS DATA ============================= */
+const FLASHCARDS = [
+  {
+    track: 'reforma', trackName: 'Reforma Tributária',
+    q: 'Toda receita de um banco entra no regime específico da LC 214/2025?',
+    a: 'Não. Serviços como abertura/manutenção de conta, saques, transferências e certas tarifas de pagamento remuneradas por tarifa ou comissão podem seguir a regra geral do IBS/CBS. A classificação deve ser feita por operação e natureza da receita, mapeada em matriz validada por Tax e Jurídico.',
+    tip: 'Pegadinha clássica: nunca generalize "banco = 100% regime específico".'
+  },
+  {
+    track: 'reforma', trackName: 'Reforma Tributária',
+    q: 'Qual é a diferença prática entre DeRE e Nota Fiscal Eletrônica (NF-e/NFS-e)?',
+    a: 'A DeRE é uma declaração/obrigação acessória entregue consolidada pelo CNPJ-raiz via API/Web Service no Ambiente Nacional que substitui a NF apenas para receitas próprias do regime específico. Notas fiscais continuam obrigatórias para receitas fora do regime específico e tributos legados na transição.',
+    tip: 'Mostre que o banco precisa de um classificador de receitas para decidir o destino documental.'
+  },
+  {
+    track: 'reforma', trackName: 'Reforma Tributária',
+    q: 'Como o banco deve tratar o Split Payment do IBS e CBS?',
+    a: 'Primeiro identificar o papel do banco no arranjo (emissor, credenciador, PSP, operador). O fluxo conecta documento fiscal, transação, autorização, envio à Plataforma Pública Split Payment, segregação do tributo no ato da liquidação, crédito do líquido e reconciliação contábil.',
+    tip: 'Não confunda Split Payment tributário (LC 214) com split comercial de marketplace.'
+  },
+  {
+    track: 'reforma', trackName: 'Reforma Tributária',
+    q: 'Por que o COSIF não substitui a classificação tributária?',
+    a: 'O COSIF é uma referência contábil-regulatória do Banco Central. Ele não contém regras de incidência, regimes da LC 214 ou vigências fiscais. O desafio do PO é reconciliar rubricas COSIF, subledger tributário e eventos DeRE/DF-e.',
+    tip: 'Cite as 9 reconciliações necessárias (produto x contrato x COSIF x subledger x DeRE).'
+  },
+  {
+    track: 'reforma', trackName: 'Reforma Tributária',
+    q: 'O que fazer quando uma competência DeRE já foi fechada no evento D-1199 e a auditoria encontra um erro?',
+    a: 'Nunca fazer correção silenciosa. Deve-se abrir um processo formal de reabertura da competência com justificativa registrada, corrigir o evento analítico, revalidar pendências e retransmitir, gerando um novo protocolo auditável vinculado ao original.',
+    tip: 'A versão 1.2.0 da DeRE adicionou expressamente o controle de reabertura e controle de deduções.'
+  },
+  {
+    track: 'pagamentos', trackName: 'Adquirência & Pagamentos',
+    q: 'Uma autorização de cartão aprovada garante que o lojista receberá o dinheiro?',
+    a: 'Não. A autorização apenas reserva o limite do portador. A transação precisa passar por captura efetiva, compensação e liquidação na PSCL. Podem ocorrer falhas de captura, cancelamentos, disputas de chargeback ou problemas de domicílio bancário.',
+    tip: 'Destaque a diferença entre os estados: Iniciada, Autorizada, Capturada, Liquidada e Estornada.'
+  },
+  {
+    track: 'pagamentos', trackName: 'Adquirência & Pagamentos',
+    q: 'Qual a diferença entre Débito Automático e DDA (Débito Direto Autorizado)?',
+    a: 'Débito Automático debita automaticamente na conta mediante consentimento prévio contínuo. O DDA é apenas a apresentação eletrônica centralizada de boletos emitidos contra o CPF/CNPJ, exigindo autorização ativa do pagador para cada liquidação.',
+    tip: 'DDA = visualização eletrônica centralizada; Débito Automático = cobrança recorrente direta.'
+  },
+  {
+    track: 'pagamentos', trackName: 'Adquirência & Pagamentos',
+    q: 'Como garantir idempotência em pagamentos via Pix ou Cartão?',
+    a: 'Usando um Correlation ID e Idempotency Key gerados na intenção da compra. Se o app travar ou o usuário clicar duas vezes, a segunda chamada envia a mesma chave, o backend detecta a transação em andamento/processada e retorna o status sem duplicar cobrança.',
+    tip: 'Idempotência não é detalhe técnico: é requisito central de produto para evitar cobrança em duplicidade.'
+  },
+  {
+    track: 'pagamentos', trackName: 'Adquirência & Pagamentos',
+    q: 'Como funciona a jornada de consentimento do Open Finance sem compartilhar senhas?',
+    a: 'A instituição receptora nunca solicita a senha da transmissora. O cliente é redirecionado via app-to-app/browser para o ambiente da instituição onde tem conta, autentica-se com suas próprias credenciais, aprova o escopo específico e retorna ao receptor.',
+    tip: 'Ponto inegociável de segurança regulado pelo Banco Central.'
+  },
+  {
+    track: 'pagamentos', trackName: 'Adquirência & Pagamentos',
+    q: 'O que muda no Pix Automático em relação ao modelo de cobrança recorrente?',
+    a: 'No Pix Automático, o pagador autoriza a recorrência uma única vez pelo app do seu banco e pode cancelar unilateralmente a qualquer momento. O recebedor dispara as cobranças nas datas agendadas e a liquidação ocorre via SPI sem tarifa de cartão.',
+    tip: 'Tornou-se obrigatório para participantes do Pix em 2026, com volumes bilionários.'
+  },
+  {
+    track: 'ia', trackName: 'IA para Product Manager',
+    q: 'RAG (Retrieval-Augmented Generation) substitui o treinamento ou fine-tuning de um LLM?',
+    a: 'Não. RAG recupera trechos de documentos atualizados e injeta no contexto do modelo em tempo de execução, permitindo citar fontes e atualizar políticas sem retreinar. Fine-tuning ajusta o comportamento, estilo e tom, mas não é eficiente para fatos privados em constante mudança.',
+    tip: 'Para dados dinâmicos e políticas internas corporativas, sempre prefira RAG com grounding.'
+  },
+  {
+    track: 'ia', trackName: 'IA para Product Manager',
+    q: 'Quando você NÃO usaria LangGraph ou arquiteturas de múltiplos agentes?',
+    a: 'Quando uma API simples, uma consulta RAG direta ou um workflow linear determinístico resolver o problema com menor custo, latência e risco. Agentes só se justificam quando há real ambiguidade na escolha de ferramentas, estados dinâmicos ou aprovações humanas complexas.',
+    tip: 'Comece determinístico. Aumente autonomia somente quando a complexidade de negócio exigir.'
+  },
+  {
+    track: 'ia', trackName: 'IA para Product Manager',
+    q: 'O que é o "Paradoxo do Modelo Barato" em FinOps de IA?',
+    a: 'Um modelo com preço de token menor pode ter maior taxa de alucinação e falhas em tool calling, gerando retentativas, fallbacks e escalação para atendentes humanos. O custo humano por erro frequentemente supera a economia de tokens, tornando o custo total por tarefa resolvida mais alto.',
+    tip: 'A métrica correta de FinOps é custo por tarefa resolvida com sucesso, não custo por 1k tokens.'
+  },
+  {
+    track: 'ia', trackName: 'IA para Product Manager',
+    q: 'Como estruturar o Human-in-the-Loop em agentes corporativos?',
+    a: 'Definindo matriz de autonomia por criticidade da ação: ações de baixo risco (consultas, resumos) executam automaticamente; ações com efeitos colaterais financeiros (reembolsos, cancelamentos) pausam o estado no LangGraph e exigem aprovação explícita com auditoria.',
+    tip: 'Aprovação humana deve ser desenhada com timeout, edição de argumentos e fallback seguro.'
+  },
+  {
+    track: 'ia', trackName: 'IA para Product Manager',
+    q: 'Como garantir isolamento de dados e mitigar prompt injection em RAG multitenant?',
+    a: 'Aplicar autorização antes da busca vetorial (filtrando por tenant/user_id no banco vetorial), tratar documentos recuperados como dados não confiáveis, validar argumentos de APIs fora do LLM e usar Guardrails para barrar comandos maliciosos.',
+    tip: 'Embeddings não têm noção de permissão: a filtragem de segurança deve ocorrer na camada de software.'
+  }
+];
+
+/* ============================= ESTADO E CONTROLE ============================= */
 const COURSE_ORDER = ['reforma','pagamentos','ia'];
-const state = { courseId:'reforma', current: 0, completedByCourse: {}, speaking:false, paused:false };
+const state = {
+  courseId: 'reforma',
+  current: 0,
+  completedByCourse: {},
+  speaking: false,
+  paused: false,
+  focusMode: false,
+  volume: 1.0,
+  fcIndex: 0,
+  fcFilter: 'all',
+  masteredCards: new Set()
+};
 
 function curCourse(){ return COURSES[state.courseId]; }
 function curModules(){ return curCourse().modules; }
@@ -2420,9 +3108,23 @@ function saveProgress(){
   }catch(e){}
 }
 
+function loadMasteredCards(){
+  try{
+    const raw = localStorage.getItem('rt-mastered-cards');
+    if(raw) state.masteredCards = new Set(JSON.parse(raw));
+  }catch(e){}
+}
+function saveMasteredCards(){
+  try{
+    localStorage.setItem('rt-mastered-cards', JSON.stringify([...state.masteredCards]));
+  }catch(e){}
+}
+
+/* UI Elements */
 const modListEl = document.getElementById('modList');
 const contentEl = document.getElementById('content');
 const progressText = document.getElementById('progressText');
+const progressPct = document.getElementById('progressPct');
 const progressFill = document.getElementById('progressFill');
 const courseSwitchList = document.getElementById('courseSwitchList');
 const brandSeal = document.getElementById('brandSeal');
@@ -2430,6 +3132,15 @@ const brandKicker = document.getElementById('brandKicker');
 const brandTitle = document.getElementById('brandTitle');
 const brandSub = document.getElementById('brandSub');
 const glossaryBtn = document.getElementById('glossaryBtn');
+const toastContainer = document.getElementById('toastContainer');
+
+function showToast(msg, type='gold'){
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<span>${type==='teal'?'✓':type==='rust'?'⚠️':'⚡'}</span> ${msg}`;
+  toastContainer.appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; setTimeout(()=>t.remove(), 200); }, 2800);
+}
 
 function findGlossaryIndex(courseId){
   const mods = COURSES[courseId].modules;
@@ -2484,13 +3195,14 @@ function renderSidebar(){
   modListEl.querySelectorAll('.modbtn').forEach(btn=>{
     btn.addEventListener('click', ()=> goTo(parseInt(btn.dataset.idx)));
   });
+  const pct = Math.round((completed.size / modules.length) * 100);
   progressText.textContent = `${completed.size} de ${modules.length} módulos concluídos`;
-  progressFill.style.width = (completed.size / modules.length * 100) + '%';
+  progressPct.textContent = `${pct}%`;
+  progressFill.style.width = pct + '%';
   renderCourseSwitch();
 }
 
 function paragraphize(text){
-  // quebra a narração em parágrafos legíveis para o box de leitura acompanhada
   const sentences = text.match(/[^.]+[.!?]+(\s|$)/g) || [text];
   const paras = [];
   let buf = '';
@@ -2507,29 +3219,60 @@ function renderContent(){
   const m = modules[state.current];
   const isLast = state.current === modules.length -1;
   const paras = paragraphize(m.narration);
+  const course = curCourse();
+
+  // Estimated reading time
+  const words = (m.narration + ' ' + m.body.replace(/<[^>]*>/g,'')).split(/\s+/).length;
+  const readMinutes = Math.max(1, Math.round(words / 140));
+
   contentEl.innerHTML = `
-    <div class="mod-kicker"><b>${m.ref}</b> · Módulo ${String(state.current+1).padStart(2,'0')} de ${modules.length}</div>
+    <div class="mod-kicker">
+      <span><b>${m.ref}</b> · Módulo ${String(state.current+1).padStart(2,'0')} de ${modules.length}</span>
+      <span class="track-badge">${course.seal} · ~${readMinutes} min de estudo</span>
+    </div>
     <h2 class="mod-title">${m.title}</h2>
     <div class="narration-box" id="narrationBox" aria-live="polite">
+      <div class="narration-box-header">
+        <span>🎙️ LEITURA ACOMPANHADA DO LOCUTOR</span>
+        <span style="cursor:pointer;color:var(--gold)" onclick="speakModule()">▶ Ouvir agora</span>
+      </div>
       ${paras.map((p,i)=>`<p data-p="${i}">${p}</p>`).join('')}
     </div>
     <div id="bodyText">${m.body}</div>
     <div class="nav-footer">
       <button class="nav-btn" id="prevBtn" ${state.current===0?'disabled':''}>← Módulo anterior</button>
       <button class="nav-btn" id="nextBtn" ${isLast?'disabled':''}>Próximo módulo →</button>
-      <button class="nav-btn mark-done" id="doneBtn">${curCompleted().has(state.current)?'✓ Concluído':'Marcar como concluído'}</button>
+      <button class="nav-btn mark-done ${curCompleted().has(state.current)?'done':''}" id="doneBtn">${curCompleted().has(state.current)?'✓ Concluído':'Marcar como concluído'}</button>
     </div>
   `;
+
   document.getElementById('prevBtn').addEventListener('click', ()=> goTo(state.current-1));
   document.getElementById('nextBtn').addEventListener('click', ()=> goTo(state.current+1));
   document.getElementById('doneBtn').addEventListener('click', ()=>{
-    curCompleted().add(state.current); saveProgress(); renderSidebar();
-    document.getElementById('doneBtn').textContent = '✓ Concluído';
+    if(curCompleted().has(state.current)){
+      curCompleted().delete(state.current);
+      document.getElementById('doneBtn').textContent = 'Marcar como concluído';
+      document.getElementById('doneBtn').classList.remove('done');
+      showToast('Módulo desmarcado', 'rust');
+    } else {
+      curCompleted().add(state.current);
+      document.getElementById('doneBtn').textContent = '✓ Concluído';
+      document.getElementById('doneBtn').classList.add('done');
+      showToast('Módulo marcado como concluído!', 'teal');
+    }
+    saveProgress(); renderSidebar();
   });
+
   const finalDisclaimer = document.getElementById('finalDisclaimer');
   finalDisclaimer.style.display = isLast ? 'block' : 'none';
   finalDisclaimer.textContent = curCourse().disclaimer;
   document.getElementById('narratorModTitle').textContent = m.title;
+
+  // Calculate audio ETA
+  const estSeconds = Math.round((m.narration.length / 15) / (parseFloat(rateSelect.value) || 1));
+  const min = Math.floor(estSeconds / 60);
+  const sec = estSeconds % 60;
+  document.getElementById('audioEta').textContent = `⏱️ ~${min}m ${sec}s`;
 }
 
 function goTo(idx){
@@ -2550,13 +3293,15 @@ function switchCourse(courseId){
   try{ localStorage.setItem('rt-last-course', courseId); }catch(e){}
   renderBrand(); renderSidebar(); renderContent();
   window.scrollTo({top:0, behavior:'smooth'});
+  showToast(`Trilha alterada: ${curCourse().title.replace(/<br>/g,' ')}`, 'gold');
 }
 
-/* ============================= LOCUTOR (SPEECH SYNTHESIS) ============================= */
+/* ============================= LOCUTOR (WEB SPEECH API) ============================= */
 const synth = ('speechSynthesis' in window) ? window.speechSynthesis : null;
 let ptVoice = null;
 let allVoices = [];
-let currentUtterance = null;
+let activeUtterance = null;
+let narrationParagraphs = [];
 
 const playBtn = document.getElementById('playBtn');
 const playIcon = document.getElementById('playIcon');
@@ -2565,12 +3310,12 @@ const narratorState = document.getElementById('narratorState');
 const narratorFill = document.getElementById('narratorFill');
 const rateSelect = document.getElementById('rateSelect');
 const voiceSelect = document.getElementById('voiceSelect');
-const narratorNote = document.getElementById('narratorNote');
+const skipBackBtn = document.getElementById('skipBackBtn');
+const skipForwardBtn = document.getElementById('skipForwardBtn');
 
 function friendlyVoiceName(v){
-  // limpa nomes verbosos tipo "Microsoft Maria - Portuguese (Brazil)" mantendo o essencial
   let n = v.name.replace(/^Microsoft\s+/,'').replace(/^Google\s+/,'Google ');
-  return n.length > 34 ? n.slice(0,34)+'…' : n;
+  return n.length > 28 ? n.slice(0,28)+'…' : n;
 }
 
 function populateVoiceSelect(){
@@ -2586,12 +3331,12 @@ function populateVoiceSelect(){
 
   const optionsHTML = [];
   if(ptVoices.length){
-    optionsHTML.push(`<optgroup label="Vozes em português">`);
+    optionsHTML.push(`<optgroup label="Vozes em Português">`);
     ptVoices.forEach(v=> optionsHTML.push(`<option value="${v.voiceURI}">${friendlyVoiceName(v)} (${v.lang})</option>`));
     optionsHTML.push(`</optgroup>`);
   }
   if(otherVoices.length){
-    optionsHTML.push(`<optgroup label="Outras vozes (sotaque estrangeiro)">`);
+    optionsHTML.push(`<optgroup label="Outras Vozes">`);
     otherVoices.forEach(v=> optionsHTML.push(`<option value="${v.voiceURI}">${friendlyVoiceName(v)} (${v.lang})</option>`));
     optionsHTML.push(`</optgroup>`);
   }
@@ -2602,12 +3347,6 @@ function populateVoiceSelect(){
   if(!chosen) chosen = ptVoices.find(v=>/BR|Brazil|Brasil/i.test(v.name+v.lang)) || ptVoices[0] || allVoices[0];
   ptVoice = chosen || null;
   if(ptVoice) voiceSelect.value = ptVoice.voiceURI;
-
-  if(!ptVoices.length){
-    narratorNote.textContent = 'Nenhuma voz em português encontrada neste dispositivo — mostrando outras vozes disponíveis.';
-  } else {
-    narratorNote.textContent = `${ptVoices.length} voz(es) em português disponível(is)`;
-  }
 }
 
 voiceSelect.addEventListener('change', ()=>{
@@ -2615,7 +3354,7 @@ voiceSelect.addEventListener('change', ()=>{
   if(v){
     ptVoice = v;
     try{ localStorage.setItem('rt-voice-uri', v.voiceURI); }catch(e){}
-    if(state.speaking) speakModule(); // reinicia módulo com a nova voz
+    if(state.speaking) speakModule();
   }
 });
 
@@ -2623,7 +3362,6 @@ if(synth){
   populateVoiceSelect();
   synth.addEventListener('voiceschanged', populateVoiceSelect);
 } else {
-  narratorNote.textContent = 'Narração não suportada neste navegador.';
   playBtn.setAttribute('disabled','true');
   playBtn.style.opacity = '.4';
   voiceSelect.style.display = 'none';
@@ -2632,12 +3370,30 @@ if(synth){
 function setSpeakingUI(isSpeaking){
   playIcon.style.display = isSpeaking ? 'none' : 'block';
   pauseIcon.style.display = isSpeaking ? 'block' : 'none';
+  if(isSpeaking){
+    playBtn.classList.add('speaking');
+  } else {
+    playBtn.classList.remove('speaking');
+  }
+}
+
+function clearParaHighlight(){
+  document.querySelectorAll('.narration-box p').forEach(p=> p.classList.remove('active-para'));
+}
+
+function highlightParaByIndex(idx){
+  clearParaHighlight();
+  const target = document.querySelector(`.narration-box p[data-p="${idx}"]`);
+  if(target){
+    target.classList.add('active-para');
+    target.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
 }
 
 function extractSpeakableText(root){
   const parts = [];
   root.childNodes.forEach(node=>{
-    if(node.nodeType !== 1) return; // só elementos
+    if(node.nodeType !== 1) return;
     const tag = node.tagName.toLowerCase();
     if(tag === 'svg'){
       const label = node.getAttribute('aria-label');
@@ -2645,7 +3401,6 @@ function extractSpeakableText(root){
       return;
     }
     if(node.querySelector && node.querySelector('svg')){
-      // contém um diagrama misturado com texto — desce um nível para intercalar na ordem certa
       const inner = extractSpeakableText(node);
       if(inner) parts.push(inner);
       return;
@@ -2659,85 +3414,597 @@ function extractSpeakableText(root){
 function speakModule(){
   if(!synth) return;
   synth.cancel();
+  clearParaHighlight();
+
   const modules = curModules();
   const m = modules[state.current];
   const bodyEl = document.getElementById('bodyText');
   const bodyText = bodyEl ? extractSpeakableText(bodyEl) : '';
-  const fullText = bodyText ? (m.narration + '. Agora, o conteúdo completo deste módulo, na tela. ' + bodyText) : m.narration;
+  const fullText = bodyText ? (m.narration + '. Agora, o conteúdo estruturado deste módulo na tela: ' + bodyText) : m.narration;
+
   const utter = new SpeechSynthesisUtterance(fullText);
   utter.lang = 'pt-BR';
   if(ptVoice) utter.voice = ptVoice;
   utter.rate = parseFloat(rateSelect.value) || 1;
-  utter.onstart = ()=>{ state.speaking=true; state.paused=false; setSpeakingUI(true); narratorState.textContent='Narrando…'; };
+  utter.volume = state.volume;
+
+  const paras = paragraphize(m.narration);
+  let paraOffsets = [];
+  let curAcc = 0;
+  paras.forEach(p => {
+    paraOffsets.push(curAcc);
+    curAcc += p.length + 1;
+  });
+
+  utter.onstart = ()=>{
+    state.speaking = true; state.paused = false;
+    setSpeakingUI(true); narratorState.textContent = 'Narrando…';
+    highlightParaByIndex(0);
+  };
+
   utter.onboundary = (e)=>{
-    if(e.charIndex!=null && fullText.length){
+    if(e.charIndex != null && fullText.length){
       const pct = Math.min(100, (e.charIndex / fullText.length) * 100);
       narratorFill.style.width = pct + '%';
+
+      if(e.charIndex < m.narration.length){
+        for(let i = paraOffsets.length - 1; i >= 0; i--){
+          if(e.charIndex >= paraOffsets[i]){
+            highlightParaByIndex(i);
+            break;
+          }
+        }
+      } else {
+        clearParaHighlight();
+      }
     }
   };
+
   utter.onend = ()=>{
-    state.speaking=false; setSpeakingUI(false); narratorState.textContent='Locutor pronto';
-    narratorFill.style.width='100%';
+    state.speaking = false; state.paused = false;
+    setSpeakingUI(false); narratorState.textContent = 'Concluído';
+    narratorFill.style.width = '100%';
+    clearParaHighlight();
     curCompleted().add(state.current); saveProgress(); renderSidebar();
     const doneBtn = document.getElementById('doneBtn');
-    if(doneBtn) doneBtn.textContent = '✓ Concluído';
+    if(doneBtn){ doneBtn.textContent = '✓ Concluído'; doneBtn.classList.add('done'); }
+    showToast('Narração do módulo concluída!', 'teal');
   };
-  utter.onerror = ()=>{ state.speaking=false; setSpeakingUI(false); narratorState.textContent='Locutor pronto'; };
-  currentUtterance = utter;
-  narratorFill.style.width='0%';
+
+  utter.onerror = ()=>{
+    state.speaking = false; state.paused = false;
+    setSpeakingUI(false); narratorState.textContent = 'Locutor pronto';
+    clearParaHighlight();
+  };
+
+  activeUtterance = utter;
+  narratorFill.style.width = '0%';
   synth.speak(utter);
 }
 
 function stopNarration(){
   if(synth){ synth.cancel(); }
-  state.speaking=false; state.paused=false; setSpeakingUI(false);
-  narratorState.textContent='Locutor pronto'; narratorFill.style.width='0%';
+  state.speaking = false; state.paused = false; setSpeakingUI(false);
+  narratorState.textContent = 'Locutor pronto'; narratorFill.style.width = '0%';
+  clearParaHighlight();
 }
 
 playBtn.addEventListener('click', ()=>{
   if(!synth) return;
   if(state.speaking && !state.paused){
-    synth.pause(); state.paused=true; setSpeakingUI(false); narratorState.textContent='Pausado';
+    synth.pause(); state.paused = true; setSpeakingUI(false); narratorState.textContent = 'Pausado';
   } else if(state.paused){
-    synth.resume(); state.paused=false; setSpeakingUI(true); narratorState.textContent='Narrando…';
+    synth.resume(); state.paused = false; setSpeakingUI(true); narratorState.textContent = 'Narrando…';
   } else {
     speakModule();
   }
 });
 
-rateSelect.addEventListener('change', ()=>{
-  if(state.speaking){ speakModule(); } // reinicia módulo na nova velocidade
+skipBackBtn.addEventListener('click', ()=>{
+  if(state.speaking){
+    showToast('Reiniciando áudio do módulo...', 'gold');
+    speakModule();
+  }
 });
 
-/* ============================= TEMA ============================= */
+skipForwardBtn.addEventListener('click', ()=>{
+  if(state.current < curModules().length - 1){
+    goTo(state.current + 1);
+    speakModule();
+  }
+});
+
+rateSelect.addEventListener('change', ()=>{
+  if(state.speaking){ speakModule(); }
+});
+
+/* ============================= TEMA & MODO FOCO ============================= */
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
-const themeLabel = document.getElementById('themeLabel');
+const focusModeBtn = document.getElementById('focusModeBtn');
+const sidebarFocusBtn = document.getElementById('sidebarFocusBtn');
+
 function applyTheme(t){
   if(t){ document.documentElement.setAttribute('data-theme', t); }
   else{ document.documentElement.removeAttribute('data-theme'); }
   const isDark = t==='dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
   themeIcon.textContent = isDark ? '☀' : '☾';
-  themeLabel.textContent = isDark ? 'Claro' : 'Escuro';
 }
 let savedTheme = null;
 try{ savedTheme = localStorage.getItem('rt-theme'); }catch(e){}
 applyTheme(savedTheme);
+
 themeToggle.addEventListener('click', ()=>{
   const isDarkNow = document.documentElement.getAttribute('data-theme')==='dark' || (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
   const next = isDarkNow ? 'light' : 'dark';
   applyTheme(next);
   try{ localStorage.setItem('rt-theme', next); }catch(e){}
+  showToast(`Tema alterado para ${next==='dark'?'Escuro':'Claro'}`);
 });
 
-/* ============================= INIT ============================= */
+function toggleFocusMode(){
+  state.focusMode = !state.focusMode;
+  document.body.classList.toggle('focus-mode', state.focusMode);
+  focusModeBtn.classList.toggle('primary', state.focusMode);
+  showToast(state.focusMode ? 'Modo Foco Ativado (Sidebar oculta)' : 'Modo Foco Desativado');
+}
+focusModeBtn.addEventListener('click', toggleFocusMode);
+sidebarFocusBtn.addEventListener('click', toggleFocusMode);
+
+/* Mobile Drawer */
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+function toggleMobileSidebar(){
+  sidebar.classList.toggle('open');
+  sidebarOverlay.classList.toggle('active');
+}
+mobileMenuBtn.addEventListener('click', toggleMobileSidebar);
+sidebarOverlay.addEventListener('click', toggleMobileSidebar);
+
+/* Print Button */
+document.getElementById('printBtn').addEventListener('click', ()=>{
+  window.print();
+});
+
+/* ============================= MODAIS (SEARCH & HUB) ============================= */
+const searchModal = document.getElementById('searchModal');
+const searchOpenBtn = document.getElementById('searchOpenBtn');
+const sidebarSearchBtn = document.getElementById('sidebarSearchBtn');
+const searchCloseBtn = document.getElementById('searchCloseBtn');
+const globalSearchInput = document.getElementById('globalSearchInput');
+const searchResultsContainer = document.getElementById('searchResultsContainer');
+
+function openSearchModal(){
+  searchModal.classList.add('active');
+  globalSearchInput.value = '';
+  globalSearchInput.focus();
+  runGlobalSearch('');
+}
+function closeSearchModal(){
+  searchModal.classList.remove('active');
+}
+searchOpenBtn.addEventListener('click', openSearchModal);
+sidebarSearchBtn.addEventListener('click', openSearchModal);
+searchCloseBtn.addEventListener('click', closeSearchModal);
+
+function runGlobalSearch(query){
+  const q = query.trim().toLowerCase();
+  if(!q){
+    searchResultsContainer.innerHTML = `<div style="text-align:center;color:var(--muted);padding:24px 0;">Digite um termo para pesquisar em todos os módulos das 3 trilhas.</div>`;
+    return;
+  }
+
+  const results = [];
+  COURSE_ORDER.forEach(cId=>{
+    const course = COURSES[cId];
+    course.modules.forEach((mod, idx)=>{
+      const rawText = (mod.title + ' ' + mod.ref + ' ' + mod.narration + ' ' + mod.body.replace(/<[^>]*>/g,' ')).toLowerCase();
+      if(rawText.includes(q)){
+        const pos = rawText.indexOf(q);
+        const start = Math.max(0, pos - 40);
+        const end = Math.min(rawText.length, pos + q.length + 60);
+        let snippet = rawText.substring(start, end);
+        const reg = new RegExp(`(${q})`, 'gi');
+        snippet = snippet.replace(reg, '<mark>$1</mark>');
+
+        results.push({
+          courseId: cId,
+          courseName: course.title.replace(/<br>/g,' '),
+          seal: course.seal,
+          moduleIndex: idx,
+          ref: mod.ref,
+          title: mod.title,
+          snippet: '…' + snippet + '…'
+        });
+      }
+    });
+  });
+
+  if(!results.length){
+    searchResultsContainer.innerHTML = `<div style="text-align:center;color:var(--muted);padding:24px 0;">Nenhum resultado encontrado para "<b>${query}</b>".</div>`;
+    return;
+  }
+
+  searchResultsContainer.innerHTML = results.map(r=>{
+    return `
+      <div class="search-card" onclick="jumpToSearchResult('${r.courseId}', ${r.moduleIndex})">
+        <div class="search-card-meta">TRILHA ${r.seal} · ${r.ref} · Módulo ${r.moduleIndex+1}</div>
+        <div class="search-card-title">${r.title}</div>
+        <div class="search-card-snippet">${r.snippet}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+window.jumpToSearchResult = function(courseId, modIdx){
+  closeSearchModal();
+  if(state.courseId !== courseId){
+    switchCourse(courseId);
+  }
+  goTo(modIdx);
+};
+
+globalSearchInput.addEventListener('input', (e)=> runGlobalSearch(e.target.value));
+
+/* Hub Modal */
+const hubModal = document.getElementById('hubModal');
+const hubOpenBtn = document.getElementById('hubOpenBtn');
+const sidebarHubBtn = document.getElementById('sidebarHubBtn');
+const hubCloseBtn = document.getElementById('hubCloseBtn');
+const sidebarQuizBtn = document.getElementById('sidebarQuizBtn');
+const quizOpenBtn = document.getElementById('quizOpenBtn');
+
+function openHubModal(tab='sim-fiscal'){
+  hubModal.classList.add('active');
+  switchHubTab(tab);
+}
+function closeHubModal(){
+  hubModal.classList.remove('active');
+}
+hubOpenBtn.addEventListener('click', ()=> openHubModal('sim-fiscal'));
+sidebarHubBtn.addEventListener('click', ()=> openHubModal('sim-fiscal'));
+hubCloseBtn.addEventListener('click', closeHubModal);
+sidebarQuizBtn.addEventListener('click', ()=> openHubModal('quiz-flashcards'));
+quizOpenBtn.addEventListener('click', ()=> openHubModal('quiz-flashcards'));
+
+function switchHubTab(tabId){
+  document.querySelectorAll('.modal-tab-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.tab === tabId);
+  });
+  document.querySelectorAll('.hub-tab-pane').forEach(pane=>{
+    pane.style.display = (pane.id === `tab-${tabId}`) ? 'block' : 'none';
+  });
+  if(tabId === 'quiz-flashcards') renderFlashcard();
+}
+
+document.querySelectorAll('.modal-tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> switchHubTab(btn.dataset.tab));
+});
+
+/* Shortcuts Modal */
+const shortcutsModal = document.getElementById('shortcutsModal');
+const shortcutsBtn = document.getElementById('shortcutsBtn');
+const shortcutsCloseBtn = document.getElementById('shortcutsCloseBtn');
+
+shortcutsBtn.addEventListener('click', ()=> shortcutsModal.classList.add('active'));
+shortcutsCloseBtn.addEventListener('click', ()=> shortcutsModal.classList.remove('active'));
+
+/* Close modals on ESC or backdrop click */
+window.addEventListener('click', (e)=>{
+  if(e.target === searchModal) closeSearchModal();
+  if(e.target === hubModal) closeHubModal();
+  if(e.target === shortcutsModal) shortcutsModal.classList.remove('active');
+});
+
+/* ============================= SIMULADORES LOGIC ============================= */
+
+/* 1. Simulador Fiscal & Split Payment */
+const fValor = document.getElementById('f_valor');
+const fValDisplay = document.getElementById('f_val_display');
+const fTipo = document.getElementById('f_tipo');
+const fAno = document.getElementById('f_ano');
+const fDeducoes = document.getElementById('f_deducoes');
+const fDedDisplay = document.getElementById('f_ded_display');
+
+function calcFiscal(){
+  const val = parseFloat(fValor.value) || 0;
+  const ded = Math.min(val, parseFloat(fDeducoes.value) || 0);
+  const tipo = fTipo.value;
+  const ano = fAno.value;
+
+  fValDisplay.textContent = `R$ ${val.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  fDedDisplay.textContent = `R$ ${ded.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+
+  let isGeral = tipo.startsWith('geral');
+  let aliq = 0.125;
+  let obrig = 'DeRE (Eventos D-1011, D-1101, D-1121, D-1199)';
+  let lei = 'LC 214/2025 art. 27 / LC 227/2026';
+
+  if(ano === '2026'){
+    aliq = 0.01;
+    lei = 'EC 132/2023 (Fase de teste: CBS 0,9% + IBS estadual 0,1%)';
+  } else if(ano === '2027'){
+    aliq = isGeral ? 0.088 : 0.1085;
+    lei = 'LC 227/2026 (CBS plena + transição IBS)';
+  } else if(ano === '2029'){
+    aliq = isGeral ? 0.14 : 0.1100;
+  } else if(ano === '2031'){
+    aliq = isGeral ? 0.20 : 0.1130;
+  } else if(ano === '2033'){
+    aliq = isGeral ? 0.265 : 0.1250;
+    lei = isGeral ? 'Alíquota padrão estimada IBS+CBS ~26,5%' : 'LC 227/2026 (Regime específico financeiro 12,50%)';
+  }
+
+  if(isGeral){
+    obrig = 'NF-e / NFS-e com grupos IBS/CBS individualizados';
+  }
+
+  const base = Math.max(0, val - ded);
+  const totalTrib = base * aliq;
+  const splitFisco = totalTrib;
+  const splitLiq = val - splitFisco;
+
+  document.getElementById('res_f_regime').textContent = isGeral ? 'Regra Geral (Tributação padrão)' : 'Regime Específico (Serviços Financeiros)';
+  document.getElementById('res_f_base').textContent = `R$ ${base.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_f_aliq').textContent = `${(aliq*100).toFixed(2)}%`;
+  document.getElementById('res_f_total_trib').textContent = `R$ ${totalTrib.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_f_split_fisco').textContent = `R$ ${splitFisco.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_f_split_liq').textContent = `R$ ${splitLiq.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_f_obrig').textContent = obrig;
+  document.getElementById('res_f_lei').textContent = lei;
+}
+
+[fValor, fTipo, fAno, fDeducoes].forEach(el=> el.addEventListener('input', calcFiscal));
+calcFiscal();
+
+/* 2. Simulador Adquirência & Antecipação */
+const adValor = document.getElementById('ad_valor');
+const adValDisplay = document.getElementById('ad_val_display');
+const adModalidade = document.getElementById('ad_modalidade');
+const adMdr = document.getElementById('ad_mdr');
+const adMdrDisplay = document.getElementById('ad_mdr_display');
+const adAntec = document.getElementById('ad_antec');
+const adAntecDisplay = document.getElementById('ad_antec_display');
+
+function calcAdquirência(){
+  const val = parseFloat(adValor.value) || 0;
+  const mdrPct = (parseFloat(adMdr.value) || 0) / 100;
+  const antecPct = (parseFloat(adAntec.value) || 0) / 100;
+  const mod = adModalidade.value;
+
+  adValDisplay.textContent = `R$ ${val.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  adMdrDisplay.textContent = `${(mdrPct*100).toFixed(1)}%`;
+  adAntecDisplay.textContent = `${(antecPct*100).toFixed(1)}% / mês`;
+
+  let numParcelas = 1;
+  if(mod === 'debito') numParcelas = 1;
+  else if(mod === 'credito_vista') numParcelas = 1;
+  else if(mod === 'credito_3x') numParcelas = 3;
+  else if(mod === 'credito_6x') numParcelas = 6;
+  else if(mod === 'credito_12x') numParcelas = 12;
+
+  const mdrVal = val * mdrPct;
+  const liqOrd = val - mdrVal;
+  const parcVal = liqOrd / numParcelas;
+
+  let custoAntec = 0;
+  for(let p=1; p<=numParcelas; p++){
+    const tMes = (mod === 'debito') ? 0 : p;
+    custoAntec += parcVal * (antecPct * tMes);
+  }
+  const liqAntec = Math.max(0, liqOrd - custoAntec);
+
+  document.getElementById('res_ad_mdr_val').textContent = `- R$ ${mdrVal.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_ad_liq_ord').textContent = `R$ ${liqOrd.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_ad_parcelas').textContent = `${numParcelas}x de R$ ${parcVal.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_ad_custo_antec').textContent = `- R$ ${custoAntec.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_ad_liq_antec').textContent = `R$ ${liqAntec.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+}
+
+[adValor, adModalidade, adMdr, adAntec].forEach(el=> el.addEventListener('input', calcAdquirência));
+calcAdquirência();
+
+/* 3. Simulador FinOps IA */
+const iaVol = document.getElementById('ia_vol');
+const iaVolDisplay = document.getElementById('ia_vol_display');
+const iaTokens = document.getElementById('ia_tokens');
+const iaModel = document.getElementById('ia_model');
+const iaHumCost = document.getElementById('ia_hum_cost');
+const iaHumCostDisplay = document.getElementById('ia_hum_cost_display');
+
+function calcFinOpsIA(){
+  const vol = parseInt(iaVol.value) || 0;
+  const humUnit = parseFloat(iaHumCost.value) || 0;
+  const tokProfile = iaTokens.value;
+  const modProfile = iaModel.value;
+
+  iaVolDisplay.textContent = vol.toLocaleString('pt-BR');
+  iaHumCostDisplay.textContent = `R$ ${humUnit.toFixed(2)}`;
+
+  let inTok = 2500, outTok = 500;
+  if(tokProfile === 'curto'){ inTok = 800; outTok = 200; }
+  else if(tokProfile === 'longo'){ inTok = 6000; outTok = 1000; }
+
+  let inRate = 3.00 / 1000000;
+  let outRate = 15.00 / 1000000;
+  let errRate = 0.04;
+
+  if(modProfile === 'tier2'){
+    inRate = 0.30 / 1000000;
+    outRate = 1.20 / 1000000;
+    errRate = 0.16;
+  }
+
+  const usdToBrl = 5.50;
+  const tokenCostUSD = vol * ((inTok * inRate) + (outTok * outRate));
+  const tokenCostBRL = tokenCostUSD * usdToBrl;
+
+  const escalations = vol * errRate;
+  const escalCostBRL = escalations * humUnit;
+  const totalCostBRL = tokenCostBRL + escalCostBRL;
+  const resolvedVol = vol * (1 - (errRate * 0.2));
+  const unitCostResolved = totalCostBRL / Math.max(1, resolvedVol);
+
+  document.getElementById('res_ia_token_cost').textContent = `R$ ${tokenCostBRL.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_ia_escal_rate').textContent = `${(errRate*100).toFixed(1)}% (${Math.round(escalations).toLocaleString('pt-BR')} atendimentos)`;
+  document.getElementById('res_ia_escal_cost').textContent = `R$ ${escalCostBRL.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_ia_total_cost').textContent = `R$ ${totalCostBRL.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+  document.getElementById('res_ia_unit_cost').textContent = `R$ ${unitCostResolved.toFixed(2)} / resolvido`;
+
+  const insightEl = document.getElementById('res_ia_insight');
+  if(modProfile === 'tier2'){
+    insightEl.innerHTML = `O modelo econômico economizou em tokens, mas gerou <b>R$ ${escalCostBRL.toLocaleString('pt-BR', {minimumFractionDigits:0})}</b> em custo humano de suporte. Compare com o Tier 1 para checar o custo global ótimo.`;
+  } else {
+    insightEl.innerHTML = `O modelo Tier 1 teve menor taxa de erro (4%), economizando custos de equipe humana e mantendo alta satisfação e grounding.`;
+  }
+}
+
+[iaVol, iaTokens, iaModel, iaHumCost].forEach(el=> el.addEventListener('input', calcFinOpsIA));
+calcFinOpsIA();
+
+/* 4. Flashcards Quiz Logic */
+const activeFlashcard = document.getElementById('activeFlashcard');
+const fcTrackBadge = document.getElementById('fcTrackBadge');
+const fcQuestion = document.getElementById('fcQuestion');
+const fcAnswer = document.getElementById('fcAnswer');
+const fcTip = document.getElementById('fcTip');
+const fcCounter = document.getElementById('fcCounter');
+const quizStats = document.getElementById('quizStats');
+const fcPrevBtn = document.getElementById('fcPrevBtn');
+const fcNextBtn = document.getElementById('fcNextBtn');
+const fcNeedReviewBtn = document.getElementById('fcNeedReviewBtn');
+const fcMasteredBtn = document.getElementById('fcMasteredBtn');
+
+function getFilteredCards(){
+  if(state.fcFilter === 'all') return FLASHCARDS;
+  return FLASHCARDS.filter(c => c.track === state.fcFilter);
+}
+
+function renderFlashcard(){
+  activeFlashcard.classList.remove('flipped');
+  const cards = getFilteredCards();
+  if(state.fcIndex >= cards.length) state.fcIndex = 0;
+  if(state.fcIndex < 0) state.fcIndex = cards.length - 1;
+
+  const card = cards[state.fcIndex];
+  if(!card) return;
+
+  fcTrackBadge.textContent = card.trackName.toUpperCase();
+  fcQuestion.textContent = card.q;
+  fcAnswer.textContent = card.a;
+  fcTip.textContent = `💡 Dica de PO: ${card.tip}`;
+  fcCounter.textContent = `${state.fcIndex + 1} / ${cards.length}`;
+
+  const masteredCount = FLASHCARDS.filter((_, idx)=> state.masteredCards.has(idx)).length;
+  const pct = Math.round((masteredCount / FLASHCARDS.length) * 100);
+  quizStats.textContent = `${masteredCount} de ${FLASHCARDS.length} dominados (${pct}%)`;
+}
+
+activeFlashcard.addEventListener('click', (e)=>{
+  if(e.target.closest('.card-score-btn')) return;
+  activeFlashcard.classList.toggle('flipped');
+});
+
+fcPrevBtn.addEventListener('click', (e)=>{ e.stopPropagation(); state.fcIndex--; renderFlashcard(); });
+fcNextBtn.addEventListener('click', (e)=>{ e.stopPropagation(); state.fcIndex++; renderFlashcard(); });
+
+fcMasteredBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  const globalIdx = FLASHCARDS.indexOf(getFilteredCards()[state.fcIndex]);
+  if(globalIdx >= 0){
+    state.masteredCards.add(globalIdx);
+    saveMasteredCards();
+    showToast('Card marcado como dominado! 🎯', 'teal');
+  }
+  state.fcIndex++;
+  renderFlashcard();
+});
+
+fcNeedReviewBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  const globalIdx = FLASHCARDS.indexOf(getFilteredCards()[state.fcIndex]);
+  if(globalIdx >= 0){
+    state.masteredCards.delete(globalIdx);
+    saveMasteredCards();
+    showToast('Adicionado para revisão futura', 'rust');
+  }
+  state.fcIndex++;
+  renderFlashcard();
+});
+
+document.querySelectorAll('.quiz-filter-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.quiz-filter-btn').forEach(b=> b.classList.remove('active'));
+    btn.classList.add('active');
+    state.fcFilter = btn.dataset.qfilter;
+    state.fcIndex = 0;
+    renderFlashcard();
+  });
+});
+
+/* ============================= ATALHOS DE TECLADO ============================= */
+window.addEventListener('keydown', (e)=>{
+  const isInput = ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName);
+
+  // Close modals on Escape
+  if(e.key === 'Escape'){
+    closeSearchModal();
+    closeHubModal();
+    shortcutsModal.classList.remove('active');
+    return;
+  }
+
+  // Ctrl+K or Cmd+K: Open Search
+  if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'){
+    e.preventDefault();
+    openSearchModal();
+    return;
+  }
+
+  if(isInput) return;
+
+  if(e.code === 'Space'){
+    e.preventDefault();
+    playBtn.click();
+  } else if(e.key === 'ArrowRight'){
+    e.preventDefault();
+    if(state.current < curModules().length - 1) goTo(state.current + 1);
+  } else if(e.key === 'ArrowLeft'){
+    e.preventDefault();
+    if(state.current > 0) goTo(state.current - 1);
+  } else if(e.key.toLowerCase() === 't'){
+    e.preventDefault();
+    themeToggle.click();
+  } else if(e.key.toLowerCase() === 'f'){
+    e.preventDefault();
+    toggleFocusMode();
+  } else if(e.key.toLowerCase() === 's'){
+    e.preventDefault();
+    openHubModal('sim-fiscal');
+  } else if(e.key.toLowerCase() === 'q'){
+    e.preventDefault();
+    openHubModal('quiz-flashcards');
+  } else if(e.key.toLowerCase() === 'd'){
+    e.preventDefault();
+    const doneBtn = document.getElementById('doneBtn');
+    if(doneBtn) doneBtn.click();
+  } else if(e.key === '?'){
+    e.preventDefault();
+    shortcutsModal.classList.add('active');
+  }
+});
+
+/* ============================= INICIALIZAÇÃO ============================= */
 let initialCourse = 'reforma';
 try{
   const lastCourse = localStorage.getItem('rt-last-course');
   if(lastCourse && COURSES[lastCourse]) initialCourse = lastCourse;
 }catch(e){}
-// pré-carrega o progresso de todos os cursos para os contadores do seletor
+
 COURSE_ORDER.forEach(id=> loadProgress(id));
+loadMasteredCards();
 state.courseId = initialCourse;
 state.current = loadProgress(initialCourse);
 if(state.current >= curModules().length) state.current = 0;
@@ -2745,6 +4012,8 @@ if(state.current >= curModules().length) state.current = 0;
 renderBrand();
 renderSidebar();
 renderContent();
+renderFlashcard();
+
 window.addEventListener('beforeunload', ()=>{ if(synth) synth.cancel(); });
 </script>
 </body>
