@@ -115,6 +115,68 @@ nav.modlist{ display:flex; flex-direction:column; gap:2px; }
 .modbtn .label{ flex:1; line-height:1.3; }
 .modbtn .label small{ display:block; color:var(--muted); font-size:10.8px; margin-top:1px; }
 
+.home-btn{
+  width:100%; display:flex; align-items:center; gap:8px; background:transparent; border:1px solid var(--line);
+  color:var(--muted); border-radius:8px; padding:8px 10px; font-size:12.5px; cursor:pointer; margin-bottom:14px;
+}
+.home-btn:hover{ border-color:var(--gold); color:var(--ink); }
+.home-btn.active{ background:var(--gold-soft); border-color:var(--gold); color:var(--ink); }
+
+.section-head{
+  font-size:10.3px; color:var(--muted); letter-spacing:.04em; text-transform:uppercase;
+  margin:16px 0 6px; padding-left:2px; display:flex; align-items:center; gap:5px;
+}
+.section-head:first-child{ margin-top:2px; }
+
+.type-badge{
+  display:inline-flex; align-items:center; gap:4px; font-size:10.3px; font-weight:600;
+  padding:2px 8px; border-radius:20px; border:1px solid var(--line); background:var(--panel-2); color:var(--muted);
+}
+.type-badge.co{ border-color:var(--teal); color:var(--teal); }
+.type-badge.ex{ border-color:var(--gold); color:var(--gold); }
+.type-badge.up{ border-color:var(--rust); color:var(--rust); }
+.type-badge.ref{ border-color:var(--muted); color:var(--muted); }
+.type-badge.pr{ border-color:var(--gold); color:var(--gold); }
+
+.time-badge{ font-size:11.5px; color:var(--muted); display:inline-flex; align-items:center; gap:4px; }
+
+.breadcrumb{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:10px; }
+
+.outline-box{
+  background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:22px;
+}
+.outline-box .ob-label{ font-size:10.5px; color:var(--muted); letter-spacing:.03em; margin-bottom:8px; display:block; }
+.outline-box ol{ margin:0; padding-left:18px; columns:2; column-gap:22px; }
+@media (max-width:620px){ .outline-box ol{ columns:1; } }
+.outline-box li{ margin-bottom:5px; break-inside:avoid; }
+.outline-box a{ color:var(--ink); font-size:13px; text-decoration:none; border-bottom:1px dotted var(--line); }
+.outline-box a:hover{ color:var(--teal); border-color:var(--teal); }
+
+/* ---------- Home ---------- */
+.home-wrap{ max-width:900px; margin:0 auto; padding:10px 4px 40px; }
+.home-title{ font-size:clamp(26px,4vw,34px); margin-bottom:8px; }
+.home-sub{ color:var(--muted); font-size:15px; margin-bottom:30px; max-width:620px; line-height:1.6; }
+.home-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
+.home-card{
+  background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px 24px;
+  display:flex; flex-direction:column; gap:10px; box-shadow:var(--shadow);
+}
+.home-card .hc-top{ display:flex; align-items:center; gap:12px; }
+.home-card .hc-seal{
+  width:42px; height:42px; border-radius:50%; border:1.5px solid var(--gold); color:var(--gold);
+  display:flex; align-items:center; justify-content:center; font-family:'Source Serif 4',serif; font-weight:700; font-size:15px; flex:none;
+}
+.home-card h3{ font-size:19px; line-height:1.25; }
+.home-card p.hc-desc{ color:var(--muted); font-size:13.8px; line-height:1.6; margin:0; }
+.home-card .hc-progress-row{ display:flex; align-items:center; gap:10px; font-size:12px; color:var(--muted); }
+.home-card .hc-track{ flex:1; height:5px; background:var(--line); border-radius:3px; overflow:hidden; }
+.home-card .hc-fill{ height:100%; background:var(--teal); }
+.home-card .hc-cta{
+  align-self:flex-start; margin-top:4px; background:var(--gold-soft); border:1px solid var(--gold); color:var(--gold);
+  border-radius:8px; padding:9px 18px; font-size:13.5px; font-weight:500; cursor:pointer;
+}
+.home-card .hc-cta:hover{ background:var(--gold); color:#fff; }
+
 .glossary-btn{
   width:100%; display:flex; align-items:center; justify-content:center; gap:6px;
   background:var(--teal-soft); border:1px solid var(--teal); color:var(--teal);
@@ -242,6 +304,8 @@ table.tbl tr:last-child td{ border-bottom:none; }
     </div>
     <p class="brand-sub" id="brandSub">Treinamento narrado para a entrevista de Product Owner.</p>
 
+    <button class="home-btn" id="homeBtn">🏠 Início — escolher trilha</button>
+
     <div class="course-switch">
       <span class="cs-label">TREINAMENTOS DISPONÍVEIS</span>
       <div id="courseSwitchList"></div>
@@ -258,7 +322,7 @@ table.tbl tr:last-child td{ border-bottom:none; }
   </aside>
 
   <main>
-    <div class="narrator-bar">
+    <div class="narrator-bar" id="narratorBar">
       <button class="play-btn" id="playBtn" aria-label="Reproduzir narração">
         <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
@@ -2493,12 +2557,721 @@ ia: {
   `
 }
   ]
+},
+logistica: {
+  id:'logistica', seal:'LG', kicker:'DOSSIÊ DE PREPARAÇÃO',
+  title:'Logística: Pátio, YMS/WMS/TMS<br>e Integrações',
+  sub:'Treinamento narrado para atuar como Product Owner em squads de logística, pátio e supply chain.',
+  disclaimer:'Este material é educacional e serve para orientar seu estudo sobre produtos de logística e gestão de pátio. Nomes de sistemas, siglas de EDI e tecnologias citadas variam por operação e por fornecedor — confirme sempre com a empresa quais ferramentas e integrações ela usa. A narração é gerada pela síntese de voz do seu navegador; a qualidade e a disponibilidade de vozes em português variam por dispositivo.',
+  modules: [
+{
+  ref:"Introdução", title:"Como se posicionar para uma vaga de PO de Logística",
+  narration:"Este treinamento prepara um Product Owner para atuar em squads de logística, pátio e cadeia de suprimentos, mesmo sem ter operado fisicamente um centro de distribuição. A regra central é a mesma de qualquer domínio técnico: você não precisa ter dirigido uma empilhadeira ou programado um leitor de RFID. Precisa ser capaz de entender o fluxo físico da operação, traduzir esse fluxo em dados e eventos, e tomar decisões de produto sobre o que automatizar, o que medir e quando uma pessoa precisa intervir. Se te perguntarem diretamente sobre sua vivência com YMS, WMS ou TMS, a resposta honesta e forte é: você talvez não tenha operado esses sistemas no dia a dia, mas entende o papel de cada um na cadeia, sabe interpretar indicadores como OTIF e turnaround, e tem experiência conduzindo produtos com integrações via API, dados operacionais e múltiplos stakeholders — o que te permite aprender rapidamente o domínio específico trabalhando ao lado de especialistas de operação, torre de controle e TI. Essa honestidade, combinada com domínio de vocabulário e de arquitetura, é o que diferencia um candidato preparado de um que apenas decorou siglas.",
+  body:`
+    <div class="central-phrase">"Você não precisa ter dirigido uma empilhadeira. Precisa entender o fluxo físico da operação, traduzir esse fluxo em dados e eventos, e decidir o que automatizar, o que medir e quando uma pessoa precisa intervir."</div>
+    <div class="block">
+      <h3>Resposta honesta sobre sua experiência</h3>
+      <div class="qa">
+        <div class="q">"Você tem vivência com YMS, WMS ou TMS?"</div>
+        <div class="a">Eu talvez não tenha operado esses sistemas no dia a dia, mas entendo o papel de cada um na cadeia logística, sei interpretar indicadores como OTIF, lead time e turnaround de veículos, e tenho experiência conduzindo produtos com integrações via API, dados operacionais e múltiplos stakeholders. Isso me permite aprender rapidamente o domínio específico da operação, trabalhando ao lado de quem já conhece o chão de fábrica — torre de controle, operação de pátio e TI.</div>
+      </div>
+      <div class="callout gold"><span class="tag">COMO ESTUDAR</span><p>Comece pelo mapa dos três sistemas (YMS/WMS/TMS). Depois gestão de pátio, tecnologias de identificação, integrações e indicadores. Feche com o exemplo de ponta a ponta e as perguntas de entrevista.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 1", title:"YMS, WMS e TMS: o mapa dos três sistemas",
+  narration:"Vamos começar pelo mapa geral. Três sistemas aparecem o tempo todo em logística, e cada um cobre uma fatia diferente da operação. O WMS, Warehouse Management System, controla o que acontece dentro do armazém: recebimento, endereçamento, controle de estoque, separação, conferência e expedição. O TMS, Transportation Management System, controla o transporte entre pontos da rede: planejamento de rotas, gestão de fretes, contratação de transportadoras e rastreamento de cargas em trânsito. E o YMS, Yard Management System, cobre a fatia que fica no meio, e que muita gente esquece: o pátio. É o YMS que organiza a fila de caminhões, atribui docas, controla o tempo de permanência dos veículos e faz a ponte entre o que chega de fora, pelo TMS, e o que precisa ser processado dentro, pelo WMS. Segundo o estudo Perfil dos Operadores Logísticos de 2024, da ABOL, o TMS é usado por noventa e dois por cento dos operadores logísticos brasileiros, o WMS por noventa e um por cento, e a torre de controle logística, que conecta os três, por setenta e quatro por cento — sendo a tecnologia com maior previsão de investimento até 2026. Um YMS isolado já ajuda a organizar o pátio, mas o ganho real aparece na integração: o WMS informa ao YMS o que precisa ser recebido ou expedido antes mesmo do caminhão chegar, e o YMS informa ao TMS quando um veículo está liberado para seguir viagem.",
+  body:`
+    <div class="block">
+      <h3>As três camadas de sistema</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Sistema</th><th>O que controla</th><th>Funcionalidades típicas</th></tr>
+        <tr><td class="mono">WMS</td><td>Dentro do armazém</td><td>Recebimento, endereçamento, estoque, picking/packing, expedição</td></tr>
+        <tr><td class="mono">YMS</td><td>O pátio — entre a rua e o armazém</td><td>Agendamento, fila de veículos, atribuição de docas, controle de permanência, automação de portaria</td></tr>
+        <tr><td class="mono">TMS</td><td>O transporte entre pontos da rede</td><td>Roteirização, gestão de fretes, contratação de transportadoras, rastreamento em trânsito</td></tr>
+      </table></div>
+      <svg viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="O TMS controla o transporte entre pontos da rede e traz o veículo até o pátio. O YMS organiza a fila, agenda e libera docas, fazendo a ponte entre o que chega de fora e o que é processado dentro. O WMS controla tudo que acontece dentro do armazém, do recebimento à expedição, e informa ao YMS o que esperar antes da chegada." style="width:100%;height:auto;margin:10px 0 18px">
+        <defs>
+          <marker id="arrYW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path>
+          </marker>
+        </defs>
+        <g font-family="IBM Plex Sans, sans-serif" font-size="12">
+          <rect x="10" y="50" width="200" height="60" rx="10" fill="var(--teal-soft)" stroke="var(--teal)"></rect>
+          <text x="110" y="76" text-anchor="middle" fill="var(--ink)" font-weight="600">TMS</text>
+          <text x="110" y="94" text-anchor="middle" fill="var(--muted)" font-size="10.8">transporte entre pontos da rede</text>
+
+          <line x1="210" y1="80" x2="250" y2="80" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#arrYW)"></line>
+          <text x="230" y="70" text-anchor="middle" fill="var(--muted)" font-size="9.5">traz o veículo</text>
+
+          <rect x="255" y="50" width="200" height="60" rx="10" fill="var(--gold-soft)" stroke="var(--gold)"></rect>
+          <text x="355" y="76" text-anchor="middle" fill="var(--ink)" font-weight="600">YMS</text>
+          <text x="355" y="94" text-anchor="middle" fill="var(--muted)" font-size="10.8">fila, agenda e docas do pátio</text>
+
+          <line x1="455" y1="80" x2="495" y2="80" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#arrYW)"></line>
+          <text x="475" y="70" text-anchor="middle" fill="var(--muted)" font-size="9.5">libera para doca</text>
+
+          <rect x="500" y="50" width="200" height="60" rx="10" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="600" y="76" text-anchor="middle" fill="var(--ink)" font-weight="600">WMS</text>
+          <text x="600" y="94" text-anchor="middle" fill="var(--muted)" font-size="10.8">recebimento → expedição</text>
+
+          <path d="M600,110 C 600,135 355,135 355,112" fill="none" stroke="var(--rust)" stroke-width="1.3" stroke-dasharray="3,3" marker-end="url(#arrYW)"></path>
+          <text x="478" y="138" text-anchor="middle" fill="var(--rust)" font-size="10">avisa o que esperar antes de chegar</text>
+        </g>
+      </svg>
+      <div class="callout gold"><span class="tag">DADO DE MERCADO (ABOL 2024)</span><p>TMS: 92% de adoção entre operadores logísticos · WMS: 91% · Torre de controle: 74%, e <b>nº 1 em previsão de investimento até 2026</b>.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 2", title:"Gestão de pátio, agendamento de docas e torre de controle",
+  narration:"Vamos aprofundar o YMS, porque é aqui que mora o diferencial de atuação mencionado em vagas de pátio. Sem um sistema dedicado, uma operação de pátio convive com três problemas recorrentes: filas e tempo de espera fora de controle, porque os veículos chegam concentrados e disputam as mesmas docas; conhecimento informal concentrado em uma pessoa, que vira um ponto único de falha; e falta de visibilidade sobre o que está acontecendo entre o portão e a doca. O YMS ataca isso com um portal de agendamento, que distribui a chegada dos veículos ao longo do dia; uma fila de veículos, que pode ser organizada por agenda, ordem de chegada ou prioridade; atribuição automática de docas, considerando o tipo de operação e o que o WMS já sinalizou como necessário; e gestão de intercorrências, alertando quando algo foge do planejado. A torre de controle logística é a camada acima disso: ela não substitui o YMS, o WMS e o TMS, ela orquestra os três, dando visibilidade ponta a ponta e permitindo que a operação reaja a desvios — um atraso de transportadora, uma doca parada, um pico de chegada — antes que o problema se espalhe. Pense na torre de controle como o painel de comando de quem precisa decidir em tempo real, e no YMS como o motor que executa essas decisões no pátio.",
+  body:`
+    <div class="block">
+      <h3>Os três problemas que o YMS resolve</h3>
+      <div class="chip-row">
+        <span class="chip">Filas e espera fora de controle</span><span class="chip">Conhecimento informal concentrado</span><span class="chip">Falta de visibilidade portão→doca</span>
+      </div>
+      <h3>Funcionalidades centrais de um YMS</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Funcionalidade</th><th>O que resolve</th></tr>
+        <tr><td>Portal de agendamento</td><td>Distribui a chegada dos veículos ao longo do dia, evitando concentração de horário</td></tr>
+        <tr><td>Fila de veículos</td><td>Organiza por agenda, ordem de chegada ou prioridade</td></tr>
+        <tr><td>Atribuição de docas</td><td>Aloca automaticamente conforme tipo de operação e o que o WMS sinalizou</td></tr>
+        <tr><td>Totem de autoatendimento</td><td>Check-in do motorista sem depender de atendente</td></tr>
+        <tr><td>Automação de portaria/gates</td><td>Libera ou bloqueia acesso conforme agendamento e documentação</td></tr>
+        <tr><td>Gestão de intercorrências</td><td>Alerta quando algo foge do planejado (atraso, doca parada, documento pendente)</td></tr>
+      </table></div>
+      <div class="callout teal"><span class="tag">TORRE DE CONTROLE ≠ YMS</span><p>A torre de controle não substitui YMS, WMS e TMS — ela <b>orquestra os três</b>, dando visibilidade ponta a ponta e permitindo reagir a desvios antes que o problema se espalhe pela operação.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 3", title:"Tecnologias de pátio: OCR/LPR, RFID, IoT e telemetria",
+  narration:"Agora as tecnologias que tornam o pátio automatizado de verdade. OCR e LPR, leitura de placas, usam câmeras e reconhecimento óptico de caracteres para identificar automaticamente o veículo na portaria, validar se ele tem agendamento, liberar ou bloquear o acesso, e registrar o horário exato de chegada — sem depender de um atendente digitando a placa manualmente. A arquitetura típica tem dois estágios: primeiro localizar a região da placa na imagem, depois aplicar o reconhecimento de caracteres propriamente dito; câmeras dedicadas de LPR, diferentes de câmeras comuns de CFTV, têm mecanismos de sincronismo que evitam distorção em alta velocidade e baixa luminosidade, alcançando mais de noventa e oito por cento de eficiência de captura. Atenção a um ponto regulatório importante: a leitura de placas é tratamento de dado pessoal segundo a LGPD, a Lei 13.709 de 2018, porque permite identificar o veículo e, indiretamente, o motorista — então o produto precisa definir finalidade específica, tempo de retenção, controle de acesso ao histórico de leituras, e um plano de contingência para quando a placa não é reconhecida, encaminhando para validação manual em vez de travar a operação. RFID funciona de forma diferente: tags de rádio-frequência em reboques, contêineres ou pallets permitem identificação automática sem exigir linha de visada direta, o que é útil para saber qual reboque está em qual vaga do pátio sem precisar de uma ronda manual. E IoT e telemetria cobrem sensores de porta, rastreadores GPS, sensores de temperatura para cadeia fria, e telemetria de veículo, que alimentam dados de localização, tempo parado e condição da carga em tempo real.",
+  body:`
+    <div class="block">
+      <h3>OCR/LPR: leitura automática de placas</h3>
+      <p>Arquitetura em dois estágios: <b>localização</b> da região da placa na imagem, depois <b>reconhecimento de caracteres</b>. Câmeras dedicadas de LPR (diferentes de CFTV comum) têm sincronismo que evita distorção em alta velocidade e baixa luminosidade, alcançando mais de 98% de eficiência de captura.</p>
+      <div class="callout rust"><span class="tag">LGPD SE APLICA</span><p>Leitura de placas é <b>tratamento de dado pessoal</b> (Lei 13.709/2018) — identifica o veículo e, indiretamente, o motorista. Defina finalidade específica, tempo de retenção, controle de acesso ao histórico, e um <b>caminho de fallback manual</b> para quando a placa não é reconhecida.</p></div>
+    </div>
+    <div class="block">
+      <h3>Comparativo das tecnologias de pátio</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Tecnologia</th><th>O que resolve</th><th>Limitação/risco</th></tr>
+        <tr><td class="mono">OCR/LPR</td><td>Identificação automática na portaria, liberação sem atendente</td><td>Placas sujas/danificadas; exige fallback manual; dado pessoal (LGPD)</td></tr>
+        <tr><td class="mono">RFID</td><td>Identificar reboques/pallets sem linha de visada direta</td><td>Custo de tag por ativo; interferência em ambientes metálicos</td></tr>
+        <tr><td class="mono">IoT (sensores de porta/GPS)</td><td>Localização e status de veículo/carga em tempo real</td><td>Conectividade em áreas de sinal fraco; manutenção de bateria</td></tr>
+        <tr><td class="mono">Telemetria veicular</td><td>Tempo parado, rota percorrida, condição do veículo</td><td>Depende de integração com a transportadora/frota</td></tr>
+      </table></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 4", title:"Integrações: API REST, webhooks, EDI e filas de mensageria",
+  narration:"Vamos falar de como esses sistemas conversam entre si e com parceiros externos. Três padrões dominam a integração logística. REST cobre operações síncronas: consultas e comandos, como criar um agendamento ou consultar o status de um veículo. Webhooks cobrem eventos assíncronos: em vez de um sistema ficar perguntando repetidamente se algo mudou, ele é avisado no momento em que o evento acontece — pedido liberado, carga expedida, veículo chegou ao pátio. E EDI, a troca eletrônica de dados legada, continua vital em cadeias que envolvem grandes parceiros corporativos, trocando mensagens padronizadas como ORDERS para criar pedidos, DESADV ou ASN para avisar que uma carga foi expedida, e INVOIC para fechar a cobrança. Para armazém especificamente, as mensagens 940 e 943 instruem o que precisa ser separado ou recebido, e as mensagens 945 e 944 devolvem o que foi de fato preparado ou recebido. Esses três padrões convivem: é comum ver uma camada de tradução entre EDI e API, mantendo compatibilidade com parceiros legados enquanto o restante do ecossistema moderniza. E filas de mensageria entram para lidar com picos e garantir resiliência — quando um parceiro está instável ou o volume dispara, a fila absorve o choque, e um mecanismo de retentativa com backoff reprocessa depois, em vez de perder a informação. Boas práticas que um PO deve exigir: timeouts curtos, webhooks assinados digitalmente para confirmar a origem, idempotência para evitar duplicidade em reprocessamento, e um ambiente de sandbox para testar a integração com cada parceiro antes de ir para produção.",
+  body:`
+    <div class="block">
+      <h3>Três padrões que convivem</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Padrão</th><th>Quando usar</th><th>Exemplo</th></tr>
+        <tr><td class="mono">REST</td><td>Operações síncronas: consultas e comandos</td><td>Criar agendamento, consultar status do veículo</td></tr>
+        <tr><td class="mono">Webhooks</td><td>Eventos assíncronos, em vez de consulta repetida (polling)</td><td>"pedido liberado", "carga expedida", "veículo chegou"</td></tr>
+        <tr><td class="mono">EDI</td><td>Parceiros corporativos legados, em grande volume</td><td>ORDERS, DESADV/ASN, INVOIC</td></tr>
+      </table></div>
+      <svg viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Parceiros se comunicam via REST, webhooks ou EDI. Uma camada de integração com gateway de API, fila de mensageria e tradutor de EDI para API recebe essas mensagens. Essa camada traduz tudo para um vocabulário interno único de pedidos, estoque e rastreio, que alimenta o YMS, o WMS e o TMS." style="width:100%;height:auto;margin:10px 0 18px">
+        <defs>
+          <marker id="arrEI" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path>
+          </marker>
+        </defs>
+        <g font-family="IBM Plex Sans, sans-serif" font-size="11.5">
+          <rect x="10" y="10" width="150" height="40" rx="8" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="85" y="34" text-anchor="middle" fill="var(--ink)" font-size="11">Parceiro via REST</text>
+          <rect x="10" y="58" width="150" height="40" rx="8" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="85" y="82" text-anchor="middle" fill="var(--ink)" font-size="11">Parceiro via Webhook</text>
+          <rect x="10" y="106" width="150" height="40" rx="8" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="85" y="130" text-anchor="middle" fill="var(--ink)" font-size="11">Parceiro via EDI</text>
+
+          <line x1="160" y1="30" x2="330" y2="65" stroke="var(--muted)" stroke-width="1.1" marker-end="url(#arrEI)"></line>
+          <line x1="160" y1="78" x2="330" y2="75" stroke="var(--muted)" stroke-width="1.1" marker-end="url(#arrEI)"></line>
+          <line x1="160" y1="126" x2="330" y2="85" stroke="var(--muted)" stroke-width="1.1" marker-end="url(#arrEI)"></line>
+
+          <rect x="335" y="40" width="200" height="70" rx="10" fill="var(--gold-soft)" stroke="var(--gold)"></rect>
+          <text x="435" y="65" text-anchor="middle" fill="var(--ink)" font-weight="600">Camada de integração</text>
+          <text x="435" y="82" text-anchor="middle" fill="var(--muted)" font-size="10.3">gateway + fila + tradutor EDI↔API</text>
+          <text x="435" y="97" text-anchor="middle" fill="var(--muted)" font-size="10.3">retry, HMAC, idempotência</text>
+
+          <line x1="540" y1="75" x2="580" y2="75" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#arrEI)"></line>
+
+          <rect x="585" y="20" width="260" height="110" rx="10" fill="var(--teal-soft)" stroke="var(--teal)"></rect>
+          <text x="715" y="44" text-anchor="middle" fill="var(--ink)" font-weight="600">Vocabulário interno único</text>
+          <text x="715" y="64" text-anchor="middle" fill="var(--muted)" font-size="10.3">pedidos, estoque, rastreio</text>
+          <text x="715" y="84" text-anchor="middle" fill="var(--muted)" font-size="10.3">alimenta YMS, WMS e TMS</text>
+          <text x="715" y="104" text-anchor="middle" fill="var(--muted)" font-size="10.3">independente de como chegou</text>
+        </g>
+      </svg>
+      <h3>Principais mensagens EDI em logística</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Mensagem</th><th>Função</th></tr>
+        <tr><td class="mono">850 / ORDERS</td><td>Cria o pedido</td></tr>
+        <tr><td class="mono">940 / 943</td><td>Instrui o armazém sobre o que separar/receber</td></tr>
+        <tr><td class="mono">945 / 944</td><td>Devolve o que foi de fato preparado/recebido</td></tr>
+        <tr><td class="mono">856 / DESADV (ASN)</td><td>Avisa que a carga foi expedida, acelera conferência no destino</td></tr>
+        <tr><td class="mono">810 / INVOIC</td><td>Fecha a cobrança</td></tr>
+      </table></div>
+      <div class="callout teal"><span class="tag">MASTER DATA LIMPA É PRÉ-REQUISITO</span><p>Esses fluxos só funcionam com dados-mestre consistentes: GLN (identificação de localização), GTIN (identificação de produto), SSCC (identificação de unidade logística/pallet) e CNPJ/DUNS (identificação de empresa).</p></div>
+      <div class="callout gold"><span class="tag">BOAS PRÁTICAS QUE UM PO DEVE EXIGIR</span><p>Timeouts curtos · webhooks assinados (HMAC) · idempotência no reprocessamento · fila de compensação para picos e instabilidade de parceiro · ambiente de sandbox para testar antes de produção.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 5", title:"SQL básico e ferramentas de BI: Power BI, Metabase e Looker",
+  narration:"Um Product Owner de logística que sabe SQL básico se torna muito mais autônomo: consegue validar um dado antes de tomar uma decisão, investigar uma reclamação sem depender de um analista, e escrever critérios de aceite referenciando campos reais do banco, não apenas conceitos abstratos. O mínimo necessário é entender select para escolher colunas, where para filtrar, join para combinar tabelas relacionadas, como veículos e agendamentos, group by para agregações, e funções como count, sum e average. Por exemplo, para investigar veículos com tempo de pátio acima de duas horas hoje, a lógica é: selecionar da tabela de eventos de pátio, calcular a diferença entre o horário de saída e o de entrada, filtrar pelo dia de hoje e pelo tempo acima do limite, e ordenar do pior para o melhor. Sobre ferramentas de visualização: o Power BI é forte no ecossistema Microsoft, usa a linguagem DAX para métricas mais sofisticadas, e é comum em empresas que já usam Excel e Office intensamente. O Metabase é open-source, tem curva de aprendizado mais suave, e é ótimo para perguntas pontuais e exploração rápida de dados, mas tem menos recursos de governança corporativa. E o Looker, hoje parte do Google Cloud, se diferencia por ter uma camada semântica própria, o LookML, que centraliza a definição de métricas para que todo mundo na empresa calcule OTIF, por exemplo, exatamente da mesma forma. Para o PO, a pergunta não é qual ferramenta é 'melhor' — é qual ferramenta a empresa já usa, e o quanto você precisa de métricas governadas versus exploração rápida.",
+  body:`
+    <div class="block">
+      <h3>SQL mínimo que todo PO de dados deveria saber ler</h3>
+      <div class="chip-row">
+        <span class="chip">SELECT</span><span class="chip">WHERE</span><span class="chip">JOIN</span><span class="chip">GROUP BY</span>
+        <span class="chip">ORDER BY</span><span class="chip">COUNT / SUM / AVG</span><span class="chip">Filtro de data</span>
+      </div>
+      <div class="callout gold"><span class="tag">EXEMPLO DE RACIOCÍNIO</span><p>"Veículos com tempo de pátio acima de 2h hoje": selecionar da tabela de eventos de pátio → calcular diferença entre saída e entrada → filtrar pelo dia de hoje e tempo acima do limite → ordenar do pior para o melhor.</p></div>
+    </div>
+    <div class="block">
+      <h3>Power BI, Metabase e Looker</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Ferramenta</th><th>Força</th><th>Melhor para</th></tr>
+        <tr><td class="mono">Power BI</td><td>Ecossistema Microsoft, linguagem DAX</td><td>Empresas já ancoradas em Excel/Office, métricas corporativas</td></tr>
+        <tr><td class="mono">Metabase</td><td>Open-source, curva de aprendizado suave</td><td>Perguntas pontuais, exploração rápida, times menores</td></tr>
+        <tr><td class="mono">Looker</td><td>Camada semântica própria (LookML)</td><td>Métricas governadas, mesma definição de OTIF para toda a empresa</td></tr>
+      </table></div>
+      <div class="callout teal"><span class="tag">A PERGUNTA CERTA</span><p>Não é qual ferramenta é "melhor" — é qual a empresa já usa, e o quanto você precisa de <b>métricas governadas</b> versus <b>exploração rápida</b>.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 6", title:"Indicadores logísticos: OTIF, lead time e turnaround de veículos",
+  narration:"Vamos aos indicadores que mais aparecem em entrevista. OTIF significa On-Time In-Full, entrega no prazo e completa — é um indicador binário: ou o pedido atendeu os dois critérios, ou falhou. A fórmula é o número de pedidos entregues no prazo e completos, dividido pelo total de pedidos, vezes cem. O erro mais comum ao medir OTIF é usar a data de faturamento como base para 'no prazo', em vez da data real de entrega combinada com o cliente — isso infla artificialmente o indicador. Lead time é o tempo total entre o recebimento do pedido e a entrega final; vale decompor em tempo de processamento, tempo de separação, e tempo de trânsito, porque um lead time alto pode estar escondido em qualquer uma dessas etapas. E turnaround de veículos, também chamado de dwell time, é o tempo que um veículo passa dentro do pátio, do portão de entrada ao portão de saída; decompor esse tempo em espera na fila, tempo na doca, e tempo de processamento documental ajuda a identificar se o gargalo é de capacidade de doca, de burocracia, ou de atraso do próprio motorista. Um ponto importante para a entrevista: OTIF baixo pode vir de duas causas bem diferentes — atraso, que aponta para capacidade, fila ou falta de material, ou incompleto, que aponta para erro de separação ou estoque insuficiente. Separar essas duas visões, On Time e In Full, antes de combinar no indicador final, é o que transforma o OTIF de um número solto em uma ferramenta de diagnóstico.",
+  body:`
+    <div class="block">
+      <h3>Os três indicadores centrais</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Indicador</th><th>Fórmula / definição</th><th>Armadilha comum</th></tr>
+        <tr><td class="mono">OTIF</td><td>(Pedidos no prazo e completos ÷ Total de pedidos) × 100</td><td>Usar data de faturamento em vez da data real de entrega combinada</td></tr>
+        <tr><td class="mono">Lead time</td><td>Tempo entre recebimento do pedido e entrega final</td><td>Medir só o total, sem decompor em processamento/separação/trânsito</td></tr>
+        <tr><td class="mono">Turnaround / Dwell time</td><td>Tempo do veículo do portão de entrada ao de saída</td><td>Não separar espera na fila, tempo de doca e tempo documental</td></tr>
+      </table></div>
+      <div class="callout rust"><span class="tag">OTIF BAIXO: DUAS CAUSAS DIFERENTES</span><p><b>On Time baixo</b> → aponta para capacidade, fila, falta de material. <b>In Full baixo</b> → aponta para erro de separação, estoque insuficiente. Meça as duas visões separadamente antes de combinar no OTIF final.</p></div>
+      <div class="callout gold"><span class="tag">NÃO EXISTE META ÚNICA</span><p>Não há uma meta de OTIF válida para todos os setores — o alvo depende do histórico da operação, do nível de serviço prometido ao cliente e do setor.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Exemplo: fluxo", title:"Exemplo: fluxo completo de um caminhão, do agendamento à liberação",
+  narration:"Vamos consolidar tudo em um fluxo de ponta a ponta. O transportador agenda a chegada pelo portal do YMS, informando veículo, motorista e carga prevista. No dia, o caminhão chega e é identificado automaticamente na portaria pelo OCR/LPR, que confirma o agendamento e libera o acesso — ou, se a placa não for reconhecida, encaminha para validação manual, sem travar a fila. O YMS então posiciona o veículo na fila, considerando agenda, ordem de chegada ou prioridade, e atribui uma doca com base no que o WMS já sinalizou como necessário para aquela carga. Durante a operação de carga ou descarga, sensores de IoT e, quando aplicável, tags de RFID em pallets ou reboques, atualizam automaticamente o status no sistema. Ao final, o motorista recebe a liberação, o portão de saída é liberado pelo mesmo mecanismo de OCR/LPR, e o horário de saída é registrado. Todos esses eventos — agendamento, chegada, atribuição de doca, início e fim de carga, saída — alimentam o cálculo de turnaround, lead time e, quando a entrega final ao cliente é considerada, o OTIF. Se algo sai do padrão em qualquer etapa — atraso na chegada, doca ocupada além do esperado, falha de identificação — a torre de controle recebe um alerta e pode agir antes que o atraso se propague para a entrega final.",
+  body:`
+    <div class="block">
+      <h3>Fluxo: do agendamento à liberação</h3>
+      <div class="pipeline">
+        <div class="step">Transportador agenda pelo portal (YMS)</div><span class="arrow">→</span>
+        <div class="step">Chegada: OCR/LPR identifica e confirma</div><span class="arrow">→</span>
+        <div class="step">Fila (agenda/ordem/prioridade)</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Atribuição de doca (com sinal do WMS)</div><span class="arrow">→</span>
+        <div class="step">Carga/descarga (IoT + RFID atualizam status)</div><span class="arrow">→</span>
+        <div class="step">Liberação e saída (OCR/LPR no portão)</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Eventos registrados</div><span class="arrow">→</span>
+        <div class="step">Turnaround, lead time, OTIF</div><span class="arrow">→</span>
+        <div class="step">Desvio? → Alerta na torre de controle</div>
+      </div>
+      <div class="callout rust"><span class="tag">FALLBACK SEMPRE PRESENTE</span><p>Se a placa não for reconhecida pelo OCR/LPR, o veículo é encaminhado para <b>validação manual</b> — nunca trava a fila inteira por falha de uma tecnologia de apoio.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 7", title:"Backlog sugerido para uma squad de pátio e logística",
+  narration:"Vamos falar de backlog, algo concreto para a entrevista. Seis épicos cobrem a maior parte do escopo. O primeiro é agendamento e portal do motorista: permitir que o transportador agende, receba confirmação, e seja notificado de mudanças. O segundo é gestão de pátio e docas, o núcleo do YMS: fila, atribuição de doca, e gestão de intercorrências. O terceiro é tecnologias de identificação: OCR/LPR na portaria, com fallback manual, e RFID para ativos quando fizer sentido. O quarto é integrações: conectar com TMS, WMS, e parceiros externos via API, webhook ou EDI, com resiliência a falhas. O quinto é indicadores e BI: um painel confiável de OTIF, lead time e turnaround, segmentado por cliente, transportadora e tipo de operação. E o sexto é governança de dados e LGPD: política de retenção de imagens e leituras de placa, controle de acesso ao histórico, e um responsável definido por cada base de dados pessoal coletada no pátio.",
+  body:`
+    <div class="block">
+      <h3>Épico 1 — Agendamento e portal do motorista</h3>
+      <ul class="points">
+        <li>Como transportador, quero agendar a chegada informando veículo, motorista e carga prevista;</li>
+        <li>Como transportador, quero ser notificado de confirmação ou mudança de horário;</li>
+        <li>Critério de aceite: nenhum agendamento é aceito sem veículo e motorista válidos.</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 2 — Gestão de pátio e docas</h3>
+      <ul class="points">
+        <li>Fila organizável por agenda, ordem de chegada ou prioridade;</li>
+        <li>Atribuição de doca considerando o que o WMS sinalizou;</li>
+        <li>Alertas automáticos de intercorrência (doca parada, atraso, documento pendente).</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 3 — Tecnologias de identificação</h3>
+      <ul class="points">
+        <li>OCR/LPR na portaria com fallback manual quando a placa não é reconhecida;</li>
+        <li>RFID para ativos de alto valor ou alta rotatividade, quando o caso de uso justificar;</li>
+        <li>Política de retenção e acesso às leituras, alinhada à LGPD.</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 4 — Integrações</h3>
+      <ul class="points">
+        <li>Conexão com TMS e WMS via API/eventos;</li>
+        <li>Suporte a parceiros via EDI quando necessário, com camada de tradução;</li>
+        <li>Resiliência: retry, fila de compensação, idempotência.</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 5 — Indicadores e BI</h3>
+      <ul class="points">
+        <li>Painel de OTIF, lead time e turnaround segmentado por cliente/transportadora;</li>
+        <li>Definição única e documentada de cada métrica (evitar divergência entre áreas).</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 6 — Governança de dados e LGPD</h3>
+      <ul class="points">
+        <li>Política de retenção de imagens e leituras de placa;</li>
+        <li>Controle de acesso ao histórico de leituras;</li>
+        <li>Responsável definido por cada base de dado pessoal coletada no pátio.</li>
+      </ul>
+    </div>
+  `
+},
+{
+  ref:"Seções 8–9", title:"Perguntas prováveis na entrevista e glossário de termos técnicos",
+  narration:"Vamos treinar as perguntas mais prováveis. Primeira: qual a diferença entre YMS, WMS e TMS? Resposta: WMS controla o que acontece dentro do armazém; TMS controla o transporte entre pontos da rede; e YMS é a camada intermediária, o pátio, conectando os dois. Segunda: como você lidaria com uma placa não reconhecida pelo LPR? Resposta: nunca travar a fila — encaminhar automaticamente para validação manual, registrar a exceção, e usar esses casos para melhorar o modelo de reconhecimento ao longo do tempo. Terceira: como garantir que o OTIF reflita a realidade? Resposta: definir com clareza qual é a data de referência para 'no prazo', medir On Time e In Full separadamente antes de combinar, e revisar a definição com as áreas de vendas, operação e atendimento para que todos usem o mesmo critério. Quarta: como desenhar uma integração com um parceiro que só tem EDI? Resposta: construir uma camada de tradução entre EDI e a API interna, mantendo o vocabulário interno único independente de como a mensagem chegou, e validar com ambiente de sandbox antes de produção. E quinta: que consulta você rodaria para investigar um turnaround alto? Resposta: comparar o tempo de entrada e saída de cada veículo, segmentado por doca, transportadora e horário de chegada, para identificar se o gargalo é de capacidade, de doca específica, ou de horário de pico.",
+  body:`
+    <div class="block">
+      <div class="qa"><div class="q">Qual a diferença entre YMS, WMS e TMS?</div><div class="a">WMS controla o que acontece dentro do armazém — recebimento, estoque, separação, expedição. TMS controla o transporte entre pontos da rede — rotas, fretes, transportadoras. YMS é a camada intermediária, o pátio, conectando os dois: organiza a fila, agenda e libera docas.</div></div>
+      <div class="qa"><div class="q">Como você lidaria com uma placa não reconhecida pelo LPR?</div><div class="a">Nunca travaria a fila inteira. Encaminharia automaticamente para validação manual, registraria a exceção com evidência, e usaria esses casos para melhorar o modelo de reconhecimento ao longo do tempo.</div></div>
+      <div class="qa"><div class="q">Como garantir que o OTIF reflita a realidade?</div><div class="a">Definindo com clareza qual é a data de referência para "no prazo" — nunca a data de faturamento. Mediria On Time e In Full separadamente antes de combinar no indicador final, e alinharia essa definição com vendas, operação e atendimento, para que todas as áreas usem o mesmo critério.</div></div>
+      <div class="qa"><div class="q">Como desenhar uma integração com um parceiro que só tem EDI?</div><div class="a">Construiria uma camada de tradução entre EDI e a API interna, mantendo um vocabulário único independente de como a mensagem chegou — REST, webhook ou EDI. Validaria com ambiente de sandbox antes de ir para produção, e definiria timeout, retry e idempotência desde o início.</div></div>
+      <div class="qa"><div class="q">Que consulta você rodaria para investigar um turnaround alto?</div><div class="a">Compararia o tempo de entrada e saída de cada veículo no pátio, segmentado por doca, transportadora e horário de chegada, para identificar se o gargalo está em capacidade geral, em uma doca específica, ou concentrado em horários de pico.</div></div>
+    </div>
+    <div class="block">
+      <h3>Glossário de termos técnicos</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Termo</th><th>Definição para entrevista</th></tr>
+        <tr><td class="mono">YMS</td><td>Yard Management System — gestão de pátio, fila, docas e portaria</td></tr>
+        <tr><td class="mono">WMS</td><td>Warehouse Management System — gestão interna do armazém</td></tr>
+        <tr><td class="mono">TMS</td><td>Transportation Management System — gestão do transporte entre pontos</td></tr>
+        <tr><td class="mono">Torre de controle</td><td>Camada de orquestração e visibilidade sobre YMS, WMS e TMS</td></tr>
+        <tr><td class="mono">OTIF</td><td>On-Time In-Full — percentual de pedidos entregues no prazo e completos</td></tr>
+        <tr><td class="mono">Lead time</td><td>Tempo entre o recebimento do pedido e a entrega final</td></tr>
+        <tr><td class="mono">Turnaround / Dwell time</td><td>Tempo do veículo no pátio, do portão de entrada ao de saída</td></tr>
+        <tr><td class="mono">OCR</td><td>Reconhecimento óptico de caracteres — converte imagem em texto</td></tr>
+        <tr><td class="mono">LPR</td><td>License Plate Recognition — leitura automática de placas via OCR</td></tr>
+        <tr><td class="mono">RFID</td><td>Identificação por rádio-frequência, sem exigir linha de visada</td></tr>
+        <tr><td class="mono">IoT</td><td>Sensores conectados (porta, temperatura, localização) que geram dados em tempo real</td></tr>
+        <tr><td class="mono">EDI</td><td>Troca eletrônica de dados estruturados entre parceiros corporativos</td></tr>
+        <tr><td class="mono">ASN / DESADV</td><td>Aviso de expedição antecipado — avisa que a carga já foi enviada</td></tr>
+        <tr><td class="mono">Webhook</td><td>Notificação assíncrona de evento, sem precisar consultar repetidamente</td></tr>
+        <tr><td class="mono">GLN / GTIN / SSCC</td><td>Identificadores padronizados de localização, produto e unidade logística</td></tr>
+      </table></div>
+    </div>
+  `
+},
+{
+  ref:"Plano final", title:"Plano de estudo e resumo final",
+  narration:"Para fechar, um plano de estudo de sete dias. Dia um: o mapa dos três sistemas, YMS, WMS e TMS, e o papel da torre de controle. Dia dois: gestão de pátio, agendamento de docas e os problemas que o YMS resolve. Dia três: tecnologias de pátio — OCR/LPR, RFID, IoT, e a implicação de LGPD na leitura de placas. Dia quatro: integrações — REST, webhooks, EDI e filas de mensageria, com as principais mensagens EDI. Dia cinco: SQL básico e as diferenças entre Power BI, Metabase e Looker. Dia seis: os indicadores — OTIF, lead time e turnaround, com suas armadilhas de medição. E dia sete: simular a entrevista, desenhando de memória o fluxo completo de um caminhão do agendamento à liberação, e respondendo as cinco perguntas prováveis. Você está preparado quando consegue explicar a diferença entre YMS, WMS e TMS sem hesitar; descrever o papel da torre de controle; explicar como o OCR/LPR funciona e por que exige um plano de fallback e cuidado com LGPD; diferenciar REST, webhook e EDI, e citar pelo menos duas mensagens EDI; calcular OTIF e explicar seus dois componentes; e desenhar o fluxo de ponta a ponta de um veículo pelo pátio.",
+  body:`
+    <div class="block">
+      <h3>Plano de estudo de 7 dias</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Dia</th><th>Estudo</th></tr>
+        <tr><td class="mono">1</td><td>Mapa dos três sistemas: YMS, WMS, TMS e torre de controle</td></tr>
+        <tr><td class="mono">2</td><td>Gestão de pátio, agendamento de docas e problemas que o YMS resolve</td></tr>
+        <tr><td class="mono">3</td><td>OCR/LPR, RFID, IoT e a implicação de LGPD</td></tr>
+        <tr><td class="mono">4</td><td>REST, webhooks, EDI, filas de mensageria e mensagens EDI principais</td></tr>
+        <tr><td class="mono">5</td><td>SQL básico e diferenças entre Power BI, Metabase e Looker</td></tr>
+        <tr><td class="mono">6</td><td>OTIF, lead time e turnaround, com armadilhas de medição</td></tr>
+        <tr><td class="mono">7</td><td>Simulação de entrevista: desenhar o fluxo completo e responder as 5 perguntas</td></tr>
+      </table></div>
+    </div>
+    <div class="block">
+      <h3>Checklist final</h3>
+      <ul class="points">
+        <li>Explicar a diferença entre YMS, WMS e TMS sem hesitar;</li>
+        <li>Descrever o papel da torre de controle;</li>
+        <li>Explicar como o OCR/LPR funciona e por que exige fallback e cuidado com LGPD;</li>
+        <li>Diferenciar REST, webhook e EDI, citando pelo menos duas mensagens EDI;</li>
+        <li>Calcular OTIF e explicar seus dois componentes (On Time e In Full);</li>
+        <li>Desenhar o fluxo de ponta a ponta de um veículo pelo pátio.</li>
+      </ul>
+      <div class="central-phrase">"Você não precisa ter dirigido uma empilhadeira. Precisa entender o fluxo, traduzir em dados, e decidir o que automatizar, o que medir e quando uma pessoa precisa intervir."</div>
+    </div>
+  `
+}
+  ]
+},
+saude: {
+  id:'saude', seal:'SS', kicker:'DOSSIÊ DE PREPARAÇÃO',
+  title:'Saúde Suplementar<br>& Seguros de Saúde',
+  sub:'Treinamento narrado para atuar como Product Owner em operadoras de planos de saúde, seguradoras especializadas em saúde e healthtechs.',
+  disclaimer:'Este material é educacional e serve para orientar seu estudo sobre saúde suplementar e seguros de saúde. Normas da ANS, da ANPD e do CFM mudam com frequência — confirme sempre a versão vigente antes da entrevista. Nada aqui substitui aconselhamento jurídico ou médico. A narração é gerada pela síntese de voz do seu navegador; a qualidade e a disponibilidade de vozes em português variam por dispositivo.',
+  modules: [
+{
+  ref:"Introdução", title:"Como se posicionar para uma vaga de PO em Saúde Suplementar",
+  narration:"Este treinamento prepara um Product Owner para atuar em operadoras de planos de saúde, seguradoras especializadas em saúde ou healthtechs, mesmo sem vivência prévia no setor. A regra central é a mesma de qualquer domínio regulado: você não precisa ser especialista em medicina nem em direito da saúde. Precisa entender o ciclo do beneficiário — da contratação do plano até o uso de um procedimento — traduzir esse ciclo em dados, regras e eventos, e saber onde a regulação da ANS exige atenção redobrada antes de qualquer automação. Se te perguntarem diretamente sobre sua vivência com Rol de Procedimentos, TISS ou sinistralidade, a resposta honesta e forte é: você talvez não tenha operado esses processos no dia a dia, mas entende a lógica de produto por trás deles — cobertura mínima obrigatória, autorização prévia, faturamento, glosa — e tem experiência conduzindo produtos com integrações, regras de negócio complexas e múltiplos stakeholders, o que te permite aprender rapidamente o domínio específico da saúde suplementar trabalhando ao lado de especialistas médicos, atuariais e regulatórios.",
+  body:`
+    <div class="central-phrase">"Você não precisa ser especialista em medicina ou direito da saúde. Precisa entender o ciclo do beneficiário, traduzir esse ciclo em dados e regras, e saber onde a regulação da ANS exige atenção redobrada antes de automatizar."</div>
+    <div class="block">
+      <h3>Resposta honesta sobre sua experiência</h3>
+      <div class="qa">
+        <div class="q">"Você tem vivência com Rol de Procedimentos, TISS ou sinistralidade?"</div>
+        <div class="a">Eu talvez não tenha operado esses processos no dia a dia, mas entendo a lógica de produto por trás deles: cobertura mínima obrigatória, autorização prévia, faturamento e glosa. Tenho experiência conduzindo produtos com integrações, regras de negócio complexas e múltiplos stakeholders, o que me permite aprender rapidamente o domínio específico trabalhando ao lado de especialistas médicos, atuariais e regulatórios.</div>
+      </div>
+      <div class="callout gold"><span class="tag">COMO ESTUDAR</span><p>Comece pelo panorama regulatório (ANS, tipos de operadora). Depois Rol/TISS, o ciclo da autorização e glosa, sinistralidade, produtos e carências, e LGPD/telemedicina. Feche com o exemplo de ponta a ponta e as perguntas de entrevista.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 1", title:"Panorama regulatório: ANS e os tipos de operadora",
+  narration:"Vamos começar pelo desenho institucional. A Lei 9656 de 1998 é o marco regulatório dos planos de saúde no Brasil, e a Lei 9961 de 2000 criou a ANS, a Agência Nacional de Saúde Suplementar, autarquia federal responsável por fiscalizar o setor e garantir o equilíbrio entre operadoras e beneficiários. A ANS trabalha em duas frentes: regulação econômica, ligada à sustentabilidade financeira das operadoras, e regulação social, voltada à qualidade da assistência prestada ao beneficiário. Nem toda empresa que vende plano de saúde é do mesmo tipo. Existem cinco modalidades principais: medicina de grupo, empresas que comercializam planos para o público em geral; cooperativa médica, como as Unimeds, organizadas por médicos cooperados; autogestão, operadoras ligadas a uma empresa ou entidade que oferece o plano apenas aos próprios funcionários ou associados; filantropia, entidades sem fins lucrativos certificadas; e seguradora especializada em saúde, que opera sob a forma jurídica de seguradora, regulada simultaneamente pela ANS para as regras assistenciais e, em menor grau, pelo arcabouço de seguros. Para o PO, essa distinção importa porque cada modalidade tem particularidades de governança, de rede credenciada e de produto — uma autogestão, por exemplo, não vende plano no mercado aberto, então sua lógica de produto é bem diferente da de uma medicina de grupo disputando espaço competitivo.",
+  body:`
+    <div class="block">
+      <h3>Marco legal</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Norma</th><th>O que estabeleceu</th></tr>
+        <tr><td class="mono">Lei 9.656/1998</td><td>Marco regulatório dos planos de saúde — fim da subsegmentação de contratos, Rol mínimo obrigatório</td></tr>
+        <tr><td class="mono">Lei 9.961/2000</td><td>Criou a ANS, autarquia federal responsável por fiscalizar o setor</td></tr>
+        <tr><td class="mono">Lei 14.454/2022</td><td>Definiu que o Rol de Procedimentos é <b>exemplificativo</b>, não taxativo</td></tr>
+      </table></div>
+      <div class="callout gold"><span class="tag">DUAS FRENTES DA ANS</span><p><b>Regulação econômica</b>: sustentabilidade financeira das operadoras. <b>Regulação social</b>: qualidade da assistência ao beneficiário.</p></div>
+    </div>
+    <div class="block">
+      <h3>Cinco modalidades de operadora</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Modalidade</th><th>Característica</th></tr>
+        <tr><td>Medicina de grupo</td><td>Comercializa planos para o público em geral, com fins lucrativos</td></tr>
+        <tr><td>Cooperativa médica</td><td>Organizada por médicos cooperados (ex.: Unimed)</td></tr>
+        <tr><td>Autogestão</td><td>Ligada a uma empresa/entidade; oferece plano só aos próprios funcionários ou associados</td></tr>
+        <tr><td>Filantropia</td><td>Entidade sem fins lucrativos certificada</td></tr>
+        <tr><td>Seguradora especializada em saúde</td><td>Opera sob forma jurídica de seguradora, regulada pela ANS para regras assistenciais</td></tr>
+      </table></div>
+      <div class="callout teal"><span class="tag">POR QUE ISSO IMPORTA PARA O PO</span><p>Cada modalidade tem lógica de produto diferente — uma autogestão não compete no mercado aberto, então suas prioridades de produto são distintas das de uma medicina de grupo ou seguradora.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 2", title:"Rol de Procedimentos e TISS: cobertura mínima e troca de informação",
+  narration:"O Rol de Procedimentos e Eventos em Saúde é a lista mínima obrigatória de exames, consultas, cirurgias e tratamentos que toda operadora deve cobrir, de acordo com o tipo de contrato. Hoje o Rol tem mais de três mil e quatrocentos itens registrados, e é atualizado periodicamente pela ANS, com revisão semestral e um rito que passa por consulta pública e análise técnica de eficácia e custo-efetividade. Um ponto crucial para a entrevista: desde a Lei 14.454 de 2022, o Rol é exemplificativo, não taxativo — ou seja, um tratamento fora da lista pode, em certas condições, ser exigível da operadora. Em setembro de 2025, o Supremo Tribunal Federal, no julgamento da ADI 7.265, fixou critérios cumulativos para essa cobertura extra-Rol: prescrição médica, ausência de alternativa terapêutica no próprio Rol, e comprovação de eficácia científica com registro na Anvisa. Isso significa que um produto de autorização não pode simplesmente negar tudo que está fora da lista — precisa ter um fluxo de análise para esses casos excepcionais. Já o TISS, Troca de Informação em Saúde Suplementar, é o padrão técnico que a ANS criou para padronizar a comunicação entre operadoras e prestadores — desde o envio de guias de autorização até o faturamento. Pense no TISS como o 'protocolo de integração oficial' do setor: sem ele, cada operadora e cada hospital trocariam dados de forma própria, multiplicando erros e atrasos. A codificação dos procedimentos nesse processo usa a TUSS, a Terminologia Unificada da Saúde Suplementar, que identifica de forma padronizada qual procedimento está sendo solicitado ou faturado.",
+  body:`
+    <div class="block">
+      <h3>Rol de Procedimentos: o que todo PO precisa saber</h3>
+      <ul class="points">
+        <li>Mais de <b>3.400 itens</b> registrados (2026), cobrindo consultas, exames, cirurgias e tratamentos;</li>
+        <li>Atualização periódica, com <b>revisão semestral</b>, consulta pública e análise técnica;</li>
+        <li>Desde a <b>Lei 14.454/2022</b>, é <b>exemplificativo</b>, não taxativo.</li>
+      </ul>
+      <div class="callout rust"><span class="tag">COBERTURA EXTRA-ROL (STF, ADI 7.265, set/2025)</span><p>Um tratamento fora do Rol pode ser exigível se, <b>cumulativamente</b>: houver prescrição médica; não existir alternativa no próprio Rol; e houver comprovação de eficácia científica com registro na Anvisa. O produto de autorização precisa de um fluxo específico para esses casos — não pode só negar.</p></div>
+    </div>
+    <div class="block">
+      <h3>TISS: o protocolo de integração do setor</h3>
+      <p>O <b>TISS</b> (Troca de Informação em Saúde Suplementar) é o padrão técnico da ANS para comunicação entre operadoras e prestadores — do envio de guias de autorização ao faturamento. A codificação usa a <b>TUSS</b> (Terminologia Unificada da Saúde Suplementar), que identifica de forma padronizada cada procedimento.</p>
+      <div class="callout gold"><span class="tag">ANALOGIA ÚTIL</span><p>TISS está para a saúde suplementar assim como EDI está para logística — um protocolo que evita que cada operadora e cada hospital inventem seu próprio formato de troca de dados.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 3", title:"O ciclo da autorização: DUT, TUSS, execução e glosa",
+  narration:"Vamos detalhar o ciclo que mais aparece em produtos de saúde suplementar: a autorização prévia. Quando um médico solicita um procedimento que exige aprovação da operadora, o prestador envia a guia pelo padrão TISS, identificando o procedimento pela TUSS. A operadora então verifica se aquele procedimento tem uma DUT, Diretriz de Utilização Técnica, que define condições clínicas específicas para a cobertura — por exemplo, um exame só é coberto se o paciente tiver determinada idade ou diagnóstico prévio. Se as condições da DUT são atendidas, a autorização é aprovada; se não, pode ser negada ou encaminhada para análise médica. Depois da execução do procedimento, o prestador fatura, e é aqui que entra a glosa: a operadora pode suspender o pagamento, total ou parcialmente, por dois motivos principais. Glosa técnica, relacionada à adequação clínica do procedimento faturado, e glosa administrativa, relacionada a questões formais, como ausência de autorização prévia ou divergência de documentação. Segundo o Painel de Indicadores de Glosa da ANS, com dados até o primeiro semestre de 2025, a taxa de glosa inicial do setor é de sete vírgula trinta e um por cento, caindo para sete vírgula quatorze por cento após contestação, e o tempo médio de pagamento é de trinta e três vírgula sessenta e um dias. O motivo mais comum de glosa, segundo pesquisa da ANS, é a ausência de autorização para o procedimento — o que reforça por que um bom fluxo de autorização prévia, bem integrado, reduz glosa na ponta.",
+  body:`
+    <div class="block">
+      <h3>Fluxo da autorização prévia</h3>
+      <svg viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="O médico solicita um procedimento, o prestador envia a guia pelo padrão TISS identificando o procedimento pela TUSS. A operadora verifica a DUT, diretriz de utilização técnica. Se as condições são atendidas, autoriza; senão, nega ou encaminha para análise médica. Depois da execução, o prestador fatura, e a operadora pode aplicar glosa técnica ou administrativa, sujeita a contestação." style="width:100%;height:auto;margin:10px 0 18px">
+        <defs>
+          <marker id="arrSS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path>
+          </marker>
+        </defs>
+        <g font-family="IBM Plex Sans, sans-serif" font-size="11.3">
+          <rect x="8" y="55" width="130" height="55" rx="9" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="73" y="78" text-anchor="middle" fill="var(--ink)" font-weight="600">Médico solicita</text>
+          <text x="73" y="95" text-anchor="middle" fill="var(--muted)" font-size="10">guia TISS + TUSS</text>
+
+          <line x1="138" y1="82" x2="176" y2="82" stroke="var(--muted)" stroke-width="1.3" marker-end="url(#arrSS)"></line>
+
+          <rect x="180" y="55" width="140" height="55" rx="9" fill="var(--gold-soft)" stroke="var(--gold)"></rect>
+          <text x="250" y="78" text-anchor="middle" fill="var(--ink)" font-weight="600">Verifica DUT</text>
+          <text x="250" y="95" text-anchor="middle" fill="var(--muted)" font-size="10">condições clínicas</text>
+
+          <line x1="320" y1="68" x2="358" y2="30" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrSS)"></line>
+          <line x1="320" y1="96" x2="358" y2="130" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrSS)"></line>
+
+          <rect x="362" y="2" width="140" height="48" rx="9" fill="var(--teal-soft)" stroke="var(--teal)"></rect>
+          <text x="432" y="30" text-anchor="middle" fill="var(--ink)" font-size="11">Atende DUT → Autoriza</text>
+
+          <rect x="362" y="108" width="140" height="48" rx="9" fill="var(--rust-soft)" stroke="var(--rust)"></rect>
+          <text x="432" y="130" text-anchor="middle" fill="var(--ink)" font-size="11">Não atende → Nega/Analisa</text>
+
+          <line x1="502" y1="26" x2="540" y2="80" stroke="var(--muted)" stroke-width="1.2" marker-end="url(#arrSS)"></line>
+
+          <rect x="545" y="55" width="140" height="55" rx="9" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="615" y="78" text-anchor="middle" fill="var(--ink)" font-weight="600">Execução</text>
+          <text x="615" y="95" text-anchor="middle" fill="var(--muted)" font-size="10">prestador executa</text>
+
+          <line x1="685" y1="82" x2="723" y2="82" stroke="var(--muted)" stroke-width="1.3" marker-end="url(#arrSS)"></line>
+
+          <rect x="727" y="55" width="125" height="55" rx="9" fill="var(--panel-2)" stroke="var(--line)"></rect>
+          <text x="790" y="78" text-anchor="middle" fill="var(--ink)" font-weight="600">Fatura</text>
+          <text x="790" y="95" text-anchor="middle" fill="var(--rust)" font-size="10">risco de glosa</text>
+        </g>
+      </svg>
+    </div>
+    <div class="block">
+      <h3>Glosa técnica vs. administrativa</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Tipo</th><th>Motivo</th></tr>
+        <tr><td class="mono">Glosa técnica</td><td>Relacionada à adequação clínica do procedimento faturado</td></tr>
+        <tr><td class="mono">Glosa administrativa</td><td>Questões formais: ausência de autorização prévia, divergência de documentação</td></tr>
+      </table></div>
+      <div class="callout gold"><span class="tag">DADOS REAIS (PAINEL DE INDICADORES DE GLOSA, ANS — 1º sem/2025)</span><p>Glosa inicial: <b>7,31%</b> · Glosa final (após contestação): <b>7,14%</b> · Tempo médio de pagamento: <b>33,61 dias</b>. Motivo mais comum de glosa: <b>ausência de autorização</b> para o procedimento.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 4", title:"Sinistralidade: o indicador central da saúde suplementar",
+  narration:"Se tem um indicador que todo PO de saúde suplementar precisa dominar, é a sinistralidade. Ela mede a relação entre o que a operadora gasta com o uso dos serviços de saúde pelos beneficiários e o que ela recebe de receita com as mensalidades. A fórmula é direta: sinistralidade igual a despesa assistencial dividida pela receita de mensalidades, vezes cem. Um exemplo prático: se uma operadora teve oitocentos mil reais de despesas assistenciais em um período, e recebeu um milhão de reais em mensalidades, a sinistralidade foi de oitenta por cento. Esse indicador importa porque ele embasa, legalmente, os reajustes de contratos coletivos empresariais: se a sinistralidade de um contrato específico está alta, a operadora pode justificar um reajuste maior para aquele grupo. Já para planos individuais e familiares, o reajuste depende de autorização da própria ANS, que define um teto anual considerando a sinistralidade agregada do mercado, não apenas de um contrato isolado. Para o PO, a implicação de produto é: um bom sistema precisa calcular sinistralidade por diferentes recortes — por contrato, por faixa etária, por tipo de procedimento — porque uma sinistralidade alta pode vir de poucos casos de alto custo, concentrados, ou de uso disperso e elevado em toda a base, e essas duas situações pedem estratégias de produto completamente diferentes, como programas de gestão de crônicos no primeiro caso, e ações de prevenção e triagem no segundo.",
+  body:`
+    <div class="block">
+      <div class="central-phrase">"Sinistralidade (%) = (Despesa assistencial ÷ Receita de mensalidades) × 100"</div>
+      <div class="callout gold"><span class="tag">EXEMPLO PRÁTICO</span><p>Despesas assistenciais de R$ 800.000 ÷ Receita de mensalidades de R$ 1.000.000 × 100 = <b>sinistralidade de 80%</b>.</p></div>
+    </div>
+    <div class="block">
+      <h3>Por que esse número move o negócio</h3>
+      <ul class="points">
+        <li>Embasa legalmente o <b>reajuste de contratos coletivos empresariais</b> por sinistralidade específica;</li>
+        <li>Em planos <b>individuais/familiares</b>, o reajuste depende de autorização da própria ANS, com teto baseado na sinistralidade agregada do mercado;</li>
+        <li>Sinistralidade alta pode vir de <b>poucos casos concentrados de alto custo</b> (pede gestão de crônicos) ou de <b>uso disperso em toda a base</b> (pede prevenção e triagem) — e são estratégias de produto bem diferentes.</li>
+      </ul>
+      <div class="callout teal"><span class="tag">IMPLICAÇÃO DE PRODUTO</span><p>Um bom sistema calcula sinistralidade <b>por contrato, faixa etária e tipo de procedimento</b> — não apenas um número agregado único.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 5", title:"Produtos, carência, CPT e portabilidade",
+  narration:"Agora os elementos que compõem um produto de plano de saúde. A primeira distinção é entre plano individual ou familiar, contratado diretamente pela pessoa física, e plano coletivo, que pode ser empresarial, contratado por uma empresa para seus funcionários, ou por adesão, contratado por meio de uma entidade de classe ou associação profissional. Essa distinção importa porque as regras de reajuste, rescisão e regulação são diferentes para cada tipo. Carência é o período, após a contratação, em que o beneficiário ainda não tem direito a determinados serviços — por exemplo, cento e oitenta dias para a maioria dos procedimentos, trezentos dias para parto. CPT, Cobertura Parcial Temporária, é diferente de carência: aplica-se quando o beneficiário já tinha uma doença ou lesão preexistente antes de contratar o plano, suspendendo por até vinte e quatro meses a cobertura de procedimentos de alta complexidade relacionados especificamente àquela condição prévia — mas não impede o atendimento geral. E portabilidade de carências é o direito do beneficiário de trocar de operadora sem cumprir novas carências, desde que atenda a requisitos como tempo mínimo de permanência no plano de origem e compatibilidade de faixa de preço entre os planos. Para o PO, cada um desses conceitos vira uma regra de negócio que precisa estar correta no momento da contratação e, principalmente, no momento da autorização de um procedimento — autorizar algo durante a carência, ou negar algo que a CPT não cobre, são dois tipos de erro que geram reclamação na ANS e risco regulatório.",
+  body:`
+    <div class="block">
+      <h3>Individual/familiar vs. coletivo</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Tipo de plano</th><th>Como é contratado</th></tr>
+        <tr><td>Individual/familiar</td><td>Diretamente pela pessoa física</td></tr>
+        <tr><td>Coletivo empresarial</td><td>Por uma empresa, para os próprios funcionários</td></tr>
+        <tr><td>Coletivo por adesão</td><td>Por meio de entidade de classe ou associação profissional</td></tr>
+      </table></div>
+    </div>
+    <div class="block">
+      <h3>Carência, CPT e portabilidade</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Conceito</th><th>O que significa</th></tr>
+        <tr><td class="mono">Carência</td><td>Período após a contratação sem direito a determinados serviços (ex.: 180 dias geral, 300 dias parto)</td></tr>
+        <tr><td class="mono">CPT (Cobertura Parcial Temporária)</td><td>Suspende por até 24 meses a cobertura de procedimentos de alta complexidade ligados a uma doença/lesão <b>preexistente</b> à contratação — não impede o atendimento geral</td></tr>
+        <tr><td class="mono">Portabilidade de carências</td><td>Direito de trocar de operadora sem cumprir novas carências, com requisitos de permanência e compatibilidade de faixa de preço</td></tr>
+      </table></div>
+      <div class="callout rust"><span class="tag">RISCO REGULATÓRIO DE PRODUTO</span><p>Autorizar algo durante a carência, ou negar algo que a CPT não cobre, são erros de regra de negócio que geram <b>reclamação na ANS</b> e risco regulatório para a operadora.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 6", title:"LGPD, dados sensíveis de saúde e interoperabilidade",
+  narration:"Dado de saúde é tratado pela LGPD, a Lei 13.709 de 2018, como dado pessoal sensível — artigo quinto, inciso dois — ao lado de origem racial, convicção religiosa e dado genético. Isso significa tratamento mais rigoroso: base legal específica, geralmente tutela da saúde conforme o artigo onze, minimização de dados, e controles de acesso mais estritos. A interoperabilidade entre sistemas de saúde no Brasil ainda é um desafio real: prontuários eletrônicos, sistemas hospitalares e plataformas de operadoras não seguem, até hoje, um padrão único de dados, e a migração para padrões internacionais como o HL7 FHIR é gradual. A RNDS, Rede Nacional de Dados em Saúde, é a plataforma do governo federal que busca justamente essa interoperabilidade, conectando secretarias de saúde, hospitais e, progressivamente, operadoras. E existe uma discussão em andamento chamada Open Health, inspirada no Open Finance, que promete portabilidade real de dados entre planos de saúde — mas, até o início de 2026, ainda não tem regulamentação específica nem cronograma oficial. A ANPD incluiu dados sensíveis de saúde como prioridade no seu Mapa de Temas de 2026 a 2027, e a transformação da ANPD em agência reguladora, pela Lei 15.352 de 2026, cria as condições institucionais para uma regulamentação mais específica em breve. Para o PO, a lição prática é: qualquer produto que lide com dado de saúde precisa nascer com finalidade específica bem definida, retenção mínima necessária, e trilha de consentimento auditável — porque a regulamentação específica do setor está vindo, e produtos desenhados sem isso desde o início vão precisar de retrabalho caro.",
+  body:`
+    <div class="block">
+      <div class="callout rust"><span class="tag">DADO DE SAÚDE = DADO SENSÍVEL</span><p>A LGPD (art. 5º, II) classifica dado de saúde como <b>dado pessoal sensível</b>, exigindo base legal específica (geralmente tutela da saúde, art. 11), minimização e controles de acesso mais estritos.</p></div>
+      <h3>Interoperabilidade: onde o Brasil está</h3>
+      <ul class="points">
+        <li>Prontuários, sistemas hospitalares e plataformas de operadoras <b>não seguem padrão único</b> de dados;</li>
+        <li>A migração para <b>HL7 FHIR</b> é gradual;</li>
+        <li>A <b>RNDS</b> (Rede Nacional de Dados em Saúde) é a plataforma federal que busca essa interoperabilidade;</li>
+        <li><b>Open Health</b> (inspirado no Open Finance) promete portabilidade real de dados entre planos — mas, até início de 2026, <b>sem regulamentação específica nem cronograma</b>.</li>
+      </ul>
+      <div class="callout gold"><span class="tag">MOVIMENTO REGULATÓRIO EM CURSO</span><p>A ANPD incluiu dados sensíveis de saúde como prioridade no Mapa de Temas 2026–2027, e a <b>Lei 15.352/2026</b> transformou a ANPD em agência reguladora — abrindo caminho para regulamentação específica do setor.</p></div>
+    </div>
+    <div class="block">
+      <h3>Lição prática para o PO</h3>
+      <p>Qualquer produto que lide com dado de saúde precisa nascer com <b>finalidade específica bem definida, retenção mínima necessária e trilha de consentimento auditável</b> — a regulamentação específica está vindo, e produtos desenhados sem isso desde o início vão precisar de retrabalho caro.</p>
+    </div>
+  `
+},
+{
+  ref:"Seção 7", title:"Telemedicina e saúde digital: o que mudou na regulação",
+  narration:"A telemedicina deixou de ser uma exceção de pandemia e virou prática consolidada, com marco regulatório próprio do Conselho Federal de Medicina, que revogou a autorização emergencial original de 2020. Alguns pontos que um PO de saúde digital precisa saber: a autonomia do profissional de saúde para decidir se usa ou não a telemedicina é preservada; o sistema de registro eletrônico de saúde, chamado S-RES, precisa garantir interoperabilidade com confidencialidade, privacidade e integridade; imagem do paciente em tempo real é considerada dado biométrico facial, reforçando a sensibilidade do dado tratado; e, embora a LGPD não exija que os servidores fiquem fisicamente no Brasil, a norma do CFM exige que a empresa de telemedicina tenha sede no país. A prescrição digital também avançou: desde primeiro de junho de 2026, ela precisa se integrar, via API, ao Sistema Nacional de Controle de Receituários, o SNCR — e, do ponto de vista de LGPD, a prescrição é dado sensível, porque o medicamento prescrito revela a condição de saúde do paciente. Para o PO que avalia ou constrói uma plataforma de telemedicina, os pontos de checagem antes de contratar ou lançar são: onde os dados são processados e armazenados, se a empresa tem sede no Brasil conforme exigido, como o consentimento é coletado e revogado, e como a integração com o SNCR é tratada tecnicamente.",
+  body:`
+    <div class="block">
+      <h3>O que a regulação de telemedicina exige</h3>
+      <div class="chip-row">
+        <span class="chip">Autonomia do profissional preservada</span><span class="chip">S-RES com confidencialidade/privacidade/integridade</span>
+        <span class="chip">Imagem em tempo real = dado biométrico</span><span class="chip">Empresa precisa ter sede no Brasil (norma CFM)</span>
+      </div>
+      <div class="callout gold"><span class="tag">PRESCRIÇÃO DIGITAL</span><p>Desde <b>1º de junho de 2026</b>, integra-se via API ao <b>SNCR</b> (Sistema Nacional de Controle de Receituários). É <b>dado sensível</b>: o medicamento prescrito revela a condição de saúde do paciente.</p></div>
+    </div>
+    <div class="block">
+      <h3>Checklist antes de contratar ou lançar uma plataforma de telemedicina</h3>
+      <ul class="points">
+        <li>Onde os dados são processados e armazenados;</li>
+        <li>Se a empresa tem sede no Brasil, conforme exigido pela norma do CFM;</li>
+        <li>Como o consentimento é coletado e revogado;</li>
+        <li>Como a integração com o SNCR é tratada tecnicamente.</li>
+      </ul>
+    </div>
+  `
+},
+{
+  ref:"Exemplo: fluxo", title:"Exemplo: fluxo completo de uma autorização, do pedido à glosa",
+  narration:"Vamos consolidar tudo em um fluxo de ponta a ponta. Um beneficiário consulta um médico, que solicita um procedimento. O prestador — clínica, hospital ou laboratório — verifica se aquele procedimento exige autorização prévia; se exigir, monta a guia no padrão TISS, identificando o procedimento pela TUSS, e envia à operadora. O sistema da operadora verifica três coisas automaticamente: se o beneficiário está dentro da carência, se não há uma CPT aplicável àquela condição, e se o procedimento atende às condições da DUT, quando houver. Se tudo bate, a autorização sai automática; se há uma exceção — por exemplo, o procedimento está fora do Rol — o caso vai para análise humana, considerando os critérios do julgamento do STF: prescrição médica, ausência de alternativa no Rol, e eficácia científica comprovada. Depois da execução, o prestador fatura, e o sistema de faturamento confere automaticamente se o que foi faturado bate com o que foi autorizado; divergências geram glosa técnica ou administrativa, que o prestador pode contestar dentro do prazo acordado. Todos esses eventos — solicitação, autorização, execução, faturamento, glosa, contestação — alimentam os indicadores de sinistralidade e de glosa que vimos antes, e um desvio em qualquer etapa pode ser a causa raiz de um indicador ruim no painel da operadora.",
+  body:`
+    <div class="block">
+      <h3>Fluxo: da solicitação à glosa</h3>
+      <div class="pipeline">
+        <div class="step">Médico solicita procedimento</div><span class="arrow">→</span>
+        <div class="step">Prestador monta guia TISS/TUSS</div><span class="arrow">→</span>
+        <div class="step">Operadora verifica: carência, CPT, DUT</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Tudo ok → autorização automática</div>
+        <div class="step">Exceção (fora do Rol) → análise humana (critérios STF)</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Execução pelo prestador</div><span class="arrow">→</span>
+        <div class="step">Faturamento confere com o autorizado</div><span class="arrow">→</span>
+        <div class="step">Divergência? → Glosa técnica/administrativa → Contestação</div>
+      </div>
+      <div class="callout teal"><span class="tag">TUDO VIRA INDICADOR</span><p>Cada evento desse fluxo alimenta a sinistralidade e o painel de glosa — um desvio em qualquer etapa pode ser a causa raiz de um indicador ruim.</p></div>
+    </div>
+  `
+},
+{
+  ref:"Seção 8", title:"Backlog sugerido para uma squad de saúde suplementar",
+  narration:"Vamos a um backlog concreto. Seis épicos cobrem boa parte do escopo. O primeiro é elegibilidade e regras de cobertura: verificar automaticamente carência, CPT e enquadramento no Rol antes de qualquer autorização. O segundo é autorização e integração TISS: processar guias eletrônicas, validar contra DUT, e encaminhar exceções para análise humana com evidência documentada. O terceiro é faturamento e glosa: conferir automaticamente o faturado contra o autorizado, classificar glosa técnica ou administrativa, e dar visibilidade ao prestador sobre prazos de contestação. O quarto é indicadores e sinistralidade: painel segmentado por contrato, faixa etária e tipo de procedimento, com alertas de desvio. O quinto é governança de dados sensíveis: política de retenção, consentimento auditável, e controle de acesso a dado de saúde, alinhados à LGPD. E o sexto é experiência digital do beneficiário: funcionalidades como solicitação de autorização pelo app, acompanhamento de status, e, quando aplicável, integração com telemedicina.",
+  body:`
+    <div class="block">
+      <h3>Épico 1 — Elegibilidade e regras de cobertura</h3>
+      <ul class="points">
+        <li>Verificar automaticamente carência, CPT e enquadramento no Rol antes de autorizar;</li>
+        <li>Critério de aceite: nenhuma autorização automática sem essas três verificações.</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 2 — Autorização e integração TISS</h3>
+      <ul class="points">
+        <li>Processar guias eletrônicas no padrão TISS;</li>
+        <li>Validar contra DUT quando aplicável;</li>
+        <li>Encaminhar exceções (fora do Rol) para análise humana com evidência documentada.</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 3 — Faturamento e glosa</h3>
+      <ul class="points">
+        <li>Conferir automaticamente faturado × autorizado;</li>
+        <li>Classificar glosa técnica/administrativa;</li>
+        <li>Dar visibilidade ao prestador sobre prazos de contestação.</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 4 — Indicadores e sinistralidade</h3>
+      <ul class="points">
+        <li>Painel segmentado por contrato, faixa etária e tipo de procedimento;</li>
+        <li>Alertas automáticos de desvio.</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 5 — Governança de dados sensíveis</h3>
+      <ul class="points">
+        <li>Política de retenção de dado de saúde;</li>
+        <li>Consentimento auditável;</li>
+        <li>Controle de acesso alinhado à LGPD.</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3>Épico 6 — Experiência digital do beneficiário</h3>
+      <ul class="points">
+        <li>Solicitação de autorização pelo app;</li>
+        <li>Acompanhamento de status em tempo real;</li>
+        <li>Integração com telemedicina, quando aplicável.</li>
+      </ul>
+    </div>
+  `
+},
+{
+  ref:"Seções 9–10", title:"Perguntas prováveis na entrevista e glossário de termos técnicos",
+  narration:"Vamos treinar as perguntas mais prováveis. Primeira: o que você faria se um procedimento estivesse fora do Rol? Resposta: não negaria automaticamente — encaminharia para um fluxo de análise seguindo os critérios do STF: prescrição médica, ausência de alternativa no Rol, e eficácia científica comprovada com registro na Anvisa. Segunda: como você reduziria a taxa de glosa de uma operadora? Resposta: atacaria a causa mais comum, que é ausência de autorização — melhorando a integração entre o fluxo de autorização e o de faturamento, para que nada seja faturado sem autorização correspondente registrada. Terceira: qual a diferença entre carência e CPT? Resposta: carência é um prazo geral após a contratação; CPT se aplica especificamente a uma condição preexistente, suspendendo procedimentos de alta complexidade ligados àquela condição por até vinte e quatro meses, sem impedir o atendimento geral. Quarta: como você trataria dado de saúde em um novo produto? Resposta: definiria finalidade específica, base legal clara, geralmente tutela da saúde, retenção mínima necessária, e trilha de consentimento auditável desde o desenho inicial. E quinta: como a sinistralidade influencia a priorização de produto? Resposta: segmentaria a sinistralidade por contrato, faixa etária e tipo de procedimento, para distinguir entre poucos casos de alto custo, que pedem gestão de crônicos, e uso disperso elevado, que pede prevenção.",
+  body:`
+    <div class="block">
+      <div class="qa"><div class="q">O que você faria se um procedimento estivesse fora do Rol?</div><div class="a">Não negaria automaticamente. Encaminharia para um fluxo de análise seguindo os critérios cumulativos fixados pelo STF: prescrição médica, ausência de alternativa terapêutica no próprio Rol, e comprovação de eficácia científica com registro na Anvisa.</div></div>
+      <div class="qa"><div class="q">Como você reduziria a taxa de glosa de uma operadora?</div><div class="a">Atacaria a causa mais comum, que segundo os dados da ANS é ausência de autorização — melhorando a integração entre o fluxo de autorização e o de faturamento, para que nada seja faturado sem uma autorização correspondente registrada no sistema.</div></div>
+      <div class="qa"><div class="q">Qual a diferença entre carência e CPT?</div><div class="a">Carência é um prazo geral que se aplica a todo novo beneficiário após a contratação. CPT se aplica especificamente a uma condição ou lesão preexistente, suspendendo por até 24 meses a cobertura de procedimentos de alta complexidade ligados àquela condição, sem impedir o atendimento geral do beneficiário.</div></div>
+      <div class="qa"><div class="q">Como você trataria dado de saúde em um novo produto?</div><div class="a">Definiria finalidade específica, base legal clara (geralmente tutela da saúde, conforme o artigo 11 da LGPD), retenção mínima necessária, e uma trilha de consentimento auditável desde o desenho inicial do produto — não como um ajuste posterior.</div></div>
+      <div class="qa"><div class="q">Como a sinistralidade influencia a priorização de produto?</div><div class="a">Eu segmentaria a sinistralidade por contrato, faixa etária e tipo de procedimento, para distinguir entre poucos casos concentrados de alto custo, que pedem programas de gestão de crônicos, e uso disperso elevado em toda a base, que pede ações de prevenção e triagem — são estratégias de produto diferentes.</div></div>
+    </div>
+    <div class="block">
+      <h3>Glossário de termos técnicos</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Termo</th><th>Definição para entrevista</th></tr>
+        <tr><td class="mono">ANS</td><td>Agência Nacional de Saúde Suplementar — regula operadoras de planos de saúde</td></tr>
+        <tr><td class="mono">Rol de Procedimentos</td><td>Lista mínima obrigatória de cobertura, hoje exemplificativa (não taxativa)</td></tr>
+        <tr><td class="mono">TISS</td><td>Troca de Informação em Saúde Suplementar — padrão técnico de comunicação operadora-prestador</td></tr>
+        <tr><td class="mono">TUSS</td><td>Terminologia Unificada da Saúde Suplementar — codificação padronizada de procedimentos</td></tr>
+        <tr><td class="mono">DUT / DUC</td><td>Diretriz de Utilização Técnica/Clínica — condições clínicas para cobertura de um procedimento</td></tr>
+        <tr><td class="mono">Glosa</td><td>Suspensão (total ou parcial) do pagamento de um procedimento faturado</td></tr>
+        <tr><td class="mono">Sinistralidade</td><td>(Despesa assistencial ÷ Receita de mensalidades) × 100</td></tr>
+        <tr><td class="mono">Carência</td><td>Prazo após a contratação sem direito a determinados serviços</td></tr>
+        <tr><td class="mono">CPT</td><td>Cobertura Parcial Temporária, ligada a condição preexistente</td></tr>
+        <tr><td class="mono">Portabilidade de carências</td><td>Direito de trocar de operadora sem cumprir novas carências</td></tr>
+        <tr><td class="mono">RNDS</td><td>Rede Nacional de Dados em Saúde — plataforma federal de interoperabilidade</td></tr>
+        <tr><td class="mono">S-RES</td><td>Sistema de Registro Eletrônico de Saúde</td></tr>
+        <tr><td class="mono">SNCR</td><td>Sistema Nacional de Controle de Receituários</td></tr>
+      </table></div>
+    </div>
+  `
+},
+{
+  ref:"Plano final", title:"Plano de estudo e resumo final",
+  narration:"Para fechar, um plano de estudo de sete dias. Dia um: panorama regulatório, a ANS e os tipos de operadora. Dia dois: Rol de Procedimentos e TISS. Dia três: o ciclo de autorização, DUT, TUSS e glosa. Dia quatro: sinistralidade e seus desdobramentos de produto. Dia cinco: produtos, carência, CPT e portabilidade. Dia seis: LGPD, interoperabilidade e telemedicina. E dia sete: simular a entrevista, desenhando de memória o fluxo completo de uma autorização e respondendo as cinco perguntas prováveis. Você está preparado quando consegue explicar por que o Rol é exemplificativo e não taxativo; descrever o ciclo de autorização do pedido médico até a glosa; calcular sinistralidade e explicar por que ela precisa ser segmentada; diferenciar carência de CPT; explicar por que dado de saúde é dado sensível e o que isso exige de um produto; e desenhar o fluxo de ponta a ponta de uma autorização.",
+  body:`
+    <div class="block">
+      <h3>Plano de estudo de 7 dias</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>Dia</th><th>Estudo</th></tr>
+        <tr><td class="mono">1</td><td>Panorama regulatório: ANS e tipos de operadora</td></tr>
+        <tr><td class="mono">2</td><td>Rol de Procedimentos e TISS</td></tr>
+        <tr><td class="mono">3</td><td>Ciclo de autorização: DUT, TUSS e glosa</td></tr>
+        <tr><td class="mono">4</td><td>Sinistralidade e seus desdobramentos de produto</td></tr>
+        <tr><td class="mono">5</td><td>Produtos, carência, CPT e portabilidade</td></tr>
+        <tr><td class="mono">6</td><td>LGPD, interoperabilidade e telemedicina</td></tr>
+        <tr><td class="mono">7</td><td>Simulação de entrevista: fluxo completo + as 5 perguntas</td></tr>
+      </table></div>
+    </div>
+    <div class="block">
+      <h3>Checklist final</h3>
+      <ul class="points">
+        <li>Explicar por que o Rol é exemplificativo e não taxativo;</li>
+        <li>Descrever o ciclo de autorização, do pedido médico até a glosa;</li>
+        <li>Calcular sinistralidade e explicar por que precisa ser segmentada;</li>
+        <li>Diferenciar carência de CPT;</li>
+        <li>Explicar por que dado de saúde é dado sensível e o que isso exige de um produto;</li>
+        <li>Desenhar o fluxo de ponta a ponta de uma autorização.</li>
+      </ul>
+      <div class="central-phrase">"Você não precisa ser especialista em medicina. Precisa entender o ciclo do beneficiário, traduzir em dados e regras, e saber onde a regulação da ANS exige atenção redobrada antes de automatizar."</div>
+    </div>
+  `
+}
+  ]
 }
 };
 
 /* ============================= ESTADO E RENDER ============================= */
-const COURSE_ORDER = ['reforma','pagamentos','ia'];
-const state = { courseId:'reforma', current: 0, completedByCourse: {}, speaking:false, paused:false };
+const COURSE_ORDER = ['reforma','pagamentos','ia','logistica','saude'];
+const state = { view:'home', courseId:'reforma', current: 0, completedByCourse: {}, speaking:false, paused:false };
 
 function curCourse(){ return COURSES[state.courseId]; }
 function curModules(){ return curCourse().modules; }
@@ -2534,6 +3307,35 @@ const brandKicker = document.getElementById('brandKicker');
 const brandTitle = document.getElementById('brandTitle');
 const brandSub = document.getElementById('brandSub');
 const glossaryBtn = document.getElementById('glossaryBtn');
+const homeBtn = document.getElementById('homeBtn');
+const narratorBarEl = document.getElementById('narratorBar');
+
+/* ---- categorização automática de módulos, por padrão de ref/title ---- */
+const CATEGORY_ORDER = ['Conceito','Prática de entrevista','Exemplo prático','Atualização de mercado','Referência'];
+const CATEGORY_META = {
+  'Conceito':            {icon:'📘', cls:'co'},
+  'Prática de entrevista':{icon:'🎯', cls:'pr'},
+  'Exemplo prático':     {icon:'🧩', cls:'ex'},
+  'Atualização de mercado':{icon:'📰', cls:'up'},
+  'Referência':          {icon:'📖', cls:'ref'}
+};
+function categorize(m){
+  const ref = m.ref||'', title = m.title||'';
+  if(/^Exemplo/i.test(ref)) return 'Exemplo prático';
+  if(/^Atualização/i.test(ref)) return 'Atualização de mercado';
+  if(/glossário/i.test(ref) || /glossário/i.test(title) || /^Plano final/i.test(ref)) return 'Referência';
+  if(/pergunta|entrevista|simulaç|comportamental|roteiro de 7 dias|roteiro de preparação/i.test(ref+' '+title)) return 'Prática de entrevista';
+  return 'Conceito';
+}
+function estimateMinutes(m){
+  const plain = (m.narration||'') + ' ' + (m.body||'').replace(/<[^>]+>/g,' ');
+  const words = plain.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words/140));
+}
+function badgeHTML(cat, minutes){
+  const meta = CATEGORY_META[cat] || CATEGORY_META['Conceito'];
+  return `<span class="type-badge ${meta.cls}">${meta.icon} ${cat}</span><span class="time-badge">⏱ ~${minutes} min</span>`;
+}
 
 function findGlossaryIndex(courseId){
   const mods = COURSES[courseId].modules;
@@ -2547,7 +3349,7 @@ function renderCourseSwitch(){
   courseSwitchList.innerHTML = COURSE_ORDER.map(id=>{
     const c = COURSES[id];
     const done = (state.completedByCourse[id] || new Set()).size;
-    const active = id === state.courseId;
+    const active = state.view==='module' && id === state.courseId;
     const plain = c.title.replace(/<br>/g,' ');
     return `<button class="cs-option ${active?'active':''}" data-course="${id}" role="tab" aria-selected="${active}">
       <span class="cs-dot"></span>
@@ -2557,6 +3359,7 @@ function renderCourseSwitch(){
   courseSwitchList.querySelectorAll('.cs-option').forEach(btn=>{
     btn.addEventListener('click', ()=> switchCourse(btn.dataset.course));
   });
+  homeBtn.classList.toggle('active', state.view==='home');
 }
 
 function renderBrand(){
@@ -2566,7 +3369,7 @@ function renderBrand(){
   brandTitle.innerHTML = c.title;
   brandSub.textContent = c.sub;
   const gi = findGlossaryIndex(state.courseId);
-  if(gi >= 0){
+  if(gi >= 0 && state.view==='module'){
     glossaryBtn.style.display = 'flex';
     glossaryBtn.onclick = ()=> goTo(gi);
   } else {
@@ -2577,14 +3380,31 @@ function renderBrand(){
 function renderSidebar(){
   const modules = curModules();
   const completed = curCompleted();
-  modListEl.innerHTML = modules.map((m,i)=>{
-    const done = completed.has(i);
-    const active = i===state.current;
-    return `<button class="modbtn ${active?'active':''} ${done?'done':''}" data-idx="${i}" role="tab" aria-selected="${active}">
-      <span class="num">${done? '✓' : String(i+1).padStart(2,'0')}</span>
-      <span class="label">${m.title}<small>${m.ref}</small></span>
-    </button>`;
-  }).join('');
+
+  const groups = {};
+  modules.forEach((m,i)=>{
+    const cat = categorize(m);
+    if(!groups[cat]) groups[cat] = [];
+    groups[cat].push(i);
+  });
+
+  let html = '';
+  CATEGORY_ORDER.forEach(cat=>{
+    const idxs = groups[cat];
+    if(!idxs || !idxs.length) return;
+    const meta = CATEGORY_META[cat];
+    html += `<div class="section-head">${meta.icon} ${cat}</div>`;
+    html += idxs.map(i=>{
+      const m = modules[i];
+      const done = completed.has(i);
+      const active = state.view==='module' && i===state.current;
+      return `<button class="modbtn ${active?'active':''} ${done?'done':''}" data-idx="${i}" role="tab" aria-selected="${active}">
+        <span class="num">${done? '✓' : String(i+1).padStart(2,'0')}</span>
+        <span class="label">${m.title}<small>${m.ref}</small></span>
+      </button>`;
+    }).join('');
+  });
+  modListEl.innerHTML = html;
   modListEl.querySelectorAll('.modbtn').forEach(btn=>{
     btn.addEventListener('click', ()=> goTo(parseInt(btn.dataset.idx)));
   });
@@ -2606,18 +3426,48 @@ function paragraphize(text){
   return paras;
 }
 
+function injectHeadingIdsAndOutline(bodyHtml){
+  const headings = [];
+  let i = 0;
+  const withIds = bodyHtml.replace(/<h3([^>]*)>([\s\S]*?)<\/h3>/gi, (full, attrs, inner)=>{
+    i++;
+    const id = 'h3-'+i;
+    const plain = inner.replace(/<[^>]+>/g,'').trim();
+    headings.push({id, text:plain});
+    return `<h3 id="${id}"${attrs}>${inner}</h3>`;
+  });
+  return { html: withIds, headings };
+}
+
 function renderContent(){
   const modules = curModules();
   const m = modules[state.current];
   const isLast = state.current === modules.length -1;
   const paras = paragraphize(m.narration);
+  const cat = categorize(m);
+  const mins = estimateMinutes(m);
+  const { html: bodyWithIds, headings } = injectHeadingIdsAndOutline(m.body);
+
+  const outlineHTML = headings.length >= 2 ? `
+    <div class="outline-box">
+      <span class="ob-label">NESTA AULA</span>
+      <ol>
+        ${headings.map(h=>`<li><a href="#${h.id}" class="outline-link" data-target="${h.id}">${h.text}</a></li>`).join('')}
+      </ol>
+    </div>
+  ` : '';
+
   contentEl.innerHTML = `
-    <div class="mod-kicker"><b>${m.ref}</b> · Módulo ${String(state.current+1).padStart(2,'0')} de ${modules.length}</div>
+    <div class="mod-kicker breadcrumb">
+      <span>${curCourse().title.replace(/<br>/g,' ')} · Módulo ${String(state.current+1).padStart(2,'0')} de ${modules.length}</span>
+      ${badgeHTML(cat, mins)}
+    </div>
     <h2 class="mod-title">${m.title}</h2>
+    ${outlineHTML}
     <div class="narration-box" id="narrationBox" aria-live="polite">
       ${paras.map((p,i)=>`<p data-p="${i}">${p}</p>`).join('')}
     </div>
-    <div id="bodyText">${m.body}</div>
+    <div id="bodyText">${bodyWithIds}</div>
     <div class="nav-footer">
       <button class="nav-btn" id="prevBtn" ${state.current===0?'disabled':''}>← Módulo anterior</button>
       <button class="nav-btn" id="nextBtn" ${isLast?'disabled':''}>Próximo módulo →</button>
@@ -2630,31 +3480,115 @@ function renderContent(){
     curCompleted().add(state.current); saveProgress(); renderSidebar();
     document.getElementById('doneBtn').textContent = '✓ Concluído';
   });
+  contentEl.querySelectorAll('.outline-link').forEach(a=>{
+    a.addEventListener('click', (ev)=>{
+      ev.preventDefault();
+      const target = document.getElementById(a.dataset.target);
+      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
   const finalDisclaimer = document.getElementById('finalDisclaimer');
   finalDisclaimer.style.display = isLast ? 'block' : 'none';
   finalDisclaimer.textContent = curCourse().disclaimer;
   document.getElementById('narratorModTitle').textContent = m.title;
 }
 
+/* ---------- Tela inicial (home) ---------- */
+function courseProgressInfo(id){
+  const mods = COURSES[id].modules;
+  const saved = (function(){
+    try{
+      const raw = localStorage.getItem('rt-progress-'+id);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  })();
+  const completedCount = saved && saved.completed ? saved.completed.length : (state.completedByCourse[id] ? state.completedByCourse[id].size : 0);
+  const current = saved ? (saved.current||0) : 0;
+  return { total: mods.length, completedCount, current };
+}
+
+function renderHome(){
+  narratorBarEl.style.display = 'none';
+  document.getElementById('finalDisclaimer').style.display = 'none';
+  const cardsHTML = COURSE_ORDER.map(id=>{
+    const c = COURSES[id];
+    const info = courseProgressInfo(id);
+    const pct = Math.round((info.completedCount/info.total)*100);
+    const started = info.completedCount > 0 || info.current > 0;
+    const ctaLabel = started ? `Continuar (módulo ${info.current+1} de ${info.total})` : 'Começar agora';
+    const plainTitle = c.title.replace(/<br>/g,' ');
+    return `
+      <div class="home-card">
+        <div class="hc-top">
+          <div class="hc-seal">${c.seal}</div>
+          <div>
+            <h3>${plainTitle}</h3>
+          </div>
+        </div>
+        <p class="hc-desc">${c.sub}</p>
+        <div class="hc-progress-row">
+          <span>${info.completedCount} de ${info.total} módulos</span>
+          <div class="hc-track"><div class="hc-fill" style="width:${pct}%"></div></div>
+          <span>${pct}%</span>
+        </div>
+        <button class="hc-cta" data-course="${id}">${ctaLabel}</button>
+      </div>
+    `;
+  }).join('');
+
+  contentEl.innerHTML = `
+    <div class="home-wrap">
+      <h2 class="home-title">Escolha sua trilha de preparação</h2>
+      <p class="home-sub">Três dossiês narrados, com exemplos práticos e diagramas, para você chegar pronto à entrevista. Seu progresso em cada um é salvo automaticamente neste navegador.</p>
+      <div class="home-grid">${cardsHTML}</div>
+    </div>
+  `;
+  contentEl.querySelectorAll('.hc-cta').forEach(btn=>{
+    btn.addEventListener('click', ()=> switchCourse(btn.dataset.course));
+  });
+}
+
+function renderMain(){
+  if(state.view === 'home'){
+    renderHome();
+  } else {
+    narratorBarEl.style.display = 'flex';
+    renderContent();
+  }
+}
+
+function goHome(){
+  stopNarration();
+  state.view = 'home';
+  renderSidebar(); renderMain();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
 function goTo(idx){
   const modules = curModules();
   if(idx<0 || idx>=modules.length) return;
   stopNarration();
+  state.view = 'module';
   state.current = idx; saveProgress();
-  renderSidebar(); renderContent();
+  renderSidebar(); renderMain();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function switchCourse(courseId){
-  if(courseId === state.courseId) return;
   stopNarration();
+  const sameCourse = courseId === state.courseId && state.view==='module';
   state.courseId = courseId;
-  state.current = loadProgress(courseId);
-  if(state.current >= COURSES[courseId].modules.length) state.current = 0;
+  state.view = 'module';
+  if(!sameCourse){
+    state.current = loadProgress(courseId);
+    if(state.current >= COURSES[courseId].modules.length) state.current = 0;
+  }
   try{ localStorage.setItem('rt-last-course', courseId); }catch(e){}
-  renderBrand(); renderSidebar(); renderContent();
+  renderBrand(); renderSidebar(); renderMain();
   window.scrollTo({top:0, behavior:'smooth'});
 }
+
+homeBtn.addEventListener('click', goHome);
 
 /* ============================= LOCUTOR (SPEECH SYNTHESIS) ============================= */
 const synth = ('speechSynthesis' in window) ? window.speechSynthesis : null;
@@ -2846,9 +3780,10 @@ state.courseId = initialCourse;
 state.current = loadProgress(initialCourse);
 if(state.current >= curModules().length) state.current = 0;
 
+state.view = 'home';
 renderBrand();
 renderSidebar();
-renderContent();
+renderMain();
 window.addEventListener('beforeunload', ()=>{ if(synth) synth.cancel(); });
 </script>
 </body>
