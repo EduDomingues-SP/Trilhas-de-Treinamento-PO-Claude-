@@ -12,6 +12,7 @@
   --bg:#EDF1F5; --panel:#FFFFFF; --panel-2:#F2F5F9;
   --ink:#1C2B3A; --muted:#5B6B7A; --line:rgba(28,43,58,0.14);
   --gold:#2B5F8A; --teal:#52708A; --rust:#64748B;
+  --kw:#18672B;   /* palavras-chave: verde no tema claro */
   --gold-soft:#2B5F8A20; --teal-soft:#52708A20; --rust-soft:#64748B20;
   --shadow: 0 1px 2px rgba(28,43,58,0.06), 0 8px 24px rgba(28,43,58,0.06);
   box-sizing:border-box;
@@ -23,6 +24,7 @@
     --bg:#121A24; --panel:#1A2531; --panel-2:#212E3C;
     --ink:#E6ECF2; --muted:#8FA0B0; --line:rgba(230,236,242,0.10);
     --gold:#5B9BD5; --teal:#7FA8C9; --rust:#94A3B3;
+    --kw:#FACC15;   /* palavras-chave: amarelo no tema escuro */
     --gold-soft:#5B9BD522; --teal-soft:#7FA8C922; --rust-soft:#94A3B322;
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.35);
   }
@@ -31,6 +33,7 @@
   --bg:#121A24; --panel:#1A2531; --panel-2:#212E3C;
   --ink:#E6ECF2; --muted:#8FA0B0; --line:rgba(230,236,242,0.10);
   --gold:#5B9BD5; --teal:#7FA8C9; --rust:#94A3B3;
+  --kw:#FACC15;
   --gold-soft:#5B9BD522; --teal-soft:#7FA8C922; --rust-soft:#94A3B322;
   --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.35);
 }
@@ -145,7 +148,7 @@ nav.modlist{ display:flex; flex-direction:column; gap:2px; }
 /* ---------- Locução com marcador e palavras-chave ---------- */
 .speaking-block{ background:var(--gold-soft); box-shadow:-3px 0 0 var(--gold); border-radius:4px; }
 svg.speaking-block{ background:transparent; box-shadow:none; outline:2px solid var(--gold); outline-offset:4px; border-radius:8px; }
-strong.kw{ font-weight:700; color:var(--ink); }
+strong.kw{ font-weight:700; color:var(--kw); }
 .follow-btn{
   background:var(--panel-2); color:var(--muted); border:1px solid var(--line); border-radius:7px;
   font-size:12px; padding:6px 9px; cursor:pointer; white-space:nowrap;
