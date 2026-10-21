@@ -326,6 +326,42 @@ mark.sr-hit{ background:var(--gold-soft); color:var(--ink); border-radius:3px; p
 .tk-var{ color:var(--teal); }
 .tk-ty{ color:var(--ink); font-weight:600; }
 
+/* ---------- Índice da trilha e navegação por módulo ---------- */
+.hc-actions{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.hc-actions .hc-cta{ margin-top:0; }
+.hc-ghost{ background:transparent; border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:9px 16px; font-size:13.5px; cursor:pointer; font-family:inherit; }
+.hc-ghost:hover{ border-color:var(--gold); }
+.hc-ghost:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+.tr-wrap{ max-width:820px; margin:0 auto; padding-bottom:40px; }
+.tr-head{ display:flex; gap:14px; align-items:center; margin-bottom:8px; }
+.tr-title{ font-size:clamp(24px,4vw,32px); margin:0; line-height:1.2; }
+.tr-sub{ color:var(--muted); font-size:14.5px; line-height:1.6; margin:6px 0 14px; }
+.tr-stats{ display:flex; flex-wrap:wrap; gap:6px 16px; align-items:center; font-size:12.5px; color:var(--muted); margin-bottom:8px; }
+.tr-bar{ height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin-bottom:16px; }
+.tr-bar > div{ height:100%; background:var(--teal); }
+.tr-actions{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px; }
+.tr-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.tr-chip{ border:1px solid var(--line); background:var(--panel-2); color:var(--muted); border-radius:20px; padding:5px 12px; font-size:12.5px; cursor:pointer; font-family:inherit; }
+.tr-chip:hover{ border-color:var(--gold); }
+.tr-chip:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+.tr-chip.on{ background:var(--gold-soft); border-color:var(--gold); color:var(--ink); font-weight:600; }
+.tr-list{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+.tr-row{ width:100%; display:flex; gap:12px; align-items:flex-start; text-align:left; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:11px 14px; cursor:pointer; color:var(--ink); font-family:inherit; }
+.tr-row:hover{ border-color:var(--gold); }
+.tr-row:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+.tr-row.current{ border-color:var(--gold); background:var(--gold-soft); }
+.tr-row.done .tr-num{ color:var(--teal); }
+.tr-num{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px; color:var(--muted); min-width:26px; padding-top:2px; }
+.tr-main{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+.tr-ttl{ font-weight:600; font-size:14.5px; line-height:1.35; }
+.tr-meta{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.tr-flag{ font-size:11px; font-weight:600; color:var(--gold); }
+.tr-empty{ color:var(--muted); font-size:13.5px; padding:14px 2px; }
+.mod-nav{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:12px; }
+.mod-jump{ flex:1; min-width:200px; }
+.mod-jump select{ width:100%; max-width:100%; background:var(--panel-2); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:8px 10px; font-size:13px; font-family:inherit; }
+.mod-jump select:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+
 .glossary-wrap{ margin:14px 0 24px; }
 .glossary-search{
   width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:10px;
@@ -4267,7 +4303,7 @@ function renderCourseSwitch(){
   courseSwitchList.innerHTML = COURSE_ORDER.map(id=>{
     const c = COURSES[id];
     const done = (state.completedByCourse[id] || new Set()).size;
-    const active = state.view==='module' && id === state.courseId;
+    const active = (state.view==='module' || state.view==='track') && id === state.courseId;
     const plain = c.title.replace(/<br>/g,' ');
     return `<button class="cs-option ${active?'active':''}" data-course="${id}" role="tab" aria-selected="${active}">
       <span class="cs-dot"></span>
@@ -4275,7 +4311,7 @@ function renderCourseSwitch(){
     </button>`;
   }).join('');
   courseSwitchList.querySelectorAll('.cs-option').forEach(btn=>{
-    btn.addEventListener('click', ()=> switchCourse(btn.dataset.course));
+    btn.addEventListener('click', ()=> openTrack(btn.dataset.course));
   });
   homeBtn.classList.toggle('active', state.view==='home');
   practiceBtn.classList.toggle('active', state.view==='practice');
@@ -4288,7 +4324,7 @@ function renderBrand(){
   brandTitle.innerHTML = c.title;
   brandSub.textContent = c.sub;
   const gi = findGlossaryIndex(state.courseId);
-  if(gi >= 0 && state.view==='module'){
+  if(gi >= 0 && (state.view==='module' || state.view==='track')){
     glossaryBtn.style.display = 'flex';
     glossaryBtn.onclick = ()=> goTo(gi);
   } else {
@@ -4373,6 +4409,7 @@ function renderContent(){
   ` : '';
 
   contentEl.innerHTML = `
+    ${modNavHTML()}
     <div class="mod-kicker breadcrumb">
       <span>${curCourse().title.replace(/<br>/g,' ')} · Módulo ${String(state.current+1).padStart(2,'0')} de ${modules.length}</span>
       ${badgeHTML(cat, mins, estimateSummaryMinutes(m))}
@@ -4412,6 +4449,7 @@ function renderContent(){
   wrapDiagrams();
   enhanceMyAnswers();
   wireSourcesBox(state.courseId, state.current, m);
+  wireModNav();
   const mtb = document.getElementById('moduleTestBtn');
   if(mtb) mtb.addEventListener('click', ()=> startModuleTest(state.courseId, state.current));
   const finalDisclaimer = document.getElementById('finalDisclaimer');
@@ -4747,7 +4785,7 @@ function renderHome(){
           <span>${pct}%</span>
         </div>
         <p class="hc-check">🔎 Fontes conferidas por você: ${courseCheckInfo(id).done} de ${courseCheckInfo(id).total} módulos</p>
-        <button class="hc-cta" data-course="${id}">${ctaLabel}</button>
+        <div class="hc-actions"><button class="hc-cta" data-course="${id}">${ctaLabel}</button><button class="hc-ghost" data-track="${id}">Ver módulos</button></div>
       </div>
     `;
   }).join('');
@@ -4755,7 +4793,7 @@ function renderHome(){
   contentEl.innerHTML = `
     <div class="home-wrap">
       <h2 class="home-title">Escolha sua trilha de preparação</h2>
-      <p class="home-sub">${COURSE_ORDER.length} dossiês narrados, com exemplos práticos e diagramas, para você chegar pronto à entrevista. Seu progresso em cada um é salvo automaticamente neste navegador.</p>
+      <p class="home-sub">${COURSE_ORDER.length} dossiês narrados, com exemplos práticos e diagramas, para você chegar pronto à entrevista. Use “Continuar” para voltar de onde parou ou “Ver módulos” para escolher um módulo específico. Seu progresso é salvo automaticamente neste navegador.</p>
       <div class="home-grid">${cardsHTML}</div>
       <div class="home-practice"><div><h3>🎯 Treine o que aprendeu</h3><p>Modo entrevista com cronômetro, flashcards do glossário e quiz de múltipla escolha — gerados automaticamente a partir dos módulos.</p></div><button class="hc-cta" id="homePracticeBtn">Abrir o treino</button></div>
     </div>
@@ -4763,6 +4801,9 @@ function renderHome(){
   contentEl.querySelectorAll('.hc-cta').forEach(btn=>{
     if(btn.id === 'homePracticeBtn') return;
     btn.addEventListener('click', ()=> switchCourse(btn.dataset.course));
+  });
+  contentEl.querySelectorAll('.hc-ghost').forEach(btn=>{
+    btn.addEventListener('click', ()=> openTrack(btn.dataset.track));
   });
   document.getElementById('homePracticeBtn').addEventListener('click', openPractice);
 }
@@ -4775,6 +4816,8 @@ function renderMain(){
     renderSearch(state.query || '');
   } else if(state.view === 'practice'){
     renderPractice();
+  } else if(state.view === 'track'){
+    renderTrack();
   } else {
     narratorBarEl.style.display = 'flex';
     renderContent();
@@ -4813,6 +4856,98 @@ function switchCourse(courseId){
 }
 
 homeBtn.addEventListener('click', goHome);
+
+/* ============================= ÍNDICE DA TRILHA E NAVEGAÇÃO POR MÓDULO ============================= */
+const trackUI = { filter: 'all', pending: false };
+
+function fmtMin(n){
+  if(n < 60) return n + ' min';
+  const h = Math.floor(n / 60), m = n % 60;
+  return h + ' h' + (m ? ' ' + String(m).padStart(2, '0') + ' min' : '');
+}
+function openTrack(cid){
+  stopNarration();
+  if(cid !== state.courseId || state.view === 'home' || state.view === 'search' || state.view === 'practice'){
+    if(cid !== state.courseId){
+      state.courseId = cid;
+      state.current = loadProgress(cid);
+      if(state.current >= COURSES[cid].modules.length) state.current = 0;
+      trackUI.filter = 'all'; trackUI.pending = false;
+    }
+  }
+  state.view = 'track';
+  try{ localStorage.setItem('rt-last-course', cid); }catch(e){}
+  renderBrand(); renderSidebar(); renderMain();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function renderTrack(){
+  contentEl.classList.remove('is-home');
+  narratorBarEl.style.display = 'none';
+  document.getElementById('finalDisclaimer').style.display = 'none';
+  const cid = state.courseId, c = COURSES[cid], mods = c.modules, done = curCompleted();
+  const pct = Math.round((done.size / mods.length) * 100);
+  const started = done.size > 0 || state.current > 0;
+  const mins = mods.map(m=> estimateMinutes(m));
+  const total = mins.reduce((a, b)=> a + b, 0);
+  const left = mins.reduce((a, b, i)=> a + (done.has(i) ? 0 : b), 0);
+  const cats = CATEGORY_ORDER.filter(cat=> mods.some(m=> categorize(m) === cat));
+  const pendingN = mods.filter((m, i)=> !done.has(i)).length;
+  const chip = (key, label, n, on)=>
+    '<button class="tr-chip' + (on ? ' on' : '') + '" data-f="' + key + '" aria-pressed="' + (on ? 'true' : 'false') + '">' + label + ' (' + n + ')</button>';
+  const chips = chip('all', 'Todos', mods.length, trackUI.filter === 'all' && !trackUI.pending) +
+    cats.map(cat=> chip('cat:' + cat, CATEGORY_META[cat].icon + ' ' + cat, mods.filter(m=> categorize(m) === cat).length, trackUI.filter === cat)).join('') +
+    chip('pending', '⏳ Só pendentes', pendingN, trackUI.pending);
+  const rows = [];
+  mods.forEach((m, i)=>{
+    const cat = categorize(m);
+    if(trackUI.filter !== 'all' && cat !== trackUI.filter) return;
+    if(trackUI.pending && done.has(i)) return;
+    const isCur = i === state.current;
+    rows.push('<li><button class="tr-row' + (isCur ? ' current' : '') + (done.has(i) ? ' done' : '') + '" data-idx="' + i + '"' + (isCur ? ' aria-current="true"' : '') + '>' +
+      '<span class="tr-num">' + (done.has(i) ? '✓' : String(i + 1).padStart(2, '0')) + '</span>' +
+      '<span class="tr-main"><span class="tr-ttl">' + escapeHTML(m.title) + '</span>' +
+      '<span class="tr-meta">' + badgeHTML(cat, mins[i], estimateSummaryMinutes(m)) + (isCur && started ? '<span class="tr-flag">▶ você parou aqui</span>' : '') + '</span></span></button></li>');
+  });
+  const cur = mods[state.current] || mods[0];
+  const ctaLabel = started ? '▶ Continuar: módulo ' + String(state.current + 1).padStart(2, '0') + ' — ' + escapeHTML(cur.title) : '▶ Começar pelo módulo 01';
+  contentEl.innerHTML =
+    '<div class="tr-wrap">' +
+      '<div class="tr-head"><div class="hc-seal">' + c.seal + '</div><h2 class="tr-title">' + c.title.replace(/<br>/g, ' ') + '</h2></div>' +
+      '<p class="tr-sub">' + c.sub + '</p>' +
+      '<div class="tr-stats"><span>' + done.size + ' de ' + mods.length + ' módulos concluídos (' + pct + '%)</span><span>⏱ ' + fmtMin(total) + ' no total</span><span>' + fmtMin(left) + ' restantes</span></div>' +
+      '<div class="tr-bar"><div style="width:' + pct + '%"></div></div>' +
+      '<div class="tr-actions"><button class="hc-cta" id="trContinue">' + ctaLabel + '</button><button class="hc-ghost" id="trHome">← Todas as trilhas</button></div>' +
+      '<div class="tr-chips" role="group" aria-label="Filtrar módulos">' + chips + '</div>' +
+      (rows.length ? '<ol class="tr-list">' + rows.join('') + '</ol>' : '<p class="tr-empty">Nenhum módulo neste filtro. Ótimo sinal: tudo o que estava pendente foi concluído.</p>') +
+    '</div>';
+  contentEl.querySelectorAll('.tr-row').forEach(b=>{
+    b.addEventListener('click', ()=> openModule(cid, parseInt(b.dataset.idx, 10)));
+  });
+  contentEl.querySelectorAll('.tr-chip').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const f = b.dataset.f;
+      if(f === 'all'){ trackUI.filter = 'all'; trackUI.pending = false; }
+      else if(f === 'pending'){ trackUI.pending = !trackUI.pending; }
+      else { const cat = f.slice(4); trackUI.filter = (trackUI.filter === cat) ? 'all' : cat; }
+      renderTrack();
+    });
+  });
+  document.getElementById('trContinue').addEventListener('click', ()=> openModule(cid, started ? state.current : 0));
+  document.getElementById('trHome').addEventListener('click', goHome);
+}
+function modNavHTML(){
+  const mods = curModules();
+  const opts = mods.map((m, i)=>
+    '<option value="' + i + '"' + (i === state.current ? ' selected' : '') + '>' + String(i + 1).padStart(2, '0') + ' · ' + escapeHTML(m.title) + '</option>').join('');
+  return '<div class="mod-nav"><button class="nav-btn" id="trackBtn">← Módulos da trilha</button>' +
+    '<label class="mod-jump"><span class="sr-only">Ir para o módulo</span><select id="modJump" aria-label="Ir para o módulo">' + opts + '</select></label></div>';
+}
+function wireModNav(){
+  const back = document.getElementById('trackBtn');
+  if(back) back.addEventListener('click', ()=> openTrack(state.courseId));
+  const sel = document.getElementById('modJump');
+  if(sel) sel.addEventListener('change', ()=> goTo(parseInt(sel.value, 10)));
+}
 
 /* ============================= UTILITÁRIOS, BUSCA E TREINO ============================= */
 function hashStr(s){
